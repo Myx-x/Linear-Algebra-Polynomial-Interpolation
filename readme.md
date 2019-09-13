@@ -15,7 +15,7 @@
     <li>Gauss-Jordan Elimination Algorithm</li>
     <li>Graph Interpolation from given points</li>
     <li>Study case examples</li>
-    <li><i>..and so much more!</li>
+    <li><i>..and so much more!</i></li>
 </ul>
 
 # How do you use this program?

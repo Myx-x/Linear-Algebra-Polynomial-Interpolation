@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Matrix
 {
+	private Scanner s = new Scanner(System.in);
     public double[][] arr;
     public int rowCount, colCount;
 
@@ -37,13 +38,18 @@ public class Matrix
 	// Matrix Input Procedure
 	public void inputMatrix()
 	{
-		Scanner s = new Scanner(System.in);
-		int r=s.nextInt(), c=s.nextInt();
+		if(s.hasNextInt())
+		{
+			int r=s.nextInt();
+			int c=s.nextInt();
+	
+			makeMatrix(r, c);
+			for(int i=0;i<r;i++) for(int j=0;j<c;j++) this.arr[i][j] = s.nextDouble();
+			
+			s.nextLine();
+		}
+		else System.out.println("GABISACUK");
 
-		makeMatrix(r, c);
-		for(int i=0;i<r;i++) for(int j=0;j<c;j++) this.arr[i][j] = s.nextInt();
-
-		s.close();
 	}
 
 	// Matrix Output Procedure
@@ -51,32 +57,32 @@ public class Matrix
 	{
 		for(int i=0;i<this.rowCount;i++)
 		{
-			for(int j=0;j<this.colCount;j++) System.out.print(this.arr[i][j] + " ");
+			for(int j=0;j<this.colCount;j++) System.out.print(this.arr[i][j] + "\t");
 			System.out.println();
 		}
 	}
 	
 	/*----- UTILITY FUNCTIONS ------*/
-	// Internal Swap Function
-	private void swap(double a, double b)
-	{
-		double tmp=a;
-		a=b;
-		b=tmp;
-	}
-
 	// Swaps row1 with row2
 	public void swapRow(int row1, int row2)
 	{
-		for(int i=0;i<this.colCount;i++) swap(arr[row1][i], arr[row2][i]);
+		for(int i=0;i<this.colCount;i++) 
+		{
+			double tmp = this.arr[row1][i];
+			this.arr[row1][i]=this.arr[row2][i];
+			this.arr[row2][i]=tmp;
+		}
 	}
-
 	// Swaps col1 with col2
 	public void swapCol(int col1, int col2)
 	{
-		for(int i=0;i<this.rowCount;i++) swap(arr[i][col1], arr[i][col2]);
+		for(int i=0;i<this.rowCount;i++) 
+		{
+			double tmp = this.arr[i][col1];
+			this.arr[i][col1]=this.arr[i][col2];
+			this.arr[i][col2]=tmp;
+		}	
 	}
-
 
 	/*----- GAUSSIAN ELIMINATION -----*/
 
