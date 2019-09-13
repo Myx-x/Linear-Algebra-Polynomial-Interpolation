@@ -1,8 +1,10 @@
-class Main
+public class Main
 {
-    public static void Main(String args[])
+    public static void main (String args[])
     {
-        mat=new Matrix();
+        Matrix mat=new Matrix();
 
+        mat.inputMatrix();
+        mat.printMatrix();
     }
 }

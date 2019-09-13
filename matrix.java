@@ -33,6 +33,7 @@ public class Matrix
 		this.arr[row][col] = value;
 	}
 	
+	/*----- INPUT OUTPUT PROCEDURE ------*/
 	// Matrix Input Procedure
 	public void inputMatrix()
 	{
@@ -50,14 +51,13 @@ public class Matrix
 	{
 		for(int i=0;i<this.rowCount;i++)
 		{
-			for(int j=0;j<this.colCount;j++)
-			{
-				System.out.print(this.arr[i][j] + " ");
-			}
+			for(int j=0;j<this.colCount;j++) System.out.print(this.arr[i][j] + " ");
 			System.out.println();
 		}
 	}
 	
+	/*----- UTILITY FUNCTIONS ------*/
+	// Internal Swap Function
 	private void swap(double a, double b)
 	{
 		double tmp=a;
@@ -65,15 +65,24 @@ public class Matrix
 		b=tmp;
 	}
 
+	// Swaps row1 with row2
 	public void swapRow(int row1, int row2)
 	{
 		for(int i=0;i<this.colCount;i++) swap(arr[row1][i], arr[row2][i]);
 	}
 
+	// Swaps col1 with col2
 	public void swapCol(int col1, int col2)
 	{
 		for(int i=0;i<this.rowCount;i++) swap(arr[i][col1], arr[i][col2]);
 	}
 
-	
+
+	/*----- GAUSSIAN ELIMINATION -----*/
+
+	public void gaussElimination(int row, int col)
+	{
+		
+	}
+
 }
