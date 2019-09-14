@@ -10,20 +10,20 @@ public class Matrix
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
     public void makeMatrix(int dimRow, int dimCol)
     {
-        this.arr = new double[dimRow][dimCol];
-        this.rowCount = dimRow;
-        this.colCount = dimCol;
+        arr = new double[dimRow][dimCol];
+        rowCount = dimRow;
+        colCount = dimCol;	
     }
 	
 	/*----- SELECTOR -----*/
 	// Returns the object's rowCount
-	public int getMatrixRow()
+	public int getRowCount()
 	{
 		return this.rowCount;
 	}
 	
 	// Returns the object's colCount
-    public int getMatrixCol()
+    public int getColCount()
     {
         return this.colCount;
     }
@@ -48,7 +48,7 @@ public class Matrix
 			
 			s.nextLine();
 		}
-		else System.out.println("GABISACUK");
+		else return;
 
 	}
 
@@ -82,13 +82,6 @@ public class Matrix
 			this.arr[i][col1]=this.arr[i][col2];
 			this.arr[i][col2]=tmp;
 		}	
-	}
-
-	/*----- GAUSSIAN ELIMINATION -----*/
-
-	public void gaussElimination(int row, int col)
-	{
-		
 	}
 
 }

@@ -8,12 +8,13 @@ public class Main
         mat1.inputMatrix();
         mat2.inputMatrix();
 
-        AugmentedMatrix aug1 = new AugmentedMatrix();
-        aug1.makeAugmentedMatrix(mat1, mat2);
+        AugmentedMatrix aug = new AugmentedMatrix(mat1, mat2);
 
-        aug1.leftMatrix.swapRow(0,2);
-        aug1.rightMatrix.swapRow(1,2);
+        System.out.println(aug.partialPivoting(0));
 
-        aug1.printAugmentedMatrix();
+        aug.forwardElimination();
+        aug.backwardElimination();
+
+        aug.printAugmentedMatrix();
     }
 }

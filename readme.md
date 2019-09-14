@@ -18,6 +18,12 @@
     <li><i>..and so much more!</i></li>
 </ul>
 
+# Prerequisites
+<p>This program was made under several conditions:
+<ul>
+    <li>Using Java SE Runtime Environment 1.8.0_221. (JDK)</li>
+</ul>
+
 # How do you use this program?
 
 <p><i>TBA</i></p>
