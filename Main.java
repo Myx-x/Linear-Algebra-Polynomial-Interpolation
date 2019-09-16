@@ -1,5 +1,6 @@
 import florencia.AugmentedMatrix;
 import florencia.Matrix;
+import florencia.AugmentedElimination;
 
 public class Main
 {
@@ -12,12 +13,17 @@ public class Main
         mat2.inputMatrix();
 
         AugmentedMatrix aug = new AugmentedMatrix(mat1, mat2);
+        AugmentedElimination augEl = new AugmentedElimination(mat1,mat2);
+        
+        augEl.swapAugRow(0, 1);
+        aug.printAugmentedMatrix();
 
-        System.out.println(aug.partialPivoting(0));
-
-        aug.forwardElimination();
-        aug.backwardElimination();
+        System.out.println(augEl.partialPivoting(0));
+        augEl.forwardElimination();
+        augEl.backwardElimination();
 
         aug.printAugmentedMatrix();
+
+
     }
 }
