@@ -1,3 +1,5 @@
+package florencia;
+
 public class AugmentedMatrix
 {
     Matrix leftMatrix;
@@ -5,15 +7,14 @@ public class AugmentedMatrix
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= CONSTRUCTOR -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     // Creates a new Augmented Matrix
-    
-    AugmentedMatrix(Matrix m1, Matrix m2)
+    public AugmentedMatrix(Matrix m1, Matrix m2)
     {
         leftMatrix = m1;
         rightMatrix = m2;
     }
     
     // Create a copy of an augmented Matrix
-    AugmentedMatrix(AugmentedMatrix augMat)
+    public AugmentedMatrix(AugmentedMatrix augMat)
     {
         leftMatrix = augMat.leftMatrix;
         rightMatrix = augMat.rightMatrix;
@@ -66,7 +67,6 @@ public class AugmentedMatrix
         for(int i=0;i<this.leftMatrix.colCount;i++) this.leftMatrix.arr[multipliedRow][i]*=multiplier;
         for(int i=0;i<this.rightMatrix.colCount;i++) this.rightMatrix.arr[multipliedRow][i]*=multiplier;
     }
-
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= GAUSS ELIMINATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     
