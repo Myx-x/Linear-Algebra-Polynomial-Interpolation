@@ -1,5 +1,4 @@
 import florencia.matrix.*;
-import florencia.augmentedmatrix.*;
 
 public class Main
 {
@@ -10,14 +9,5 @@ public class Main
 
         mat1.inputMatrix();
         mat2.inputMatrix();
-
-        AugmentedMatrix aug = new AugmentedMatrix(mat1, mat2);
-
-        System.out.println(aug.partialPivoting(0));
-
-        aug.forwardElimination();
-        aug.backwardElimination();
-
-        aug.printAugmentedMatrix();
     }
 }
