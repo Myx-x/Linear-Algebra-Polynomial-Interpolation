@@ -86,4 +86,8 @@ public class Matrix
 		}	
 	}
 
+	/*----- CHECKER -----*/
+	public boolean IsSquare(){
+		return this.rowCount == this.colCount;
+	}
 }
