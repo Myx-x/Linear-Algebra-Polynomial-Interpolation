@@ -1,6 +1,5 @@
-import florencia.AugmentedMatrix;
+import florencia.augmentedmatrix.*;
 import florencia.Matrix;
-import florencia.AugmentedElimination;
 
 public class Main
 {

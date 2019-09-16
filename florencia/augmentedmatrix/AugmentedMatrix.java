@@ -1,4 +1,5 @@
-package florencia;
+package florencia.augmentedmatrix;
+import florencia.Matrix;
 
 public class AugmentedMatrix
 {

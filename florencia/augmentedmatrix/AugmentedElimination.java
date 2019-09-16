@@ -1,10 +1,13 @@
-package florencia;
+package florencia.augmentedmatrix;
+
+import florencia.Matrix;;
 
 public class AugmentedElimination extends AugmentedMatrix
 {
     public AugmentedElimination(Matrix leftMatrix, Matrix rightMatrix){
         super(leftMatrix,rightMatrix);
     }
+    
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= ELEMENTARY ROW OPERATIONS (OBE) -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     // Swaps row1 and row2 in an augmented matrix
     public void swapAugRow(int row1, int row2)
