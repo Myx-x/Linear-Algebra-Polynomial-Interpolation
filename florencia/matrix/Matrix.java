@@ -1,4 +1,4 @@
-package florencia;
+package florencia.matrix;
 
 import java.util.Scanner;
 
@@ -90,4 +90,26 @@ public class Matrix
 	public boolean IsSquare(){
 		return this.rowCount == this.colCount;
 	}
+
+	/*--------------*/
+	public void normRowArithmetic(int reducedRow, int reducingRow, double multiplier){
+        for(int i=0;i<this.colCount;i++) this.arr[reducedRow][i]=this.arr[reducedRow][i] + multiplier*this.arr[reducingRow][i];
+    }
+
+    public void normRowMultiplier(int multipliedRow, double multiplier){
+        for(int i=0;i<this.colCount;i++) this.arr[multipliedRow][i]*=multiplier;
+	}
+	
+	public void normBackwardElimination(){
+        for (int k = this.colCount - 1; k >= 1; k--){
+            for (int i = k - 1; i >= 0; i--){
+                System.out.println(this.arr[i][k] + " " + this.arr[k][k]);
+                double multiplier = -this.arr[i][k]/(this.arr[k][k]);
+                this.normRowArithmetic(i, k, multiplier);
+                this.printMatrix();
+                System.out.println();
+            }
+            this.normRowMultiplier(k, 1/this.arr[k][k]);
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package florencia;
+package florencia.matrix;
 
 public class Determinant{
     Matrix matrixAcak;
@@ -13,27 +13,6 @@ public class Determinant{
         } else {
             System.out.print("Matrix is not valid, therefore the determinant is ");
             return det;
-        }
-    }
-
-    public void normRowArithmetic(int reducedRow, int reducingRow, double multiplier){
-        for(int i=0;i<matrixAcak.colCount;i++) matrixAcak.arr[reducedRow][i]=matrixAcak.arr[reducedRow][i] + multiplier*matrixAcak.arr[reducingRow][i];
-    }
-
-    public void normRowMultiplier(int multipliedRow, double multiplier){
-        for(int i=0;i<matrixAcak.colCount;i++) matrixAcak.arr[multipliedRow][i]*=multiplier;
-    }
-
-    public void normBackwardElimination(){
-        for (int k = matrixAcak.colCount - 1; k >= 1; k--){
-            for (int i = k - 1; i >= 0; i--){
-                System.out.println(matrixAcak.arr[i][k] + " " + matrixAcak.arr[k][k]);
-                double multiplier = -matrixAcak.arr[i][k]/(matrixAcak.arr[k][k]);
-                matrixAcak.normRowArithmetic(i, k, multiplier);
-                matrixAcak.printAugmentedMatrix();
-                System.out.println();
-            }
-            matrixAcak.normRowMultiplier(k, 1/matrixAcak.arr[k][k]);
         }
     }
 
@@ -53,17 +32,5 @@ public class Determinant{
             }
         }
         return det;
-    }
-
-    public double DeterminantCofactor(Matrix matrixAcak){
-        double det;
-        if (matrixAcak.colCount == 2){
-            
-        }
-
-
-        for (int x = 0; x < matrixAcak.colCount; x++){
-
-        }
     }
 }

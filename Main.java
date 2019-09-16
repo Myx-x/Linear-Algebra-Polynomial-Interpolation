@@ -1,4 +1,5 @@
-import florencia.*;
+import florencia.matrix.*;
+import florencia.augmentedmatrix.*;
 
 public class Main
 {
