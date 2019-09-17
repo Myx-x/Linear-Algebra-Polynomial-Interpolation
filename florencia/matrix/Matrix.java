@@ -85,4 +85,9 @@ public class Matrix
 	{
 		//do blabla2
 	}
+
+	public void funcC()
+	{
+		
+	}
 }
