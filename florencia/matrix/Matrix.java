@@ -78,6 +78,7 @@ public class Matrix
 	public void funcB()
 	{
 		//do bla2
+		//tes pisang goreng tepung
 		return;
 	}
 }
