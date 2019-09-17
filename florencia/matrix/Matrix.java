@@ -75,11 +75,4 @@ public class Matrix
 		return this.rowCount == this.colCount;
 	}
 
-	public void funcA()
-	{
-		//do more blabla
-		//do blabla
-		return;
-	}
-
 }
