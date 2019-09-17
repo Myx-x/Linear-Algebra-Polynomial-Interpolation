@@ -1,6 +1,6 @@
 package florencia.augmentedmatrix;
 
-import florencia.Matrix;
+import florencia.matrix.*;
 
 public class AugmentedElimination extends AugmentedMatrix
 {
@@ -92,7 +92,7 @@ public class AugmentedElimination extends AugmentedMatrix
     public void backwardSubstition()
     {
         final double[] res = new double[super.leftMatrix.colCount];
-        
+
     }
 
     public void gaussElimination(int rowEquation, int colEquation)

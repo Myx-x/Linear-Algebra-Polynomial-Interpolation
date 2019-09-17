@@ -8,6 +8,12 @@ public class Matrix
     public double[][] arr;
     public int rowCount, colCount;
 
+	Matrix(int dimRow, int dimCol) {
+		arr = new double[dimRow][dimCol];
+		rowCount = dimRow;
+		colCount = dimCol;	
+	}
+
 	/*----- CONSTRUCTOR -----*/
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
     public void makeMatrix(int dimRow, int dimCol)
@@ -64,52 +70,9 @@ public class Matrix
 		}
 	}
 	
-	/*----- UTILITY FUNCTIONS ------*/
-	// Swaps row1 with row2
-	public void swapRow(int row1, int row2)
-	{
-		for(int i=0;i<this.colCount;i++) 
-		{
-			double tmp = this.arr[row1][i];
-			this.arr[row1][i]=this.arr[row2][i];
-			this.arr[row2][i]=tmp;
-		}
-	}
-	// Swaps col1 with col2
-	public void swapCol(int col1, int col2)
-	{
-		for(int i=0;i<this.rowCount;i++) 
-		{
-			double tmp = this.arr[i][col1];
-			this.arr[i][col1]=this.arr[i][col2];
-			this.arr[i][col2]=tmp;
-		}	
-	}
-
 	/*----- CHECKER -----*/
 	public boolean IsSquare(){
 		return this.rowCount == this.colCount;
 	}
 
-	/*--------------*/
-	public void normRowArithmetic(int reducedRow, int reducingRow, double multiplier){
-        for(int i=0;i<this.colCount;i++) this.arr[reducedRow][i]=this.arr[reducedRow][i] + multiplier*this.arr[reducingRow][i];
-    }
-
-    public void normRowMultiplier(int multipliedRow, double multiplier){
-        for(int i=0;i<this.colCount;i++) this.arr[multipliedRow][i]*=multiplier;
-	}
-	
-	public void normBackwardElimination(){
-        for (int k = this.colCount - 1; k >= 1; k--){
-            for (int i = k - 1; i >= 0; i--){
-                System.out.println(this.arr[i][k] + " " + this.arr[k][k]);
-                double multiplier = -this.arr[i][k]/(this.arr[k][k]);
-                this.normRowArithmetic(i, k, multiplier);
-                this.printMatrix();
-                System.out.println();
-            }
-            this.normRowMultiplier(k, 1/this.arr[k][k]);
-        }
-    }
 }
