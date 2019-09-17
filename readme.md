@@ -26,6 +26,7 @@
 
 # What's this <i>Florencia</i> doing about in this program?
 <p>We called our library system by the name of Florencia, as the package name. It is based on our classmate, Florencia as a tribute to her.</p>
+<img src="./src/florencia.jpg" style="width:250px;height:auto;"></img>
 
 # How do you use this program?
 

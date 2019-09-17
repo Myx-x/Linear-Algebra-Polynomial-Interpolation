@@ -1,6 +1,6 @@
 package florencia.augmentedmatrix;
 
-import florencia.Matrix;;
+import florencia.Matrix;
 
 public class AugmentedElimination extends AugmentedMatrix
 {
@@ -40,6 +40,18 @@ public class AugmentedElimination extends AugmentedMatrix
         return index;
     }
 
+    public boolean isRowZero(int row)
+    {
+        boolean result=true;
+        int i=0;
+        while(result && super.leftMatrix.arr[row][i]==0)
+        {
+            if(super.leftMatrix.arr[row][i]!=0) result=false;
+            else i++;
+        }
+        return result;
+    }
+
     // Reduce augmented matrix into echelon form
     public void forwardElimination()
     {
@@ -50,11 +62,13 @@ public class AugmentedElimination extends AugmentedMatrix
             {
                 double multiplier = -super.leftMatrix.arr[i][k]/(super.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                super.printAugmentedMatrix();
+                //super.printAugmentedMatrix();
                 System.out.println();
             }
             this.augRowMultiplier(k, 1/super.leftMatrix.arr[k][k]);
         }
+
+        if(this.isRowZero(super.leftMatrix.rowCount-1) && this.rightMatrix.arr[this.rightMatrix.rowCount-1][0]!=0) System.out.println("Inconsistent Equation");
         
     }
 
@@ -67,7 +81,7 @@ public class AugmentedElimination extends AugmentedMatrix
             {
                 double multiplier = -super.leftMatrix.arr[i][k]/(super.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                super.printAugmentedMatrix();
+                //super.printAugmentedMatrix();
                 System.out.println();
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
@@ -75,8 +89,15 @@ public class AugmentedElimination extends AugmentedMatrix
         
     }
 
+    public void backwardSubstition()
+    {
+        final double[] res = new double[super.leftMatrix.colCount];
+        
+    }
+
     public void gaussElimination(int rowEquation, int colEquation)
     {
+        this.forwardElimination();
         
     }
 

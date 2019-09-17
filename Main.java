@@ -14,13 +14,11 @@ public class Main
         AugmentedMatrix aug = new AugmentedMatrix(mat1, mat2);
         AugmentedElimination augEl = new AugmentedElimination(mat1,mat2);
         
-        augEl.swapAugRow(0, 1);
-        aug.printAugmentedMatrix();
 
         System.out.println(augEl.partialPivoting(0));
         augEl.forwardElimination();
         augEl.backwardElimination();
-
+        aug.fixNegativeZero();
         aug.printAugmentedMatrix();
 
 
