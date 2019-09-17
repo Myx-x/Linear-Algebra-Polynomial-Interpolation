@@ -70,6 +70,11 @@ public class Matrix
 		}
 	}
 	
+	public void funcA()
+	{
+		// do blabla1
+	}
+
 	/*----- CHECKER -----*/
 	public boolean IsSquare(){
 		return this.rowCount == this.colCount;
