@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import florencia.augmentedmatrix.*;
 import florencia.Matrix;
+=======
+import florencia.matrix.*;
+>>>>>>> origin/matrix
 
 public class Main
 {
@@ -10,6 +14,7 @@ public class Main
 
         mat1.inputMatrix();
         mat2.inputMatrix();
+<<<<<<< HEAD
 
         AugmentedMatrix aug = new AugmentedMatrix(mat1, mat2);
         AugmentedElimination augEl = new AugmentedElimination(mat1,mat2);
@@ -22,5 +27,7 @@ public class Main
         aug.printAugmentedMatrix();
 
 
+=======
+>>>>>>> origin/matrix
     }
 }
