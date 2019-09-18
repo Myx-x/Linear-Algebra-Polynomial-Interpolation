@@ -25,8 +25,22 @@
 </ul>
 
 # What's this <i>Florencia</i> doing about in this program?
-<p>We called our library system by the name of Florencia, as the package name. It is based on our classmate, Florencia as a tribute to her.</p>
+<p>We called our library system by the name of <b>Florencia</b>, as the package name. It is based on our classmate, Florencia Wijaya (13518020) as a tribute to her. Also note that we already made an agreement about making her name our project codename :).</p>
 <p align="center"><img src="./src/florencia.jpg" width=250 height=250"></img></p>
+
+# How do you run this program?
+## Using batch file
+<ol>
+    <li>Run `compile.bat` once, it will run the program after you made any changes in the program</li>
+    <li>If you only didn't make any change/made changes only in Menu.java/Main.java, we suggest you to only run the `run.bat`</li>
+</ol>
+
+## Manually compile using `javac` and running using `java`
+<ol>
+    <li>Type in into command line :`javac ./florencia/augmentedmatrix/*.java`</li>
+    <li>Also type in into command line :`javac ./florencia/matrix/*.java`</li>
+    <li>Type in into command line to compile then run the program :`javac Menu.java` and `java Menu`</li>
+</ol>
 
 # How do you use this program?
 
