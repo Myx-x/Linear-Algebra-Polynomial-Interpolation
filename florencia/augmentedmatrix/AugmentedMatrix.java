@@ -1,9 +1,11 @@
 package florencia.augmentedmatrix;
 
+import java.util.Scanner;
 import florencia.matrix.*;
 
 public class AugmentedMatrix
 {
+    private Scanner s = new Scanner(System.in);
     Matrix leftMatrix;
     Matrix rightMatrix;
 
@@ -37,6 +39,15 @@ public class AugmentedMatrix
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= INPUT OUTPUT PROCEDURE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     
+    public void inputLinearEquation()
+    {
+        for(int i=0;i<this.leftMatrix.rowCount;i++)
+        {
+            for(int j=0;j<this.leftMatrix.colCount;j++) this.leftMatrix.arr[i][j]=s.nextDouble();
+            for(int j=0;j<this.rightMatrix.colCount;j++) this.rightMatrix.arr[i][j]=s.nextDouble();
+        }
+    }
+
     public void printAugmentedMatrix()
     {
         for(int i=0;i<this.leftMatrix.rowCount;i++)
@@ -147,5 +158,48 @@ public class AugmentedMatrix
         this.rightMatrix.setIdentityMatrix();
         this.gaussJordanElimination();
         return this.rightMatrix;
+    }
+
+    public void interpolateGraph()
+    {
+        int n = s.nextInt();
+
+        Matrix mx=new Matrix(), my=new Matrix();
+        mx.makeMatrix(n, n);
+        my.makeMatrix(n, 1);
+        AugmentedMatrix augGraph = new AugmentedMatrix(mx, my);
+
+        for(int i=0;i<n;i++)
+        {
+            double x=s.nextDouble(),y=s.nextDouble();
+            for(int j=0;j<n;j++)
+            {
+                augGraph.leftMatrix.arr[i][j] = Math.pow(x,j);
+            }
+            augGraph.rightMatrix.arr[i][0] = y;
+        }
+
+
+        augGraph.gaussJordanElimination();
+        augGraph.printAugmentedMatrix();
+
+        for(int i=0;i<n;i++) augGraph.rightMatrix.arr[i][0]=(double) Math.round(augGraph.rightMatrix.arr[i][0]*10000.0)/10000.0;
+
+        System.out.print("f(x) approximately equal to ");
+        for(int i=0;i<n;i++) 
+        {
+            if(i==0) System.out.print(augGraph.rightMatrix.arr[i][0] + " +");
+            else if(i==n-1) System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i);
+            else System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i + " +");
+        }
+        System.out.println();
+
+        System.out.print("Input x for approximation:");
+        double x=s.nextDouble();
+
+        double result=0;
+        for(int i=0;i<n;i++) result+=augGraph.rightMatrix.arr[i][0]*Math.pow(x,i);
+        System.out.println("Value of f("+x+") is equal to " + result + ".");
+
     }
 }
