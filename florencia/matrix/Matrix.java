@@ -100,4 +100,9 @@ public class Matrix
         for(int i=0;i<this.colCount;i++) this.arr[multipliedRow][i]*=multiplier;
 	}
 
+	public void fixSignedZero()
+	{
+		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) if(Math.abs(this.arr[i][j])<1e-7) this.arr[i][j]=0.000;
+	}
+
 }

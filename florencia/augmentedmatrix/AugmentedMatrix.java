@@ -67,7 +67,7 @@ public class AugmentedMatrix
     public void augRowMultiplier(int multipliedRow, double multiplier)
     {
         this.leftMatrix.rowMultiplier(multipliedRow, multiplier);
-        this.leftMatrix.rowMultiplier(multipliedRow, multiplier);
+        this.rightMatrix.rowMultiplier(multipliedRow, multiplier);
     }
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= GAUSS ELIMINATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -75,18 +75,28 @@ public class AugmentedMatrix
     // Partial pivoting
     public int partialPivoting(int col)
     {
-        int index=0;
-        while(this.leftMatrix.arr[index][col]==0) index++;
+        int index=col;
+        double currentPivot=this.leftMatrix.arr[index][col];
+        for(int i=index+1;i<this.leftMatrix.rowCount;i++)
+        {
+            if(Math.abs(this.leftMatrix.arr[i][col])<Math.abs(currentPivot))
+            {
+                currentPivot=this.leftMatrix.arr[i][col];
+                index=i;
+            }
+        }
         return index;
     }
 
     // Reduce augmented matrix into echelon form
     public void forwardElimination()
     {
-        this.augRowSwap(this.partialPivoting(0),0);
-        for(int k=0;k<this.leftMatrix.colCount-1;k++)
+        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+
+        for(int k=0;k<cc-1;k++)
         {
-            for(int i=k+1;i<this.leftMatrix.rowCount;i++)
+            this.augRowSwap(this.partialPivoting(k),k);
+            for(int i=k+1;i<rc;i++)
             {
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
@@ -95,6 +105,7 @@ public class AugmentedMatrix
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
+        this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
         
     }
 
@@ -115,9 +126,19 @@ public class AugmentedMatrix
         
     }
 
-	public void gaussElimination(int rowEquation, int colEquation)
+	public void gaussElimination()
 	{
-		
+        this.forwardElimination();
+        this.leftMatrix.fixSignedZero();
+        this.rightMatrix.fixSignedZero();
     }
     
+	public void gaussJordanElimination()
+	{
+        this.forwardElimination();
+        this.backwardElimination();
+        this.leftMatrix.fixSignedZero();
+        this.rightMatrix.fixSignedZero();
+    }
+
 }
