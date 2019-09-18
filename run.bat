@@ -1,7 +1,7 @@
 @echo off
 
-echo "Compiling Main.java..."
+echo Compiling Main.java...
 javac Main.java
 
-echo "<Main.java start>"
+echo --- Main.java start ---
 java Main
