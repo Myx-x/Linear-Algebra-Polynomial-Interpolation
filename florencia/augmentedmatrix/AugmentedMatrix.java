@@ -141,9 +141,11 @@ public class AugmentedMatrix
         this.rightMatrix.fixSignedZero();
     }
 
-    public void inverseMatrix()
+    public Matrix inverseMatrix()
     {
         this.leftMatrix.inputMatrix();
-        
+        this.rightMatrix.setIdentityMatrix();
+        this.gaussJordanElimination();
+        return this.rightMatrix;
     }
 }
