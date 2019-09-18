@@ -10,33 +10,84 @@ public class Menu
         Stack<Integer> navigationStack = new Stack<Integer>();
         final Scanner s = new Scanner(System.in);
         boolean quit=false;
-
+        printMainMenu();
         navigationStack.push(0);
+
+        int query;
+        query = s.nextInt();
+        navigationStack.push(navigationStack.peek()*10+query);
+
         while(!quit)
         {   
-            int query;
             int stackSize = navigationStack.size();
-
-            printMainMenu();
-            query = s.nextInt();
-            
-            switch(query)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    System.exit(0);
-                    break;
+            if (stackSize == 1 ){
+                printMainMenu();
+                query = s.nextInt();
+                navigationStack.push(navigationStack.peek()*10+query);    
+            }else if (stackSize == 2){
+                if(navigationStack.peek() == 1){
+                    System.out.println("1. Metode eliminasi Gauss");
+                    System.out.println("2. Metode eleminasi Gauss-Jordan");
+                    System.out.println("3. Metode matriks balikan");
+                    System.out.println("4. Kaidah cramer");
+                    System.out.println("5. Kembali");
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10);
+                }else if (navigationStack.peek() == 2){
+                    System.out.println("1. Metode OBE");
+                    System.out.println("2. Metode Sarrus");
+                    System.out.println("3. Metode Kofaktor");
+                    System.out.println("4. Kembali");
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10);
+                }else if (navigationStack.peek() == 3){
+                    System.out.println("1. Metode eliminasi Gauss");
+                    System.out.println("2. Metode Adjoin");
+                    System.out.println("3. Kembali");
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10);
+                }else if (navigationStack.peek() == 4){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 5){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 6){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 7){
+                    quit = true;
+                }
+            }else if (stackSize == 3){
+                if (navigationStack.peek() == 11){
+                    System.out.println("floren");
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 12){
+                    System.out.println("fritz");
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 13){
+                    System.out.println("CIBAY");
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 14){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 15){
+                    navigationStack.pop();
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 21){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 22){
+                    System.out.println("floren and fritz");
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 23){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 24){
+                    navigationStack.pop();
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 31){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 32){
+                    navigationStack.pop();
+                }else if (navigationStack.peek() == 33){
+                    navigationStack.pop();
+                    navigationStack.pop();
+                }
             }
         }
     }
