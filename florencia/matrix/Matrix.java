@@ -105,4 +105,13 @@ public class Matrix
 		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) if(Math.abs(this.arr[i][j])<1e-7) this.arr[i][j]=0.000;
 	}
 
+	public Matrix transpose()
+	{
+		Matrix MT = new Matrix();
+		MT.makeMatrix(this.colCount, this.rowCount);
+
+		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j];
+
+		return MT;
+	}
 }
