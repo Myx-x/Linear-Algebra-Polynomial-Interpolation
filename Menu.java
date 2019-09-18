@@ -10,10 +10,12 @@ public class Menu
         Stack<Integer> navigationStack = new Stack<Integer>();
         final Scanner s = new Scanner(System.in);
         boolean quit=false;
+        
+        int query;
+        
         printMainMenu();
         navigationStack.push(0);
 
-        int query;
         query = s.nextInt();
         navigationStack.push(navigationStack.peek()*10+query);
 
@@ -26,24 +28,15 @@ public class Menu
                 navigationStack.push(navigationStack.peek()*10+query);    
             }else if (stackSize == 2){
                 if(navigationStack.peek() == 1){
-                    System.out.println("1. Metode eliminasi Gauss");
-                    System.out.println("2. Metode eleminasi Gauss-Jordan");
-                    System.out.println("3. Metode matriks balikan");
-                    System.out.println("4. Kaidah cramer");
-                    System.out.println("5. Kembali");
+                    subMenu1();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 2){
-                    System.out.println("1. Metode OBE");
-                    System.out.println("2. Metode Sarrus");
-                    System.out.println("3. Metode Kofaktor");
-                    System.out.println("4. Kembali");
+                    subMenu2();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 3){
-                    System.out.println("1. Metode eliminasi Gauss");
-                    System.out.println("2. Metode Adjoin");
-                    System.out.println("3. Kembali");
+                    subMenu3();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 4){
@@ -94,7 +87,7 @@ public class Menu
 
     private static void printMainMenu()
     {
-        System.out.println("MENU");
+        System.out.println("---------- MENU ----------");
         System.out.println("1. Sistem Persamaan Linear");
         System.out.println("2. Determinan");
         System.out.println("3. Matriks balikan");
@@ -102,5 +95,36 @@ public class Menu
         System.out.println("5. Adjoin");
         System.out.println("6. Interpolasi polinom");
         System.out.println("7. Keluar");
+        System.out.print("Masukkan Pilihan : ");
+    }
+
+    private static void subMenu1()
+    {
+        System.out.println("--------- SUBMENU SPL ---------"); 
+        System.out.println("1. Metode eliminasi Gauss");
+        System.out.println("2. Metode eleminasi Gauss-Jordan");
+        System.out.println("3. Metode matriks balikan");
+        System.out.println("4. Kaidah cramer");
+        System.out.println("5. Kembali");
+        System.out.print("Masukkan Pilihan : ");
+    }
+
+    private static void subMenu2()
+    {
+        System.out.println("--- SUBMENU DETERMINAN ---");
+        System.out.println("1. Metode OBE");
+        System.out.println("2. Metode Sarrus");
+        System.out.println("3. Metode Kofaktor");
+        System.out.println("4. Kembali");
+        System.out.print("Masukkan Pilihan : ");
+    }
+
+    private static void subMenu3()
+    {
+        System.out.println("----- SUBMENU INVERSE -----");
+        System.out.println("1. Metode eliminasi Gauss");
+        System.out.println("2. Metode Adjoin");
+        System.out.println("3. Kembali");
+        System.out.print("Masukkan Pilihan : ");
     }
 }
