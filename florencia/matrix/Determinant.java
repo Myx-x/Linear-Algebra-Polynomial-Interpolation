@@ -47,4 +47,27 @@ public class Determinant
         }
         return MT;
     } 
+
+    public double getCofactor(int i, int j)
+    {
+        double result, det;
+        Matrix MT;
+        MT = this.mat.getminorEntry(i,j);
+        det = MT.determinantRowReduction();
+        result = det * Math.pow(-1,(i+j));
+        return result;
+    }
+
+    public Matrix getMatrixCofactor()
+    {
+        Matrix MT;
+        for(i=0;i<this.mat.rowCount;i++)
+        {
+            for(j=0;j<this.mat.colCount;j++)
+            {
+                MT.arr[i][j] = this.mat.getMatrixCofactor(i,j);
+            }
+        }
+        return MT;
+    }
 }
