@@ -18,11 +18,11 @@
     <li><i>..and so much more!</i></li>
 </ul>
 
-# Prerequisites
-<p>This program was made under several conditions:
-<ul>
-    <li>Using Java SE Runtime Environment 1.8.0_221. (JDK)</li>
-</ul>
+# The Creation Process
+This program was made under several conditions:
+* Using Java SE Runtime Environment 1.8.0_221. (JDK & JRE)
+* Created using Visual Studio Code with several extensions.
+
 
 # What's this <i>Florencia</i> doing about in this program?
 <p>We called our library system by the name of <b>Florencia</b>, as the package name. It is based on our classmate, Florencia Wijaya (13518020) as a tribute to her. Also note that we already made an agreement about making her name our project codename :).</p>
@@ -30,17 +30,13 @@
 
 # How do you run this program?
 ## Using batch file
-<ol>
-    <li>Run `compile.bat` once, it will run the program after you made any changes in the program</li>
-    <li>If you only didn't make any change/made changes only in Menu.java/Main.java, we suggest you to only run the `run.bat`</li>
-</ol>
+1. Run `compile.bat` once, it will run the program after you made any changes in the program
+2. If you only didn't make any change/made changes only in Menu.java/Main.java, we suggest you to only run the `run.bat` file.
 
 ## Manually compile using `javac` and running using `java`
-<ol>
-    <li>Type in into command line :`javac ./florencia/augmentedmatrix/*.java`</li>
-    <li>Also type in into command line :`javac ./florencia/matrix/*.java`</li>
-    <li>Type in into command line to compile then run the program :`javac Menu.java` and `java Menu`</li>
-</ol>
+1. Type in into command line : `javac ./florencia/augmentedmatrix/*.java`.
+2. Also type in into command line : `javac ./florencia/matrix/*.java`.
+3. Type in into command line to compile then run the program : `javac Menu.java` and `java Menu`.
 
 # How do you use this program?
 
