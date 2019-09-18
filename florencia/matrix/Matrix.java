@@ -8,12 +8,6 @@ public class Matrix
     public double[][] arr;
     public int rowCount, colCount;
 
-	Matrix(int dimRow, int dimCol) {
-		arr = new double[dimRow][dimCol];
-		rowCount = dimRow;
-		colCount = dimCol;	
-	}
-
 	/*----- CONSTRUCTOR -----*/
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
     public void makeMatrix(int dimRow, int dimCol)
@@ -69,35 +63,41 @@ public class Matrix
 			System.out.println();
 		}
 	}
-	
-	public void funcA()
-	{
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-		// do blabla1
-	}
 
-	/*----- CHECKER -----*/
+	/*----- UTILITY FUNCTIONS -----*/
 	public boolean IsSquare(){
 		return this.rowCount == this.colCount;
 	}
 
-
-	public void funcB()
-	{
-		//do blabla2
+	public void rowSwap(int row1, int row2)
+    {
+        
+        for(int i=0;i<this.colCount;i++)
+        {
+            System.out.println(this.arr[row1][i]);
+            double tmp=this.arr[row1][i];
+            this.arr[row1][i]=this.arr[row2][i];
+            this.arr[row2][i]=tmp;
+        }
+        this.printMatrix();
 	}
+	
+	public void colSwap(int col1, int col2)
+    {
+        for(int i=0;i<this.colCount;i++)
+        {
+            double tmp=this.arr[i][col1];
+            this.arr[col1][i]=this.arr[col2][i];
+            this.arr[col2][i]=tmp;
+        }
+    }
+
+    public void rowArithmetic(int reducedRow, int reducingRow, double multiplier){
+        for(int i=0;i<this.colCount;i++) this.arr[reducedRow][i]=this.arr[reducedRow][i] + multiplier*this.arr[reducingRow][i];
+    }
+
+    public void rowMultiplier(int multipliedRow, double multiplier){
+        for(int i=0;i<this.colCount;i++) this.arr[multipliedRow][i]*=multiplier;
+	}
+
 }

@@ -1,4 +1,6 @@
-package florencia;
+package florencia.augmentedmatrix;
+
+import florencia.matrix.*;
 
 public class AugmentedMatrix
 {
@@ -48,24 +50,24 @@ public class AugmentedMatrix
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= ELEMENTARY ROW OPERATIONS (OBE) -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     // Swaps row1 and row2 in an augmented matrix
-    public void swapAugRow(int row1, int row2)
+    public void augRowSwap(int row1, int row2)
     {
-        this.leftMatrix.swapRow(row1, row2);
-        this.rightMatrix.swapRow(row1, row2);
+        this.leftMatrix.rowSwap(row1, row2);
+        this.rightMatrix.rowSwap(row1, row2);
     }
-
+    
     // Does an arithmetic operation on two rows in an augmented matrix
     public void augRowArithmetic(int reducedRow, int reducingRow, double multiplier)
     {
-        for(int i=0;i<this.leftMatrix.colCount;i++) this.leftMatrix.arr[reducedRow][i]=this.leftMatrix.arr[reducedRow][i] + multiplier*this.leftMatrix.arr[reducingRow][i];
-        for(int i=0;i<this.rightMatrix.colCount;i++) this.rightMatrix.arr[reducedRow][i]=this.rightMatrix.arr[reducedRow][i] + multiplier*this.rightMatrix.arr[reducingRow][i];
+        this.leftMatrix.rowArithmetic(reducedRow, reducingRow, multiplier);
+        this.rightMatrix.rowArithmetic(reducedRow, reducingRow, multiplier);
     }
     
     // Multiplies one row with a constant
     public void augRowMultiplier(int multipliedRow, double multiplier)
     {
-        for(int i=0;i<this.leftMatrix.colCount;i++) this.leftMatrix.arr[multipliedRow][i]*=multiplier;
-        for(int i=0;i<this.rightMatrix.colCount;i++) this.rightMatrix.arr[multipliedRow][i]*=multiplier;
+        this.leftMatrix.rowMultiplier(multipliedRow, multiplier);
+        this.leftMatrix.rowMultiplier(multipliedRow, multiplier);
     }
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= GAUSS ELIMINATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -81,7 +83,7 @@ public class AugmentedMatrix
     // Reduce augmented matrix into echelon form
     public void forwardElimination()
     {
-        this.swapAugRow(this.partialPivoting(0),0);
+        this.augRowSwap(this.partialPivoting(0),0);
         for(int k=0;k<this.leftMatrix.colCount-1;k++)
         {
             for(int i=k+1;i<this.leftMatrix.rowCount;i++)
@@ -103,7 +105,6 @@ public class AugmentedMatrix
         {
             for(int i=k-1;i>=0;i--)
             {
-                System.out.println(this.leftMatrix.arr[i][k] + " " + this.leftMatrix.arr[k][k]);
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
                 this.printAugmentedMatrix();

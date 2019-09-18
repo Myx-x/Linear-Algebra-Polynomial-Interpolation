@@ -8,10 +8,6 @@ public class Main
         Matrix m1 = new Matrix();
         m1.inputMatrix();
         
-        ElementaryRowOperations me1 = new ElementaryRowOperations();
-
-        me1.rowSwap(0,1);
-
         m1.printMatrix();
     }
 }
