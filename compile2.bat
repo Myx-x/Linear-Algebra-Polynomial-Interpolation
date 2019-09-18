@@ -5,7 +5,7 @@ javac ./florencia/augmentedmatrix/*.java
 echo Compiling florencia.matrix subpackage...
 javac ./florencia/matrix/*.java
 echo Compiling Main.java...
-javac Menu.java
+javac Main.java
 
 echo --- Main.java start ---
 
