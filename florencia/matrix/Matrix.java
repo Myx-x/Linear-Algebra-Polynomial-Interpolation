@@ -65,7 +65,7 @@ public class Matrix
 	}
 
 	/*----- UTILITY FUNCTIONS -----*/
-	public boolean IsSquare(){
+	public boolean isSquare(){
 		return this.rowCount == this.colCount;
 	}
 
@@ -113,5 +113,20 @@ public class Matrix
 		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j];
 
 		return MT;
+	}
+
+	public Matrix setIdentityMatrix()
+	{
+		if(this.isSquare())
+		{
+			Matrix I = new Matrix();
+			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) I.arr[i][j]=i==j?1:0;
+			return I;
+		}
+		else
+		{
+			System.out.println("Matrix is not square!");
+			return this;
+		}
 	}
 }

@@ -141,4 +141,9 @@ public class AugmentedMatrix
         this.rightMatrix.fixSignedZero();
     }
 
+    public void inverseMatrix()
+    {
+        this.leftMatrix.inputMatrix();
+        
+    }
 }
