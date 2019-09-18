@@ -52,22 +52,33 @@ public class Determinant
     {
         double result, det;
         Matrix MT;
-        MT = this.mat.getminorEntry(i,j);
-        det = MT.determinantRowReduction();
+        MT = this.getminorEntry(i,j);
+        
+        Determinant d = new Determinant(MT);
+        det = d.determinantRowReduction();
         result = det * Math.pow(-1,(i+j));
         return result;
     }
 
     public Matrix getMatrixCofactor()
     {
-        Matrix MT;
-        for(i=0;i<this.mat.rowCount;i++)
+        Matrix MT = new Matrix();
+		MT.makeMatrix(this.mat.colCount, this.mat.rowCount);
+        for(int i=0;i<this.mat.rowCount;i++)
         {
-            for(j=0;j<this.mat.colCount;j++)
+            for(int j=0;j<this.mat.colCount;j++)
             {
-                MT.arr[i][j] = this.mat.getMatrixCofactor(i,j);
+                MT.arr[i][j] = this.getCofactor(i,j);
             }
         }
+        return MT;
+    }
+
+    public Matrix getAdjoint()
+    {
+        Matrix MT;
+        MT = this.getMatrixCofactor();
+        MT = MT.transpose();
         return MT;
     }
 }
