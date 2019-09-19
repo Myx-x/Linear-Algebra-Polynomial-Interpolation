@@ -1,5 +1,8 @@
 package florencia.matrix;
 
+//import java.lang.FdLibm.Pow;
+import java.lang.Math;
+
 public class Determinant
 {
     Matrix mat;
@@ -10,20 +13,48 @@ public class Determinant
 
     public double determinantRowReduction()
     {
-        double result=0;
-        return result;
+        double det = 1;
+        boolean checker = true;
+        if (this.mat.IsSquare()){
+            this.mat.normBackwardElimination();
+
+            for (int i = 0; i < this.mat.colCount && checker; i++){
+                if (this.mat.arr[i][i] == 0){
+                    checker = false;
+                    det = 0;
+                } else {
+                    det *= this.mat.arr[i][i];
+                }
+            }
+        }
+        return det;
     }
     
     public double determinantSarrus()
     {
-        double result=0;
-        return result;
+        double det = 0, sumPlus = 0, sumMin = 0;
+        if (this.mat.IsSquare() && this.mat.getRowCount() == 3){
+            sumPlus = (this.mat.arr[0][0]*this.mat.arr[1][1]*this.mat.arr[2][2]) + (this.mat.arr[0][1]*this.mat.arr[1][2]*this.mat.arr[2][0]) + (this.mat.arr[0][2]*this.mat.arr[1][0]*this.mat.arr[2][1]);
+            sumMin  = (this.mat.arr[2][0]*this.mat.arr[1][1]*this.mat.arr[0][2]) + (this.mat.arr[2][1]*this.mat.arr[1][2]*this.mat.arr[0][0]) + (this.mat.arr[2][2]*this.mat.arr[1][0]*this.mat.arr[0][2]);
+            det = sumPlus + sumMin;
+            return det;
+        } else {
+            System.out.print("Matrix is not valid, therefore the determinant is ");
+            return det;
+        }
     }
     
     public double determinantLaplaceExpansion()
     {
-        double result=0;
-        return result;
+        double det = 0; int j =0;
+        Matrix MT = new Matrix();
+
+        for (int i = 0; i < MT.rowCount; i++){
+            det += (Math.pow(-1, (i+j)) * MT.arr[i][j] * this.getCofactor(i, j));
+            j++;
+        }
+
+        return det;
     }
 
     public Matrix getminorEntry(int i, int j)
