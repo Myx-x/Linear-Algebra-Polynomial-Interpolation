@@ -9,8 +9,15 @@ public class Main
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
         
+        m1.inputMatrix();
+        m2.inputMatrix();
+
         AugmentedMatrix aug = new AugmentedMatrix(m1, m2);
-        aug.interpolateGraph();
+
+        //aug.gaussElimination();
+        aug.gaussJordanElimination();
+        aug.convertToSolutionValid();
+
         
     }
 }

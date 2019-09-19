@@ -74,12 +74,10 @@ public class Matrix
         
         for(int i=0;i<this.colCount;i++)
         {
-            System.out.println(this.arr[row1][i]);
             double tmp=this.arr[row1][i];
             this.arr[row1][i]=this.arr[row2][i];
             this.arr[row2][i]=tmp;
         }
-        this.printMatrix();
 	}
 	
 	public void colSwap(int col1, int col2)
@@ -107,8 +105,6 @@ public class Matrix
             {
                 double multiplier = -this.arr[i][k]/(this.arr[k][k]);
                 this.rowArithmetic(i, k, multiplier);
-                this.printMatrix();
-                System.out.println();
             }
             this.rowMultiplier(k, 1/this.arr[k][k]);
         }
@@ -142,5 +138,18 @@ public class Matrix
 			System.out.println("Matrix is not square!");
 			return this;
 		}
+	}
+
+	public boolean isRowZero(int row)
+	{
+		boolean result=true;
+		int i=0;
+
+		while(result && i<this.colCount)
+		{
+			if(this.arr[row][i]!=0) result=false;
+			else i++;
+		}
+		return result;
 	}
 }

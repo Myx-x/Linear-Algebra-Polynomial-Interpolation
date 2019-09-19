@@ -82,7 +82,18 @@ public class AugmentedMatrix
     }
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= GAUSS ELIMINATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-    
+    // if consistent, return 1, if inconsistent, return 2, if invalid, return 3
+    // Use this function after reducing matrix.
+    public int validateAugMat()
+    { 
+        if(this.leftMatrix.isRowZero(this.leftMatrix.rowCount-1))
+        {
+            if(this.rightMatrix.arr[this.leftMatrix.rowCount-1][0]==0) return 2;
+            else return 3;
+        }
+        else return 1;
+    }
+
     // Partial pivoting
     public int partialPivoting(int col)
     {
@@ -111,8 +122,8 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                this.printAugmentedMatrix();
-                System.out.println();
+                // this.printAugmentedMatrix();
+                // System.out.println();
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
@@ -129,8 +140,8 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                this.printAugmentedMatrix();
-                System.out.println();
+                // this.printAugmentedMatrix();
+                // System.out.println();
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
@@ -147,9 +158,16 @@ public class AugmentedMatrix
 	public void gaussJordanElimination()
 	{
         this.forwardElimination();
-        this.backwardElimination();
-        this.leftMatrix.fixSignedZero();
-        this.rightMatrix.fixSignedZero();
+        if(this.validateAugMat()==1)
+        {
+            this.backwardElimination();
+            this.leftMatrix.fixSignedZero();
+            this.rightMatrix.fixSignedZero();
+            this.printAugmentedMatrix();
+        }
+        else System.out.println("Invalid/Inconsistent Equation");
+    
+        
     }
 
     public Matrix inverseMatrix()
@@ -201,5 +219,11 @@ public class AugmentedMatrix
         for(int i=0;i<n;i++) result+=augGraph.rightMatrix.arr[i][0]*Math.pow(x,i);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
 
+    }
+
+    public void convertToSolutionValid()
+    {
+        System.out.println("The solutions are: ");
+        for(int i=0;i<this.leftMatrix.rowCount;i++) System.out.println("x" + (i+1) + " = " + this.rightMatrix.arr[i][0]);
     }
 }
