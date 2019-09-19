@@ -46,12 +46,11 @@ public class Determinant
     
     public double determinantLaplaceExpansion()
     {
-        double det = 0; int j =0;
+        double det = 0;
         Matrix MT = new Matrix();
 
         for (int i = 0; i < MT.rowCount; i++){
-            det += (Math.pow(-1, (i+j)) * MT.arr[i][j] * this.getCofactor(i, j));
-            j++;
+            det += (Math.pow(-1, (i+0)) * MT.arr[i][0] * this.getCofactor(i, 0));
         }
 
         return det;
