@@ -39,8 +39,8 @@ public class Determinant
             det = sumPlus + sumMin;
             return det;
         } else {
-            System.out.print("Matrix is not valid, therefore the determinant is ");
-            return det;
+            System.out.print("Matrix is not valid, use another method!");
+            return -99999;
         }
     }
     
