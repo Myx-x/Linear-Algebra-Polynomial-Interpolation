@@ -100,6 +100,20 @@ public class Matrix
         for(int i=0;i<this.colCount;i++) this.arr[multipliedRow][i]*=multiplier;
 	}
 
+	public void normBackwardElimination(){
+		for(int k=this.colCount-1;k>=1;k--)
+        {
+            for(int i=k-1;i>=0;i--)
+            {
+                double multiplier = -this.arr[i][k]/(this.arr[k][k]);
+                this.rowArithmetic(i, k, multiplier);
+                this.printMatrix();
+                System.out.println();
+            }
+            this.rowMultiplier(k, 1/this.arr[k][k]);
+        }
+	}
+
 	public void fixSignedZero()
 	{
 		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) if(Math.abs(this.arr[i][j])<1e-7) this.arr[i][j]=0.000;
