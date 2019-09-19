@@ -76,3 +76,20 @@ Matrix m = new Matrix();
 m.printMatrix() // Will output the contents of the Matrix object.
 ```
 
+## isSquare()
+isSquare is a function that returns boolean. It will yield a value of `true` when the matrix is square; and `false` otherwise.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+
+// After Matrix is initialized...
+
+if(m.isSquare())  // if matrix is square..
+{
+    // do something
+}
+```
+
+

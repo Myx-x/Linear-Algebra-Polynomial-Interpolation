@@ -15,9 +15,8 @@ public class Determinant
     {
         double det = 1;
         boolean checker = true;
-        if (this.mat.IsSquare()){
+        if (this.mat.isSquare()){
             this.mat.normBackwardElimination();
-
             for (int i = 0; i < this.mat.colCount && checker; i++){
                 if (this.mat.arr[i][i] == 0){
                     checker = false;
