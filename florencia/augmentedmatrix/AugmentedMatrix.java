@@ -9,6 +9,8 @@ public class AugmentedMatrix
     Matrix leftMatrix;
     Matrix rightMatrix;
 
+    private boolean invalidEquation=false;
+
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= CONSTRUCTOR -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     // Creates a new Augmented Matrix
     public AugmentedMatrix(Matrix m1, Matrix m2)
@@ -84,11 +86,11 @@ public class AugmentedMatrix
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= GAUSS ELIMINATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     // if consistent, return 1, if inconsistent, return 2, if invalid, return 3
     // Use this function after reducing matrix.
-    public int validateAugMat()
+    public int validateAugMat(int row)
     { 
-        if(this.leftMatrix.isRowZero(this.leftMatrix.rowCount-1))
+        if(this.leftMatrix.isRowZero(row))
         {
-            if(this.rightMatrix.arr[this.leftMatrix.rowCount-1][0]==0) return 2;
+            if(this.rightMatrix.arr[row][0]==0) return 2;
             else return 3;
         }
         else return 1;
@@ -98,15 +100,7 @@ public class AugmentedMatrix
     public int partialPivoting(int col)
     {
         int index=col;
-        double currentPivot=this.leftMatrix.arr[index][col];
-        for(int i=index+1;i<this.leftMatrix.rowCount;i++)
-        {
-            if(Math.abs(this.leftMatrix.arr[i][col])<Math.abs(currentPivot))
-            {
-                currentPivot=this.leftMatrix.arr[i][col];
-                index=i;
-            }
-        }
+        while(this.leftMatrix.arr[index][col]==0 && index<this.leftMatrix.rowCount) index++;
         return index;
     }
 
@@ -122,10 +116,16 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                // this.printAugmentedMatrix();
-                // System.out.println();
+                this.printAugmentedMatrix();
+                System.out.println();
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
+        }
+        if(this.validateAugMat(this.leftMatrix.rowCount-1)!=1)
+        {
+            this.printAugmentedMatrix();
+            invalidEquation=true;
+            return;
         }
         this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
         
@@ -140,8 +140,8 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
                 this.augRowArithmetic(i, k, multiplier);
-                // this.printAugmentedMatrix();
-                // System.out.println();
+                this.printAugmentedMatrix();
+                System.out.println();
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
@@ -158,12 +158,13 @@ public class AugmentedMatrix
 	public void gaussJordanElimination()
 	{
         this.forwardElimination();
-        if(this.validateAugMat()==1)
+        if(!invalidEquation)
         {
             this.backwardElimination();
             this.leftMatrix.fixSignedZero();
             this.rightMatrix.fixSignedZero();
             this.printAugmentedMatrix();
+            this.convertToSolutionValid();
         }
         else System.out.println("Invalid/Inconsistent Equation");
     

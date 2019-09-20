@@ -16,8 +16,6 @@ public class Main
 
         //aug.gaussElimination();
         aug.gaussJordanElimination();
-        aug.convertToSolutionValid();
-
         
     }
 }

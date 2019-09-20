@@ -9,4 +9,4 @@ javac Main.java
 
 echo --- Main.java start ---
 
-java Main
+java Main in
