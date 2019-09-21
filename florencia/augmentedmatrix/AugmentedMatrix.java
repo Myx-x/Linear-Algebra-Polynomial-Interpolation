@@ -2,6 +2,7 @@ package florencia.augmentedmatrix;
 
 import java.util.Scanner;
 import florencia.matrix.*;
+import java.lang.Math;
 
 public class AugmentedMatrix
 {
@@ -121,7 +122,7 @@ public class AugmentedMatrix
             }
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
-        if(this.validateAugMat(this.leftMatrix.rowCount-1)!=1)
+        if(this.validateAugMat(this.leftMatrix.rowCount-1)==3)
         {
             this.printAugmentedMatrix();
             invalidEquation=true;
@@ -130,7 +131,7 @@ public class AugmentedMatrix
         this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
         
     }
-
+    
     // Reduce augmented matrix into reduced echelon form (if applied after forwardElimintation() method)
     public void backwardElimination()
     {
@@ -227,4 +228,52 @@ public class AugmentedMatrix
         System.out.println("The solutions are: ");
         for(int i=0;i<this.leftMatrix.rowCount;i++) System.out.println("x" + (i+1) + " = " + this.rightMatrix.arr[i][0]);
     }
+    
+    public void infiniteSolutionMatrix()
+    {
+        for(int i=0;i<this.leftMatrix.rowCount;i++)
+        {
+            boolean foundOne=false;
+            for(int j=0;j<this.leftMatrix.colCount;j++)
+            {
+                if(this.leftMatrix.arr[i][j]==1)
+                {
+                    foundOne=true;
+                    this.leftMatrix.arr[i][j]=0;
+                }
+                if(foundOne && this.leftMatrix.arr[i][j]!=0)
+                {
+                    this.leftMatrix.arr[i][j]*=-1;
+                }
+            }
+
+
+        }
+    }
+
+    public void convertToSolutionInfinite()
+    {
+        System.out.println("The solutions are: ");
+        for(int i=0;i<this.leftMatrix.rowCount;i++)
+        {
+            boolean printed=false;
+            
+            System.out.print("X" + (i+1) + " = ");
+            if(this.rightMatrix.arr[i][0]!=0)System.out.print(this.rightMatrix.arr[i][0]);
+            for(int j=0;j<this.leftMatrix.colCount;j++)
+            {
+                if(i!=j && this.leftMatrix.arr[i][j]!=0)
+                {
+                    printed = true;
+                    System.out.print(this.leftMatrix.arr[i][j]>0?(" + " + this.leftMatrix.arr[i][j] + "X" + (j+1)):(" - " + Math.abs(this.leftMatrix.arr[i][j])+ "X" + (j+1)));
+                }
+            }
+            if(!printed)
+            {
+                System.out.print("X" + (i+1));
+            }
+            System.out.println();
+        }
+    }
+
 }

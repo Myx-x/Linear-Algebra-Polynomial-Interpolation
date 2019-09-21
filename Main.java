@@ -14,8 +14,8 @@ public class Main
 
         AugmentedMatrix aug = new AugmentedMatrix(m1, m2);
 
-        //aug.gaussElimination();
         aug.gaussJordanElimination();
+        aug.convertToSolutionInfinite();
         
     }
 }
