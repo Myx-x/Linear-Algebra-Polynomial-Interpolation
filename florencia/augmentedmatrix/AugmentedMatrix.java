@@ -1,6 +1,7 @@
 package florencia.augmentedmatrix;
 
 import java.util.Scanner;
+import java.util.Arrays;
 import florencia.matrix.*;
 import java.lang.Math;
 
@@ -110,7 +111,7 @@ public class AugmentedMatrix
     {
         int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
 
-        for(int k=0;k<cc-1;k++)
+        for(int k=0;k<rc-1;k++)
         {
             this.augRowSwap(this.partialPivoting(k),k);
             for(int i=k+1;i<rc;i++)
@@ -128,23 +129,32 @@ public class AugmentedMatrix
             invalidEquation=true;
             return;
         }
-        this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
+        else if(this.leftMatrix.arr[rc-1][cc-1]!=0) this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
         
     }
     
     // Reduce augmented matrix into reduced echelon form (if applied after forwardElimintation() method)
     public void backwardElimination()
     {
-        for(int k=this.leftMatrix.colCount-1;k>=1;k--)
+        this.printAugmentedMatrix();
+
+        for(int k=this.leftMatrix.rowCount-1;k>=1;k--)
         {
-            for(int i=k-1;i>=0;i--)
+            System.out.println(this.leftMatrix.arr[k][k]);
+            if(this.leftMatrix.arr[k][k]==0) {System.out.println("pisang");continue;}
+            else
             {
-                double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
-                this.augRowArithmetic(i, k, multiplier);
-                this.printAugmentedMatrix();
-                System.out.println();
+
+                for(int i=k-1;i>=0;i--)
+                {
+                    System.out.println(k);
+                    double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
+                    this.augRowArithmetic(i, k, multiplier);
+                    this.printAugmentedMatrix();
+                    System.out.println();
+                }
+                this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
             }
-            this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
         }
         
     }
@@ -161,6 +171,7 @@ public class AugmentedMatrix
         this.forwardElimination();
         if(!invalidEquation)
         {
+            System.out.println("------------------------------");
             this.backwardElimination();
             this.leftMatrix.fixSignedZero();
             this.rightMatrix.fixSignedZero();
@@ -229,48 +240,54 @@ public class AugmentedMatrix
         for(int i=0;i<this.leftMatrix.rowCount;i++) System.out.println("x" + (i+1) + " = " + this.rightMatrix.arr[i][0]);
     }
     
-    public void infiniteSolutionMatrix()
+    // Use after reducing matrix only.
+    public double[][] infiniteSolutionMatrix()
     {
+        double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
+        for(double[] row:result) Arrays.fill(row,0);
+
+        // Moving constant into result array
+        for(int i=0;i<this.rightMatrix.rowCount;i++) result[i][0]=this.rightMatrix.arr[i][0];
+
         for(int i=0;i<this.leftMatrix.rowCount;i++)
         {
             boolean foundOne=false;
             for(int j=0;j<this.leftMatrix.colCount;j++)
-            {
-                if(this.leftMatrix.arr[i][j]==1)
-                {
-                    foundOne=true;
-                    this.leftMatrix.arr[i][j]=0;
-                }
+            {  
+                //Searching for main one in echelon matrix
+                if(this.leftMatrix.arr[i][j]==1) foundOne=true;
+
+                //Convert all coeficients into its negative
                 if(foundOne && this.leftMatrix.arr[i][j]!=0)
                 {
-                    this.leftMatrix.arr[i][j]*=-1;
+                    result[i][j+1]=this.leftMatrix.arr[i][j]*-1;
                 }
             }
-
-
         }
+        
+
+
+        return result;
     }
 
     public void convertToSolutionInfinite()
     {
         System.out.println("The solutions are: ");
-        for(int i=0;i<this.leftMatrix.rowCount;i++)
+
+        double[][] res = this.infiniteSolutionMatrix();
+
+        for(int i=0;i<this.leftMatrix.colCount;i++)
         {
             boolean printed=false;
-            
             System.out.print("X" + (i+1) + " = ");
-            if(this.rightMatrix.arr[i][0]!=0)System.out.print(this.rightMatrix.arr[i][0]);
-            for(int j=0;j<this.leftMatrix.colCount;j++)
+            
+            for(int j=0;j<this.leftMatrix.colCount+1;j++)
             {
-                if(i!=j && this.leftMatrix.arr[i][j]!=0)
+                if(res[i][j]!=0 && i+1!=j)
                 {
-                    printed = true;
-                    System.out.print(this.leftMatrix.arr[i][j]>0?(" + " + this.leftMatrix.arr[i][j] + "X" + (j+1)):(" - " + Math.abs(this.leftMatrix.arr[i][j])+ "X" + (j+1)));
+                    if(j==0) System.out.print(res[i][j] + " ");
+                    else System.out.print(res[i][j] + "X" + j);
                 }
-            }
-            if(!printed)
-            {
-                System.out.print("X" + (i+1));
             }
             System.out.println();
         }

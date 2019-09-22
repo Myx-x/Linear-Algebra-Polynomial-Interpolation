@@ -147,7 +147,7 @@ public class Matrix
 
 		while(result && i<this.colCount)
 		{
-			if(this.arr[row][i]!=0) result=false;
+			if(this.arr[row][i]!=0) {System.out.println("cilukba");result=false;}
 			else i++;
 		}
 		return result;
