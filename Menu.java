@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class Menu
 {  
+    
     public static void main(String args[])
     {
         Stack<Integer> navigationStack = new Stack<Integer>();
@@ -145,4 +146,18 @@ public class Menu
         System.out.print("Masukkan Pilihan : ");
     }
 
+    private static Matrix inputMatrix()
+    {
+        final Scanner s = new Scanner(System.in);
+        if(s.hasNextInt())
+		{
+			int r=s.nextInt();
+			int c=s.nextInt();
+            Matrix MT = Matrix(r,c);
+			for(int i=0;i<r;i++) for(int j=0;j<c;j++) MT.arr[i][j] = s.nextDouble();
+			
+			s.nextLine();
+		}
+		else return MT;
+    }
 }

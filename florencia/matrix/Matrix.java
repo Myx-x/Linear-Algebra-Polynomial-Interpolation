@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Matrix
 {
-	private Scanner s = new Scanner(System.in);
     public double[][] arr;
     public int rowCount, colCount;
 
@@ -25,13 +24,6 @@ public class Matrix
 		arr=new double[rowCount][colCount];
 	}
 
-    public void makeMatrix(int dimRow, int dimCol)
-    {
-        arr = new double[dimRow][dimCol];
-        rowCount = dimRow;
-        colCount = dimCol;	
-    }
-	
 	/*----- SELECTOR -----*/
 	// Returns the object's rowCount
 	public int getRowCount()
@@ -52,23 +44,6 @@ public class Matrix
 	}
 	
 	/*----- INPUT OUTPUT PROCEDURE ------*/
-	// Matrix Input Procedure
-	public void inputMatrix()
-	{
-		if(s.hasNextInt())
-		{
-			int r=s.nextInt();
-			int c=s.nextInt();
-	
-			makeMatrix(r, c);
-			for(int i=0;i<r;i++) for(int j=0;j<c;j++) this.arr[i][j] = s.nextDouble();
-			
-			s.nextLine();
-		}
-		else return;
-
-	}
-
 	// Matrix Output Procedure
 	public void printMatrix()
 	{
@@ -134,8 +109,7 @@ public class Matrix
 
 	public Matrix transpose()
 	{
-		Matrix MT = new Matrix(this);
-		MT.makeMatrix(this.colCount, this.rowCount);
+		Matrix MT = new Matrix(this.colCount, this.rowCount);
 
 		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j];
 

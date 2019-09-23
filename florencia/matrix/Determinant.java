@@ -65,8 +65,7 @@ public class Determinant
     public Matrix getminorEntry(int i, int j)
     {
         int row, col;
-        Matrix MT = new Matrix(this.mat);
-        MT.makeMatrix(this.mat.rowCount-1, this.mat.colCount-1);
+        Matrix MT = new Matrix(this.mat.rowCount-1, this.mat.colCount-1);
         row = 0;
         for(int k=0;k<this.mat.rowCount;k++)
         {
@@ -98,8 +97,7 @@ public class Determinant
 
     public Matrix getMatrixCofactor()
     {
-        Matrix MT = new Matrix(this.mat);
-		MT.makeMatrix(this.mat.colCount, this.mat.rowCount);
+        Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
         for(int i=0;i<this.mat.rowCount;i++)
         {
             for(int j=0;j<this.mat.colCount;j++)
