@@ -49,11 +49,11 @@ public class Determinant
     public double determinantLaplaceExpansion()
     {
         double det = 0;
-        Matrix MT = new Matrix(this.mat);
+        Determinant matCo = new Determinant(this.mat);
 
         if (this.mat.isSquare()){
-            for (int j = 0; j < MT.colCount; j++){
-                det += (Math.pow(-1, (0+j)) * MT.arr[0][j] * this.getCofactor(0, j));
+            for (int j = 0; j < this.mat.colCount; j++){
+                det += (this.mat.arr[0][j] * matCo.getCofactor(0, j));
             }
             return det;
         } else {
