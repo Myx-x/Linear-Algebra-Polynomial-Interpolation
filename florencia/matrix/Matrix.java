@@ -107,8 +107,6 @@ public class Matrix
             {
                 double multiplier = -this.arr[i][k]/(this.arr[k][k]);
                 this.rowArithmetic(i, k, multiplier);
-                this.printMatrix();
-                System.out.println();
             }
             this.rowMultiplier(k, 1/this.arr[k][k]);
         }
