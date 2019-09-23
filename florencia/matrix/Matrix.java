@@ -82,12 +82,10 @@ public class Matrix
         
         for(int i=0;i<this.colCount;i++)
         {
-            System.out.println(this.arr[row1][i]);
             double tmp=this.arr[row1][i];
             this.arr[row1][i]=this.arr[row2][i];
             this.arr[row2][i]=tmp;
         }
-        this.printMatrix();
 	}
 	
 	public void colSwap(int col1, int col2)
@@ -159,4 +157,16 @@ public class Matrix
 		}return MT;
 	}
 	
+	public boolean isRowZero(int row)
+	{
+		boolean result=true;
+		int i=0;
+
+		while(result && i<this.colCount)
+		{
+			if(this.arr[row][i]!=0) {System.out.println("cilukba");result=false;}
+			else i++;
+		}
+		return result;
+	}
 }
