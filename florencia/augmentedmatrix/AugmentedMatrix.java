@@ -99,10 +99,11 @@ public class AugmentedMatrix
     }
 
     // Partial pivoting
-    public int partialPivoting(int col)
+    public int partialPivoting(int row, int col)
     {
-        int index=col;
-        while(this.leftMatrix.arr[index][col]==0 && index<this.leftMatrix.rowCount) index++;
+        int index=row;
+        while(this.leftMatrix.arr[row][col]==0 && index<this.leftMatrix.rowCount) index++;
+        if(index>=this.leftMatrix.rowCount) return row;
         return index;
     }
 
@@ -113,6 +114,7 @@ public class AugmentedMatrix
 
         for(int k=0;k<rc-1;k++)
         {
+            //this is where im wrong
             this.augRowSwap(this.partialPivoting(k),k);
             for(int i=k+1;i<rc;i++)
             {
@@ -285,10 +287,19 @@ public class AugmentedMatrix
             {
                 if(res[i][j]!=0 && i+1!=j)
                 {
-                    if(j==0) System.out.print(res[i][j] + " ");
-                    else System.out.print(res[i][j] + "X" + j);
+                    if(!printed)
+                    {
+                        printed=true;
+                        if(j==0) System.out.print(res[i][j] + " ");
+                        else System.out.print(res[i][j]>0?(res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
+                    }
+                    else
+                    {
+                        System.out.print(res[i][j]>0?(" + " + res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
+                    }
                 }
             }
+            if(!printed) System.out.print("X" + (i+1));
             System.out.println();
         }
     }
