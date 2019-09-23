@@ -143,7 +143,7 @@ public class Menu
         System.out.print("Masukkan Pilihan : ");
     }
 
-    private static Matrix input()
+    public static Matrix input()
     {
         final Scanner s = new Scanner(System.in);
         int r=s.nextInt();

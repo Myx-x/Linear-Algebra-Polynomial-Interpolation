@@ -234,7 +234,6 @@ public class AugmentedMatrix
 
     }
 
-<<<<<<< HEAD
     public void Cramer(){
         double solution = 0;
         Determinant matDet = new Determinant(this.leftMatrix);
@@ -253,7 +252,6 @@ public class AugmentedMatrix
             System.out.print("This method is not valid for this type of matrix");
         }
     }
-=======
     public void convertToSolutionValid()
     {
         System.out.println("The solutions are: ");
@@ -284,7 +282,7 @@ public class AugmentedMatrix
                 }
             }
         }
-        
+    
 
 
         return result;
@@ -321,6 +319,4 @@ public class AugmentedMatrix
             System.out.println();
         }
     }
-
->>>>>>> linearequation
 }
