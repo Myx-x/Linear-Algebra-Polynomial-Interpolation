@@ -203,10 +203,20 @@ public class AugmentedMatrix
 
     public void Cramer(){
         double solution = 0;
-        Determinant d = new Determinant(this.leftMatrix);
-        Matrix modifiedMatrix;
-        if (this.leftMatrix.isSquare() && (d.determinantLaplaceExpansion() != 0)){
-            
+        Determinant matDet = new Determinant(this.leftMatrix);
+
+        if (this.leftMatrix.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
+            for (int i = 0; i < this.leftMatrix.rowCount; i++){
+                Matrix modVal = new Matrix(this.leftMatrix);
+                for (int j = 0; j < this.leftMatrix.colCount; j++){
+                    modVal.arr[i][j] = this.rightMatrix.arr[i][j];
+                }
+                Determinant modValDet = new Determinant(modVal);
+                solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
+                System.out.print("x"+i+" = "+solution+"\n");
+            }
+        } else {
+            System.out.print("This method is not valid for this type of matrix");
         }
     }
 }
