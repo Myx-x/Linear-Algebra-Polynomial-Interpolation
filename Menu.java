@@ -65,21 +65,21 @@ public class Menu
                     navigationStack.pop();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 21){
-                    Matrix MT = inputMatrix();
+                    Matrix MT = input();
                     double hasil;
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantRowReduction();
                     System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 22){
-                    Matrix MT = inputMatrix();
+                    Matrix MT = input();
                     double hasil;
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantSarrus();
                     System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 23){
-                    Matrix MT = inputMatrix();
+                    Matrix MT = input();
                     double hasil;
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantLaplaceExpansion();
@@ -143,7 +143,7 @@ public class Menu
         System.out.print("Masukkan Pilihan : ");
     }
 
-    private static Matrix inputMatrix()
+    private static Matrix input()
     {
         final Scanner s = new Scanner(System.in);
         int r=s.nextInt();
