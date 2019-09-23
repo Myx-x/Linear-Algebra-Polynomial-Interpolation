@@ -149,12 +149,11 @@ public class Matrix
 
 	public Matrix kaliKons(Double X)
 	{
-		Matrix MT = new Matrix(this);
-		for(int i=0;i<this.rowCount;i++){
-			 for(int j=0;j<this.colCount;j++) {
-				MT.arr[i][j] = MT.arr[i][j] * X;
-			}
-		}return MT;
+		Matrix MT = new Matrix(this.colCount, this.rowCount);
+
+		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j] * X;
+
+		return MT;
 	}
 	
 	public boolean isRowZero(int row)

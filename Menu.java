@@ -97,8 +97,13 @@ public class Menu
                     navigationStack.pop();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 31){
+
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 32){
+                    Matrix MT = input();
+                    Determinant det = new Determinant(MT);
+                    MT = det.inverseAdjoint();
+                    MT.printMatrix();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 33){
                     navigationStack.pop();
