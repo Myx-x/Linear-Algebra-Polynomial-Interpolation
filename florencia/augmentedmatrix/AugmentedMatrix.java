@@ -163,10 +163,8 @@ public class AugmentedMatrix
     public void interpolateGraph()
     {
         int n = s.nextInt();
-
+        
         Matrix mx=new Matrix(), my=new Matrix();
-        mx.makeMatrix(n, n);
-        my.makeMatrix(n, 1);
         AugmentedMatrix augGraph = new AugmentedMatrix(mx, my);
 
         for(int i=0;i<n;i++)
@@ -201,5 +199,14 @@ public class AugmentedMatrix
         for(int i=0;i<n;i++) result+=augGraph.rightMatrix.arr[i][0]*Math.pow(x,i);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
 
+    }
+
+    public void Cramer(){
+        double solution = 0;
+        Determinant d = new Determinant(this.leftMatrix);
+        Matrix modifiedMatrix;
+        if (this.leftMatrix.isSquare() && (d.determinantLaplaceExpansion() != 0)){
+            
+        }
     }
 }

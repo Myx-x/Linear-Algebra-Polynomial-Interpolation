@@ -25,8 +25,11 @@ public class Determinant
                     det *= this.mat.arr[i][i];
                 }
             }
+            return det;
+        } else {
+            System.out.print("Matrix is not valid, you need square matrix!");
+            return -99999;
         }
-        return det;
     }
     
     public double determinantSarrus()
@@ -34,8 +37,8 @@ public class Determinant
         double det = 0, sumPlus = 0, sumMin = 0;
         if (this.mat.isSquare() && this.mat.getRowCount() == 3){
             sumPlus = (this.mat.arr[0][0]*this.mat.arr[1][1]*this.mat.arr[2][2]) + (this.mat.arr[0][1]*this.mat.arr[1][2]*this.mat.arr[2][0]) + (this.mat.arr[0][2]*this.mat.arr[1][0]*this.mat.arr[2][1]);
-            sumMin  = (this.mat.arr[2][0]*this.mat.arr[1][1]*this.mat.arr[0][2]) + (this.mat.arr[2][1]*this.mat.arr[1][2]*this.mat.arr[0][0]) + (this.mat.arr[2][2]*this.mat.arr[1][0]*this.mat.arr[0][2]);
-            det = sumPlus + sumMin;
+            sumMin  = (this.mat.arr[2][0]*this.mat.arr[1][1]*this.mat.arr[0][2]) + (this.mat.arr[2][1]*this.mat.arr[1][2]*this.mat.arr[0][0]) + (this.mat.arr[2][2]*this.mat.arr[1][0]*this.mat.arr[0][1]);
+            det = sumPlus - sumMin;
             return det;
         } else {
             System.out.print("Matrix is not valid, use another method!");
@@ -46,19 +49,23 @@ public class Determinant
     public double determinantLaplaceExpansion()
     {
         double det = 0;
-        Matrix MT = new Matrix();
+        Matrix MT = new Matrix(this.mat);
 
-        for (int i = 0; i < MT.rowCount; i++){
-            det += (Math.pow(-1, (i+0)) * MT.arr[i][0] * this.getCofactor(i, 0));
+        if (this.mat.isSquare()){
+            for (int i = 0; i < MT.rowCount; i++){
+                det += (Math.pow(-1, (i+0)) * MT.arr[i][0] * this.getCofactor(i, 0));
+            }
+            return det;
+        } else {
+            System.out.print("Matrix is not valid, you need square matrix!");
+            return -99999;
         }
-
-        return det;
     }
 
     public Matrix getminorEntry(int i, int j)
     {
         int row, col;
-        Matrix MT = new Matrix();
+        Matrix MT = new Matrix(this.mat);
         MT.makeMatrix(this.mat.rowCount-1, this.mat.colCount-1);
         row = 0;
         for(int k=0;k<this.mat.rowCount;k++)
@@ -91,7 +98,7 @@ public class Determinant
 
     public Matrix getMatrixCofactor()
     {
-        Matrix MT = new Matrix();
+        Matrix MT = new Matrix(this.mat);
 		MT.makeMatrix(this.mat.colCount, this.mat.rowCount);
         for(int i=0;i<this.mat.rowCount;i++)
         {
