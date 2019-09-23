@@ -110,4 +110,12 @@ public class Determinant
         MT = MT.transpose();
         return MT;
     }
+
+    public Matrix inverseAdjoint()
+    {
+        Matrix MT;
+        MT = this.getAdjoint();
+        MT = MT.kaliKons(1/this.determinantRowReduction());
+        return MT;
+    }
 }

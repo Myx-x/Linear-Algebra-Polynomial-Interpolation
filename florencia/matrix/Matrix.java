@@ -143,4 +143,14 @@ public class Matrix
 			return this;
 		}
 	}
+
+	public Matrix kaliKons(Double X)
+	{
+		Matriks MT = new Matrix();
+		for(int i=0;i<this.rowCount;i++){
+			 for(int j=0;j<this.colCount;j++) {
+				MT.arr[i][j] = MT.arr[i][j] * X;
+			}
+		}return MT;
+	}
 }
