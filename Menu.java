@@ -64,11 +64,28 @@ public class Menu
                     navigationStack.pop();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 21){
+                    Matrix MT = new Matrix();
+                    double hasil;
+                    MT.inputMatrix();
+                    Determinant det = new Determinant(MT);
+                    hasil = det.determinantRowReduction();
+                    System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 22){
-                    System.out.println("floren and fritz");
+                    Matrix MT = new Matrix();
+                    double hasil;
+                    MT.inputMatrix();
+                    Determinant det = new Determinant(MT);
+                    hasil = det.determinantSarrus();
+                    System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 23){
+                    Matrix MT = new Matrix();
+                    double hasil;
+                    MT.inputMatrix();
+                    Determinant det = new Determinant(MT);
+                    hasil = det.determinantLaplaceExpansion();
+                    System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 24){
                     navigationStack.pop();
@@ -127,4 +144,5 @@ public class Menu
         System.out.println("3. Kembali");
         System.out.print("Masukkan Pilihan : ");
     }
+
 }
