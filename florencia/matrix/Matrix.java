@@ -10,6 +10,21 @@ public class Matrix
 
 	/*----- CONSTRUCTOR -----*/
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
+
+	public Matrix(Matrix M)
+	{
+		M.arr = this.arr;
+		M.rowCount = this.rowCount;
+		M.colCount = this.colCount;
+	}
+
+	public Matrix(double[][] celldata, int rc, int cc)
+	{
+		arr=celldata;
+		rowCount=rc;
+		colCount=cc;
+	}
+
     public void makeMatrix(int dimRow, int dimCol)
     {
         arr = new double[dimRow][dimCol];
@@ -119,7 +134,7 @@ public class Matrix
 
 	public Matrix transpose()
 	{
-		Matrix MT = new Matrix();
+		Matrix MT = new Matrix(this);
 		MT.makeMatrix(this.colCount, this.rowCount);
 
 		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j];
@@ -131,7 +146,7 @@ public class Matrix
 	{
 		if(this.isSquare())
 		{
-			Matrix I = new Matrix();
+			Matrix I = new Matrix(this);
 			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) I.arr[i][j]=i==j?1:0;
 			return I;
 		}
@@ -144,11 +159,12 @@ public class Matrix
 
 	public Matrix kaliKons(Double X)
 	{
-		Matrix MT = new Matrix();
+		Matrix MT = new Matrix(this);
 		for(int i=0;i<this.rowCount;i++){
 			 for(int j=0;j<this.colCount;j++) {
 				MT.arr[i][j] = MT.arr[i][j] * X;
 			}
 		}return MT;
 	}
+	
 }
