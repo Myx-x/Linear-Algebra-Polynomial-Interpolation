@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Matrix
 {
+	private Scanner s = new Scanner(System.in);
     public double[][] arr;
     public int rowCount, colCount;
 
@@ -44,6 +45,23 @@ public class Matrix
 	}
 	
 	/*----- INPUT OUTPUT PROCEDURE ------*/
+	// Matrix Input Procedure
+	public void inputMatrix()
+	{
+		if(s.hasNextInt())
+		{
+			int r=s.nextInt();
+			int c=s.nextInt();
+	
+			Matrix MT = new Matrix(r,c);
+			for(int i=0;i<r;i++) for(int j=0;j<c;j++) MT.arr[i][j] = s.nextDouble();
+			
+			s.nextLine();
+		}
+		else return;
+
+	}
+
 	// Matrix Output Procedure
 	public void printMatrix()
 	{

@@ -65,25 +65,22 @@ public class Menu
                     navigationStack.pop();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 21){
-                    Matrix MT = new Matrix();
+                    Matrix MT = inputMatrix();
                     double hasil;
-                    MT.inputMatrix();
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantRowReduction();
                     System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 22){
-                    Matrix MT = new Matrix();
+                    Matrix MT = inputMatrix();
                     double hasil;
-                    MT.inputMatrix();
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantSarrus();
                     System.out.println(hasil);
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 23){
-                    Matrix MT = new Matrix();
+                    Matrix MT = inputMatrix();
                     double hasil;
-                    MT.inputMatrix();
                     Determinant det = new Determinant(MT);
                     hasil = det.determinantLaplaceExpansion();
                     System.out.println(hasil);
@@ -149,15 +146,12 @@ public class Menu
     private static Matrix inputMatrix()
     {
         final Scanner s = new Scanner(System.in);
-        if(s.hasNextInt())
-		{
-			int r=s.nextInt();
-			int c=s.nextInt();
-            Matrix MT = Matrix(r,c);
-			for(int i=0;i<r;i++) for(int j=0;j<c;j++) MT.arr[i][j] = s.nextDouble();
-			
-			s.nextLine();
-		}
-		else return MT;
+        int r=s.nextInt();
+        int c=s.nextInt();
+        Matrix MT = new Matrix(r,c);
+        for(int i=0;i<r;i++) for(int j=0;j<c;j++) MT.arr[i][j] = s.nextDouble();
+        
+        s.nextLine();
+        return MT;
     }
 }
