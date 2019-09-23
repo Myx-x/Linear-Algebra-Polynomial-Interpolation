@@ -52,8 +52,8 @@ public class Determinant
         Matrix MT = new Matrix(this.mat);
 
         if (this.mat.isSquare()){
-            for (int i = 0; i < MT.rowCount; i++){
-                det += (Math.pow(-1, (i+0)) * MT.arr[i][0] * this.getCofactor(i, 0));
+            for (int j = 0; j < MT.colCount; j++){
+                det += (Math.pow(-1, (0+j)) * MT.arr[0][j] * this.getCofactor(0, j));
             }
             return det;
         } else {
