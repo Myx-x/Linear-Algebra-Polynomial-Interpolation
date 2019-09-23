@@ -18,11 +18,11 @@ public class Matrix
 		M.colCount = this.colCount;
 	}
 
-	public Matrix(double[][] celldata, int rc, int cc)
+	public Matrix(int rc, int cc)
 	{
-		arr=celldata;
 		rowCount=rc;
 		colCount=cc;
+		arr=new double[rowCount][colCount];
 	}
 
     public void makeMatrix(int dimRow, int dimCol)

@@ -164,7 +164,7 @@ public class AugmentedMatrix
     {
         int n = s.nextInt();
         
-        Matrix mx=new Matrix(), my=new Matrix();
+        Matrix mx=new Matrix(n,n), my=new Matrix(n,1);
         AugmentedMatrix augGraph = new AugmentedMatrix(mx, my);
 
         for(int i=0;i<n;i++)
