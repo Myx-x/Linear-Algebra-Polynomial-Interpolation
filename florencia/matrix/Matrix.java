@@ -65,6 +65,7 @@ public class Matrix
 	// Matrix Output Procedure
 	public void printMatrix()
 	{
+		this.fixSignedZero();
 		for(int i=0;i<this.rowCount;i++)
 		{
 			for(int j=0;j<this.colCount;j++) System.out.print(this.arr[i][j] + "\t");
@@ -126,7 +127,7 @@ public class Matrix
 	{
 		Matrix MT = new Matrix(this.colCount, this.rowCount);
 
-		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j];
+		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[j][i];
 
 		return MT;
 	}

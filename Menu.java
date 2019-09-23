@@ -41,8 +41,16 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 4){
+                    Matrix MT = input();
+                    Determinant det = new Determinant(MT);
+                    MT = det.getMatrixCofactor();
+                    MT.printMatrix();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 5){
+                    Matrix MT = input();
+                    Determinant det = new Determinant(MT);
+                    MT = det.getAdjoint();
+                    MT.printMatrix();
                     navigationStack.pop();
                 }else if (navigationStack.peek() == 6){
                     navigationStack.pop();
