@@ -11,7 +11,12 @@ public class Matrix
 	/*----- CONSTRUCTOR -----*/
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
 
-	public Matrix(){}
+	public Matrix()
+	{
+		rowCount=0;
+		colCount=0;
+		arr= new double[1][1];
+	}
 
 	public Matrix(Matrix M)
 	{
@@ -50,18 +55,12 @@ public class Matrix
 	// Matrix Input Procedure
 	public void inputMatrix()
 	{
-		if(s.hasNextInt())
-		{
-			int r=s.nextInt();
-			int c=s.nextInt();
-	
-			Matrix MT = new Matrix(r,c);
-			for(int i=0;i<r;i++) for(int j=0;j<c;j++) MT.arr[i][j] = s.nextDouble();
-			
-			s.nextLine();
-		}
-		else return;
+		this.rowCount=s.nextInt();
+		this.colCount=s.nextInt();
+		this.arr = new double[this.rowCount][this.colCount];
 
+		// System.out.println("pisangggg");
+		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j] = s.nextDouble();	
 	}
 
 	// Matrix Output Procedure
@@ -134,18 +133,19 @@ public class Matrix
 		return MT;
 	}
 
-	public Matrix setIdentityMatrix()
+	public void setIdentityMatrix(int n)
 	{
 		if(this.isSquare())
 		{
-			Matrix I = new Matrix();
-			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) I.arr[i][j]=i==j?1:0;
-			return I;
+			this.rowCount=n;
+			this.colCount=n;
+			this.arr = new double[n][n];
+			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j]=(i==j)?1:0;
+			this.printMatrix();
 		}
 		else
 		{
 			System.out.println("Matrix is not square!");
-			return this;
 		}
 	}
 

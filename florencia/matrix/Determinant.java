@@ -3,9 +3,16 @@ package florencia.matrix;
 //import java.lang.FdLibm.Pow;
 import java.lang.Math;
 
+import florencia.augmentedmatrix.AugmentedMatrix;
+
 public class Determinant
 {
-    Matrix mat;
+    public Matrix mat;
+
+    public Determinant(){
+        mat = new Matrix();
+    }
+
     public Determinant(Matrix m)
     {
         this.mat = m;
@@ -123,5 +130,14 @@ public class Determinant
         double x= (double)1/this.determinantRowReduction();
         MT = MT.kaliKons(x);
         return MT;
+    }
+
+    public Matrix inverseGaussJordan()
+    {
+        AugmentedMatrix aug = new AugmentedMatrix();
+        aug.leftMatrix = mat;
+        aug.rightMatrix.setIdentityMatrix(mat.rowCount);
+        aug.gaussJordanElimination();
+        return aug.rightMatrix;
     }
 }

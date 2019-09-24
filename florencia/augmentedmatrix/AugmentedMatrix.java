@@ -8,8 +8,8 @@ import java.lang.Math;
 public class AugmentedMatrix
 {
     private Scanner s = new Scanner(System.in);
-    Matrix leftMatrix;
-    Matrix rightMatrix;
+    public Matrix leftMatrix;
+    public Matrix rightMatrix;
 
     private boolean invalidEquation=false;
 
@@ -123,13 +123,13 @@ public class AugmentedMatrix
             int pivot=0;
             while(pivot<cc && this.leftMatrix.arr[k][pivot]==0) pivot++;
             if(pivot>=cc) continue;
-            
+
             for(int i=k+1;i<rc;i++)
             {
                 double multiplier = -this.leftMatrix.arr[i][pivot]/(this.leftMatrix.arr[k][pivot]);
                 this.augRowArithmetic(i, k, multiplier);
-                this.printAugmentedMatrix();
-                System.out.println();
+                // this.printAugmentedMatrix();
+                // System.out.println();
             }
             // Make the pivot equal to 1
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][pivot]);
@@ -166,8 +166,6 @@ public class AugmentedMatrix
         // Fix signed zero
         this.leftMatrix.fixSignedZero();
         this.rightMatrix.fixSignedZero();
-
-        this.printAugmentedMatrix();
 
         // Detect Invalid Equation
         if(this.rightMatrix.colCount==1)
@@ -214,7 +212,7 @@ public class AugmentedMatrix
         if(!invalidEquation)
         {
             this.backwardElimination();
-            this.convertToSolutionValid();
+            // this.convertToSolutionValid();
         }
         else System.out.println("Invalid/Inconsistent Equation");
     
@@ -224,7 +222,7 @@ public class AugmentedMatrix
     public Matrix inverseMatrix()
     {
         this.leftMatrix.inputMatrix();
-        this.rightMatrix.setIdentityMatrix();
+        this.rightMatrix.setIdentityMatrix(this.leftMatrix.rowCount);
         this.gaussJordanElimination();
         return this.rightMatrix;
     }
