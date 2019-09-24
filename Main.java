@@ -8,7 +8,7 @@ public class Main
     public static void main(String args[])
     {
 
-        // AugmentedMatrix aug = new AugmentedMatrix();
+        AugmentedMatrix aug = new AugmentedMatrix();
 
         // // double[][] res = aug.infiniteSolutionMatrix();
         // // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
@@ -18,16 +18,22 @@ public class Main
         // // }
         // // aug.convertToSolutionInfinite();
         
-        // aug.inputLinearEquation();
-        // aug.printAugmentedMatrix();
-        // aug.gaussJordanElimination();
+        aug.inputLinearEquation();
+        aug.printAugmentedMatrix();
+        System.out.println();
+        aug.forwardElimination();
+        aug.printAugmentedMatrix();
+        System.out.println();
+        aug.backwardElimination();
+        aug.printAugmentedMatrix();
+        System.out.println();
 
-        Determinant d = new Determinant();
-        d.mat.inputMatrix();
+        // Determinant d = new Determinant();
+        // d.mat.inputMatrix();
 
-        Matrix result = new Matrix();
+        // Matrix result = new Matrix();
         
-        result = d.inverseGaussJordan();
-        result.printMatrix();
+        // result = d.inverseGaussJordan();
+        // result.printMatrix();
     }
 }
