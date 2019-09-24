@@ -7,13 +7,8 @@ public class Main
 {
     public static void main(String args[])
     {
-        Matrix m1 = new Matrix();
-        Matrix m2 = new Matrix();
-        
-        // m1.inputMatrix();
-        // m2.inputMatrix();
 
-        AugmentedMatrix aug = new AugmentedMatrix(m1, m2);
+        AugmentedMatrix aug = new AugmentedMatrix();
 
         // double[][] res = aug.infiniteSolutionMatrix();
         // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
@@ -25,8 +20,7 @@ public class Main
         
         aug.inputLinearEquation();
         aug.printAugmentedMatrix();
-        aug.forwardElimination();
-        aug.printAugmentedMatrix();
+        aug.gaussJordanElimination();
         
     }
 }
