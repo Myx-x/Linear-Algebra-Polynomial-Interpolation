@@ -55,7 +55,9 @@ public class Matrix
 	// Matrix Input Procedure
 	public void inputMatrix()
 	{
+		System.out.print("Masukkan Baris :");
 		this.rowCount=s.nextInt();
+		System.out.print("Masukkan Kolom :");
 		this.colCount=s.nextInt();
 		this.arr = new double[this.rowCount][this.colCount];
 
@@ -141,7 +143,6 @@ public class Matrix
 			this.colCount=n;
 			this.arr = new double[n][n];
 			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j]=(i==j)?1:0;
-			this.printMatrix();
 		}
 		else
 		{
