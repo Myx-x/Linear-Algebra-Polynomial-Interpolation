@@ -119,10 +119,12 @@ public class AugmentedMatrix
     {
         int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
 
+        // Reduce matrix
         for(int k=0;k<rc-1;k++)
         {
-            int pivot=k;
-            while(pivot==0) pivot++;
+            // Find pivot to avoid dividing by zero
+            int pivot=0;
+            while(this.leftMatrix.arr[k][pivot]==0) pivot++;
 
             for(int i=k+1;i<rc;i++)
             {
@@ -131,16 +133,21 @@ public class AugmentedMatrix
                 this.printAugmentedMatrix();
                 System.out.println();
             }
+            // Make the pivot equal to 1
             this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][pivot]);
         }
+
+        // Fix signed zero
+        this.leftMatrix.fixSignedZero();
+        this.rightMatrix.fixSignedZero();
+
+
         // if(this.validateAugMat(this.leftMatrix.rowCount-1)==3)
         // {
         //     this.printAugmentedMatrix();
         //     invalidEquation=true;
         //     return;
         // }
-        if(this.leftMatrix.arr[rc-1][cc-1]!=0) this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
-        
     }
     
     // Reduce augmented matrix into reduced echelon form (if applied after forwardElimintation() method)

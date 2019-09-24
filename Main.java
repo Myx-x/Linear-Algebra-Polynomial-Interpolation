@@ -15,7 +15,6 @@ public class Main
 
         AugmentedMatrix aug = new AugmentedMatrix(m1, m2);
 
-        // aug.gaussJordanElimination();
         // double[][] res = aug.infiniteSolutionMatrix();
         // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
         // {
@@ -23,8 +22,10 @@ public class Main
         //     System.out.println();
         // }
         // aug.convertToSolutionInfinite();
-
+        
         aug.inputLinearEquation();
+        aug.printAugmentedMatrix();
+        aug.forwardElimination();
         aug.printAugmentedMatrix();
         
     }
