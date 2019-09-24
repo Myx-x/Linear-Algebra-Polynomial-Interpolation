@@ -45,10 +45,17 @@ public class AugmentedMatrix
     
     public void inputLinearEquation()
     {
-        for(int i=0;i<this.leftMatrix.rowCount;i++)
+        int rc = s.nextInt();
+        int cc = s.nextInt();
+        this.leftMatrix = new Matrix(rc,cc-1);
+        this.rightMatrix = new Matrix(rc,1);
+
+        System.out.println(rc + " " + cc);
+
+        for(int i=0;i<rc;i++)
         {
-            for(int j=0;j<this.leftMatrix.colCount;j++) this.leftMatrix.arr[i][j]=s.nextDouble();
-            for(int j=0;j<this.rightMatrix.colCount;j++) this.rightMatrix.arr[i][j]=s.nextDouble();
+            for(int j=0;j<cc-1;j++) this.leftMatrix.arr[i][j]=s.nextDouble();
+            this.rightMatrix.arr[i][0]=s.nextDouble();
         }
     }
 
@@ -99,13 +106,13 @@ public class AugmentedMatrix
     }
 
     // Partial pivoting
-    public int partialPivoting(int row, int col)
-    {
-        int index=row;
-        while(this.leftMatrix.arr[row][col]==0 && index<this.leftMatrix.rowCount) index++;
-        if(index>=this.leftMatrix.rowCount) return row;
-        return index;
-    }
+    // public int partialPivoting(int row, int col)
+    // {
+    //     int index=row;
+    //     while(this.leftMatrix.arr[row][col]==0 && index<this.leftMatrix.rowCount) index++;
+    //     if(index>=this.leftMatrix.rowCount) return row;
+    //     return index;
+    // }
 
     // Reduce augmented matrix into echelon form
     public void forwardElimination()
@@ -114,24 +121,25 @@ public class AugmentedMatrix
 
         for(int k=0;k<rc-1;k++)
         {
-            //this is where im wrong
-            this.augRowSwap(this.partialPivoting(k),k);
+            int pivot=k;
+            while(pivot==0) pivot++;
+
             for(int i=k+1;i<rc;i++)
             {
-                double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
+                double multiplier = -this.leftMatrix.arr[i][pivot]/(this.leftMatrix.arr[k][pivot]);
                 this.augRowArithmetic(i, k, multiplier);
                 this.printAugmentedMatrix();
                 System.out.println();
             }
-            this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][k]);
+            this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][pivot]);
         }
-        if(this.validateAugMat(this.leftMatrix.rowCount-1)==3)
-        {
-            this.printAugmentedMatrix();
-            invalidEquation=true;
-            return;
-        }
-        else if(this.leftMatrix.arr[rc-1][cc-1]!=0) this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
+        // if(this.validateAugMat(this.leftMatrix.rowCount-1)==3)
+        // {
+        //     this.printAugmentedMatrix();
+        //     invalidEquation=true;
+        //     return;
+        // }
+        if(this.leftMatrix.arr[rc-1][cc-1]!=0) this.augRowMultiplier(cc-1, 1/this.leftMatrix.arr[rc-1][cc-1]);
         
     }
     
@@ -282,7 +290,7 @@ public class AugmentedMatrix
                 }
             }
         }
-    
+        
 
 
         return result;
@@ -319,4 +327,5 @@ public class AugmentedMatrix
             System.out.println();
         }
     }
+
 }

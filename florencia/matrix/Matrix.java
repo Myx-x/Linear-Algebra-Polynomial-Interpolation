@@ -11,6 +11,8 @@ public class Matrix
 	/*----- CONSTRUCTOR -----*/
 	// The Matrix Object constructor, creates a matrix with dimension dimRow*dimCol
 
+	public Matrix(){}
+
 	public Matrix(Matrix M)
 	{
 		M.arr = this.arr;
@@ -136,7 +138,7 @@ public class Matrix
 	{
 		if(this.isSquare())
 		{
-			Matrix I = new Matrix(this);
+			Matrix I = new Matrix();
 			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) I.arr[i][j]=i==j?1:0;
 			return I;
 		}
