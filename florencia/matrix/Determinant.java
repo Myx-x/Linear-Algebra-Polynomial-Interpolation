@@ -110,7 +110,7 @@ public class Determinant
 
     public Matrix getAdjoint()
     {
-        Matrix MT;
+        Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
         MT = this.getMatrixCofactor();
         MT = MT.transpose();
         return MT;
@@ -118,9 +118,10 @@ public class Determinant
 
     public Matrix inverseAdjoint()
     {
-        Matrix MT;
+        Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
         MT = this.getAdjoint();
-        MT = MT.kaliKons(1/this.determinantRowReduction());
+        double x= (double)1/this.determinantRowReduction();
+        MT = MT.kaliKons(x);
         return MT;
     }
 }
