@@ -131,8 +131,6 @@ public class AugmentedMatrix
                 // this.printAugmentedMatrix();
                 // System.out.println();
             }
-            // Make the pivot equal to 1
-            this.augRowMultiplier(k, 1/this.leftMatrix.arr[k][pivot]);
         }
 
         // Sorting pivot
@@ -155,12 +153,12 @@ public class AugmentedMatrix
             this.augRowSwap(i, rowpivot);
         }
         
+        // Change all row into echelon form by multiplying
         for(int i=0;i<rc;i++)
         {
             int pivot=0;
             while(pivot<cc && this.leftMatrix.arr[i][pivot]==0) pivot++;
-            if(pivot<cc) this.augRowMultiplier(i, (double)1/this.leftMatrix.arr[i][pivot]);
-            
+            if(pivot<cc) this.augRowMultiplier(i, (double)1/this.leftMatrix.arr[i][pivot]);     
         }
 
         // Fix signed zero
@@ -182,19 +180,22 @@ public class AugmentedMatrix
     // Reduce augmented matrix into reduced echelon form (if applied after forwardElimintation() method)
     public void backwardElimination()
     {
-        for(int k=this.leftMatrix.rowCount-1;k>=1;k--)
+        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+
+        // Reduce matrix
+        for(int k=rc-1;k>=1;k--)
         {
-            if(this.leftMatrix.arr[k][k]==0) continue;
-            else
+            // Find pivot to avoid dividing by zero
+            int pivot=0;
+            while(pivot<cc && this.leftMatrix.arr[k][pivot]==0) pivot++;
+            if(pivot>=cc) continue;
+
+            for(int i=k-1;i>=0;i--)
             {
-                // Reduce into Reduced Echelon Form
-                for(int i=k-1;i>=0;i--)
-                {
-                    double multiplier = -this.leftMatrix.arr[i][k]/(this.leftMatrix.arr[k][k]);
-                    this.augRowArithmetic(i, k, multiplier);
-                    // this.printAugmentedMatrix();
-                    // System.out.println();
-                }
+                double multiplier = -this.leftMatrix.arr[i][pivot]/(this.leftMatrix.arr[k][pivot]);
+                this.augRowArithmetic(i, k, multiplier);
+                // this.printAugmentedMatrix();
+                // System.out.println();
             }
         }
         
@@ -295,12 +296,14 @@ public class AugmentedMatrix
     // Use after reducing matrix only.
     public double[][] infiniteSolutionMatrix()
     {
+        // Initizialize
         double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
         for(double[] row:result) Arrays.fill(row,0);
 
         // Moving constant into result array
         for(int i=0;i<this.rightMatrix.rowCount;i++) result[i][0]=this.rightMatrix.arr[i][0];
 
+        // Moving coefficients then make it negative unless it's at the same diagonal
         for(int i=0;i<this.leftMatrix.rowCount;i++)
         {
             boolean foundOne=false;
