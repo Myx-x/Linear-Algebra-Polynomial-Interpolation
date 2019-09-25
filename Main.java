@@ -7,7 +7,6 @@ public class Main
 {
     public static void main(String args[])
     {
-<<<<<<< HEAD
         /*
         AugmentedMatrix aug = new AugmentedMatrix();
 
@@ -43,24 +42,22 @@ public class Main
         // result = d.inverseGaussJordan();
         // result.printMatrix();
 
-<<<<<<< HEAD
         Matrix MT = new Matrix();
         MT.textToMatrix();
         MT.printMatrix();
         // AugmentedMatrix augMat = new AugmentedMatrix();
         // augMat.textToAug();
-=======
-        
+
         //MT.textToMatrix();
-        AugmentedMatrix augMat = new AugmentedMatrix();
-        augMat.textToAug();
-        System.out.println("Cramer Start");
-        augMat.Cramer();
->>>>>>> c6d8cc71d358dc092678dba4a496552af3e9f713
-=======
+
+        // AugmentedMatrix augMat = new AugmentedMatrix();
+        // augMat.textToAug();
+        // System.out.println("Cramer Start");
+        // augMat.Cramer();
+
        AugmentedMatrix aug = new AugmentedMatrix();
        aug = aug.makeInterpolationMatrix();
        aug.convertToInterpolation(aug);
->>>>>>> origin/fix_io_branch
+
     }
 }

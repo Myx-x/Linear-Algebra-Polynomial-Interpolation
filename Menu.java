@@ -62,12 +62,6 @@ public class Menu
                         }else{//input file ke matriks MT
                             //input file ke matriks MT
                         }   
-                    // }else{//input for Interpolasi
-                    //     if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
-                    //         //Aug.inputInterpolasi();   
-                    //     }else{//input dari file
-                    //         //input file ke augmented matriks Aug
-                    //     }
                     }
                     if (navigationStack.peek() / 10 == 4){//MC 
                         Determinant det = new Determinant(MT);
@@ -76,8 +70,7 @@ public class Menu
                         Determinant det = new Determinant(MT);
                         MT = det.getAdjoint();
                     }else if (navigationStack.peek() / 10 == 6){//Interpolasi dengan keyboard
-                        //rumus interpolasi
-                        System.out.println("interpolasi rumus");
+                        Aug = Aug.makeInterpolationMatrix();
                     }
                     optionOutput();
                     query = s.nextInt();
@@ -139,7 +132,7 @@ public class Menu
                         }
                     }else{//interpolasi
                         if(navigationStack.peek() % 2 == 1){//ke layar
-                            MT.printMatrix();
+                            Aug.convertToInterpolation(Aug);
                         }else{//ke file
                             //output persamaan interpolasi ke file
                         }

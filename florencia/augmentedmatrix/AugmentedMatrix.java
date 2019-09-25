@@ -223,21 +223,20 @@ public class AugmentedMatrix
 
     public AugmentedMatrix makeInterpolationMatrix()
     {
-
-        int n = s.nextInt();
+        System.out.print("Masukkan jumlah titik :");
         
+        int n = s.nextInt();
         AugmentedMatrix result = new AugmentedMatrix(new Matrix(n,n), new Matrix(n,1));
 
         for(int i=0;i<n;i++)
         {
+            System.out.print("Masukkan titik-titik dalam format x y :");
             double x=s.nextDouble(),y=s.nextDouble();
             for(int j=0;j<n;j++) result.leftMatrix.arr[i][j] = Math.pow(x,j);
             result.rightMatrix.arr[i][0] = y;
         }
 
-        result.printAugmentedMatrix();
         result.gaussJordanElimination();
-        result.printAugmentedMatrix();
 
         return result;
     }
