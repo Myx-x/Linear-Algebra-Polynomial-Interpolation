@@ -5,7 +5,6 @@ import java.util.Stack;
 
 public class Menu
 {  
-    
     public static void main(String args[])
     {
         Stack<Integer> navigationStack = new Stack<Integer>();
@@ -298,7 +297,7 @@ public class Menu
                     navigationStack.pop();
                 }else if ((navigationStack.peek() > 2000)&&(navigationStack.peek() < 3000)&&(navigationStack.peek() % 2 == 1)){//Determinant output di layar
                     System.out.println("Determinannya :");
-                    System.out.println(hasil);
+                    System.out.println();
                     navigationStack.pop();
                     navigationStack.pop();
                     navigationStack.pop();
