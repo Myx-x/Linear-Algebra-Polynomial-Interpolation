@@ -4,12 +4,9 @@ import florencia.matrix.*;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.Arrays;
-<<<<<<< HEAD
 import java.util.Iterator;
 
 import florencia.matrix.*;
-=======
->>>>>>> textInput
 import java.lang.Math;
 import java.io.*;
 
@@ -280,16 +277,43 @@ public class AugmentedMatrix
     public void Cramer(){
         double solution = 0;
         Determinant matDet = new Determinant(this.leftMatrix);
-
+        /*
+        System.out.println("determinan matDet : "+matDet.determinantLaplaceExpansion());
+        System.out.println("print leftmatrix");
+        this.leftMatrix.printMatrix();
+        System.out.println();
+        */
         if (this.leftMatrix.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
             for (int i = 0; i < this.leftMatrix.rowCount; i++){
+                /*
+                System.out.println("left awal "+i);
+                this.leftMatrix.printMatrix();
+                System.out.println();
+                */
                 Matrix modVal = new Matrix(this.leftMatrix);
+                /*
+                System.out.println("modval awal "+i);
+                modVal.printMatrix();
+                System.out.println();
+                */
                 for (int j = 0; j < this.leftMatrix.colCount; j++){
-                    modVal.arr[i][j] = this.rightMatrix.arr[i][j];
+                    modVal.arr[j][i] = this.rightMatrix.arr[j][0];
                 }
+                /*
+                System.out.println("modval modif "+i);
+                modVal.printMatrix();
+                */
                 Determinant modValDet = new Determinant(modVal);
+                
+                System.out.println("det modValDet : "+modValDet.determinantLaplaceExpansion());
+                System.out.println("det matDet : "+matDet.determinantLaplaceExpansion());
+                
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
+                
+                System.out.println(solution);
+                
                 System.out.print("x"+i+" = "+solution+"\n");
+                System.out.println();
             }
         } else {
             System.out.print("This method is not valid for this type of matrix");
@@ -450,7 +474,7 @@ public class AugmentedMatrix
         System.out.println("augmented matrix");
         this.printAugmentedMatrix();
         */
-        System.out.print("Augmented matrix have been made!");
+        System.out.println("Augmented matrix have been made!");
         
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }

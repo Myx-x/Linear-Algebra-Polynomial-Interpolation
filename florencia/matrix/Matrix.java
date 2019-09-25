@@ -29,9 +29,9 @@ public class Matrix
 	// Creates a copy of Matrix M
 	public Matrix(Matrix M)
 	{
-		M.arr = this.arr;
-		M.rowCount = this.rowCount;
-		M.colCount = this.colCount;
+		arr = M.arr;
+		rowCount = M.rowCount;
+		colCount = M.colCount;
 	}
 
 
@@ -214,7 +214,7 @@ public class Matrix
 		catch(IOException ioException){};
 		inputFile.close();
 		//matrix.printMatrix();		
-		System.out.print("Matrix have been made!");
+		System.out.println("Matrix have been made!");
 
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }
