@@ -263,27 +263,31 @@ public class AugmentedMatrix
 
     public void Cramer(){
         double solution = 0;
-        Determinant matDet = new Determinant(this.leftMatrix);
+        Matrix mat = new Matrix();
+        //this.leftMatrix.printMatrix();
+        mat.deepCopy(this.leftMatrix);
+        Determinant matDet = new Determinant(mat);
+        Matrix modVal = new Matrix();
         /*
         System.out.println("determinan matDet : "+matDet.determinantLaplaceExpansion());
         System.out.println("print leftmatrix");
         this.leftMatrix.printMatrix();
         System.out.println();
         */
-        if (this.leftMatrix.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
-            for (int i = 0; i < this.leftMatrix.rowCount; i++){
+        if (mat.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
+            for (int i = 0; i < mat.rowCount; i++){
                 /*
                 System.out.println("left awal "+i);
                 this.leftMatrix.printMatrix();
                 System.out.println();
                 */
-                Matrix modVal = new Matrix(this.leftMatrix);
+                modVal.deepCopy(mat);
                 /*
                 System.out.println("modval awal "+i);
                 modVal.printMatrix();
                 System.out.println();
                 */
-                for (int j = 0; j < this.leftMatrix.colCount; j++){
+                for (int j = 0; j < mat.colCount; j++){
                     modVal.arr[j][i] = this.rightMatrix.arr[j][0];
                 }
                 /*
@@ -291,16 +295,12 @@ public class AugmentedMatrix
                 modVal.printMatrix();
                 */
                 Determinant modValDet = new Determinant(modVal);
-                
+                /*
                 System.out.println("det modValDet : "+modValDet.determinantLaplaceExpansion());
                 System.out.println("det matDet : "+matDet.determinantLaplaceExpansion());
-                
+                */
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
-                
-                System.out.println(solution);
-                
                 System.out.print("x"+i+" = "+solution+"\n");
-                System.out.println();
             }
         } else {
             System.out.print("This method is not valid for this type of matrix");
@@ -465,5 +465,4 @@ public class AugmentedMatrix
         
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }
-    
 }

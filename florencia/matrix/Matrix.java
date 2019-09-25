@@ -29,9 +29,9 @@ public class Matrix
 	// Creates a copy of Matrix M
 	public Matrix(Matrix M)
 	{
-		arr = M.arr;
-		rowCount = M.rowCount;
-		colCount = M.colCount;
+		this.arr = M.arr;
+		this.rowCount = M.rowCount;
+		this.colCount = M.colCount;
 	}
 
 
@@ -217,5 +217,16 @@ public class Matrix
 		System.out.println("Matrix have been made!");
 
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
-    }
+	}
+	
+	public void deepCopy(Matrix matIn){
+		this.rowCount = matIn.rowCount;
+		this.colCount = matIn.colCount;
+		this.arr = new double[this.rowCount][this.colCount];
+		for (int i = 0; i < matIn.rowCount; i++){
+			for (int j = 0; j < matIn.colCount; j++){
+				this.arr[i][j] = matIn.arr[i][j];
+			}
+		}
+	}
 }

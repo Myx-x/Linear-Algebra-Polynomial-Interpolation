@@ -42,11 +42,11 @@ public class Main
         // result = d.inverseGaussJordan();
         // result.printMatrix();
 
-        Matrix MT = new Matrix();
+        
         //MT.textToMatrix();
         AugmentedMatrix augMat = new AugmentedMatrix();
         augMat.textToAug();
-        System.out.println("Cramer");
+        System.out.println("Cramer Start");
         augMat.Cramer();
     }
 }
