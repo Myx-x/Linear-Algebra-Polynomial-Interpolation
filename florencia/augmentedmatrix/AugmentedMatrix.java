@@ -133,8 +133,6 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][pivot]/(this.leftMatrix.arr[k][pivot]);
                 this.augRowArithmetic(i, k, multiplier);
-                // this.printAugmentedMatrix();
-                // System.out.println();
             }
         }
 
@@ -199,8 +197,6 @@ public class AugmentedMatrix
             {
                 double multiplier = -this.leftMatrix.arr[i][pivot]/(this.leftMatrix.arr[k][pivot]);
                 this.augRowArithmetic(i, k, multiplier);
-                // this.printAugmentedMatrix();
-                // System.out.println();
             }
         }
         
@@ -218,19 +214,10 @@ public class AugmentedMatrix
         if(!invalidEquation)
         {
             this.backwardElimination();
-            // this.convertToSolutionValid();
         }
         else System.out.println("Invalid/Inconsistent Equation");
     
         
-    }
-
-    public Matrix inverseMatrix()
-    {
-        this.leftMatrix.inputMatrix();
-        this.rightMatrix.setIdentityMatrix(this.leftMatrix.rowCount);
-        this.gaussJordanElimination();
-        return this.rightMatrix;
     }
 
     public void interpolateGraph()
