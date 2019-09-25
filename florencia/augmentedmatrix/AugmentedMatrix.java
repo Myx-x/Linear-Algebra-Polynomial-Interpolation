@@ -1,9 +1,17 @@
 package florencia.augmentedmatrix;
 
-import java.util.Scanner;
-import java.util.Arrays;
 import florencia.matrix.*;
+import java.util.Scanner;
+import java.util.Vector;
+import java.util.Arrays;
+<<<<<<< HEAD
+import java.util.Iterator;
+
+import florencia.matrix.*;
+=======
+>>>>>>> textInput
 import java.lang.Math;
+import java.io.*;
 
 public class AugmentedMatrix
 {
@@ -293,6 +301,8 @@ public class AugmentedMatrix
         for(int i=0;i<this.leftMatrix.rowCount;i++) System.out.println("x" + (i+1) + " = " + this.rightMatrix.arr[i][0]);
     }
     
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OUTPUT SOLUTION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+ 
     // Use after reducing matrix only.
     public double[][] infiniteSolutionMatrix()
     {
@@ -300,43 +310,63 @@ public class AugmentedMatrix
         double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
         for(double[] row:result) Arrays.fill(row,0);
 
-        // Moving constant into result array
-        for(int i=0;i<this.rightMatrix.rowCount;i++) result[i][0]=this.rightMatrix.arr[i][0];
-
+        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+        
         // Moving coefficients then make it negative unless it's at the same diagonal
         for(int i=0;i<this.leftMatrix.rowCount;i++)
         {
-            boolean foundOne=false;
-            for(int j=0;j<this.leftMatrix.colCount;j++)
-            {  
-                //Searching for main one in echelon matrix
-                if(this.leftMatrix.arr[i][j]==1) foundOne=true;
+            int pivot=0;
+            while(pivot<cc && this.leftMatrix.arr[i][pivot]==0) pivot++;
+            if(pivot>=cc) continue;
 
+            result[pivot][0]=this.rightMatrix.arr[i][0];
+            for(int j=pivot+1;j<this.leftMatrix.colCount;j++)
+            {  
                 //Convert all coeficients into its negative
-                if(foundOne && this.leftMatrix.arr[i][j]!=0)
-                {
-                    result[i][j+1]=this.leftMatrix.arr[i][j]*-1;
-                }
+                result[pivot][j+1]=this.leftMatrix.arr[i][j]*-1;
             }
         }
-        
-
-
         return result;
     }
 
+    // Used only after reducing to echelon matrix, to substitute after reducing matrix
+    public void backwardSubstitution()
+    {
+        double[][] res = this.infiniteSolutionMatrix();
+        int solutionRow = this.leftMatrix.colCount;
+        int solutionCol = this.leftMatrix.colCount+1;
+
+        for(int k=solutionRow-1;k>=1;k--)
+        {
+            for(int i=k-1;i>=0;i--)
+            {
+                if(res[k][k+1]!=0)
+                {
+                    double multiplier = -res[i][k]/res[k][k];
+                    for(int j=0;j<solutionCol;j++) res[i][j]+=multiplier*res[k][j];
+                }
+            }
+        }
+
+
+    }
+
+    // Convert Infinite Solution Matrix To Solution when equation yields Infinite.
     public void convertToSolutionInfinite()
     {
         System.out.println("The solutions are: ");
 
         double[][] res = this.infiniteSolutionMatrix();
+        int solutionRow = this.leftMatrix.colCount;
+        int solutionCol = this.leftMatrix.colCount+1;
+        Vector<Integer> infiniteList = new Vector<Integer>();
 
-        for(int i=0;i<this.leftMatrix.colCount;i++)
+        for(int i=0;i<solutionRow;i++)
         {
             boolean printed=false;
             System.out.print("X" + (i+1) + " = ");
             
-            for(int j=0;j<this.leftMatrix.colCount+1;j++)
+            for(int j=0;j<solutionCol;j++)
             {
                 if(res[i][j]!=0 && i+1!=j)
                 {
@@ -352,9 +382,77 @@ public class AugmentedMatrix
                     }
                 }
             }
-            if(!printed) System.out.print("X" + (i+1));
+            if(!printed)
+            {
+                infiniteList.add(i+1);
+                System.out.print("X" + (i+1));
+            }
             System.out.println();
+        }
+
+        if(!infiniteList.isEmpty()){
+            Iterator<Integer> val = infiniteList.iterator();
+            while(val.hasNext())
+            {
+                System.out.print("X" + val.next() + ", ");
+            }
+            System.out.println("is/are an element of real number.");
         }
     }
 
+    public void textToAug(){
+        Matrix matrixFile = new Matrix(101, 101);
+		int x = 0, y = 0; 
+
+		Scanner inputFile = new Scanner(System.in);
+		System.out.print("Input file name for augmented matrix : ");
+		String filename = inputFile.nextLine();
+		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filename);
+
+		try{
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = in.readLine()) != null){
+				y = 0;
+                String[] values = line.split(" ");
+                for (String str : values){
+                    double str_double = Double.parseDouble(str);
+                    matrixFile.arr[x][y] = str_double;
+                    //System.out.println(matrix[x][y] + " ");
+                    y++;
+				}
+                x++;
+                //System.out.println("");
+			}
+			matrixFile.rowCount = x;
+			matrixFile.colCount = y;
+            in.close();
+        }
+		catch(IOException ioException){};
+		inputFile.close();
+        //matrix.printMatrix();
+        this.leftMatrix = new Matrix(matrixFile.rowCount, matrixFile.colCount-1);
+        this.rightMatrix = new Matrix(matrixFile.rowCount, 1);
+        for (int i = 0; i < matrixFile.rowCount; i++){
+            for (int j = 0; j < matrixFile.colCount; j++){
+                if (j == matrixFile.colCount-1){
+                    this.rightMatrix.arr[i][0] = matrixFile.arr[i][j];
+                } else {
+                    this.leftMatrix.arr[i][j] = matrixFile.arr[i][j];
+                }
+            }
+        }
+        /*
+        System.out.println("left matrix");
+        this.leftMatrix.printMatrix();
+        System.out.println("right matrix");
+        this.rightMatrix.printMatrix();
+        System.out.println("augmented matrix");
+        this.printAugmentedMatrix();
+        */
+        System.out.print("Augmented matrix have been made!");
+        
+		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
+    }
+    
 }
