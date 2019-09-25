@@ -410,7 +410,7 @@ public class AugmentedMatrix
         */
         System.out.print("Augmented matrix have been made!");
         
-		//taken from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
+		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }
     
 }
