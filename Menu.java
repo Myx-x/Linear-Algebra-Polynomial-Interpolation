@@ -150,39 +150,6 @@ public class Menu
                 }
 
             }else if (stackSize == 5){
-<<<<<<< HEAD
-                if ((navigationStack.peek() < 2000)&&(navigationStack.peek() % 2 == 1)){//SPL output di layar
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() < 2000)&&(navigationStack.peek() % 2 == 0)){//SPL output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 2000)&&(navigationStack.peek() < 3000)&&(navigationStack.peek() % 2 == 1)){//Determinant output di layar
-                    System.out.println("Determinannya :");
-                    System.out.println();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 2000)&&(navigationStack.peek() < 3000)&&(navigationStack.peek() % 2 == 0)){//Determinant outpur di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 3000)&&(navigationStack.peek() % 2 == 1)){//Inverse output di layar
-                    System.out.println("Matriks Balikannya :");
-                    MT.printMatrix();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 3000)&&(navigationStack.peek() % 2 == 0)){//Inverse output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-=======
                 if (navigationStack.peek() < 2000){//SPL
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         Aug.printAugmentedMatrix();
@@ -201,7 +168,6 @@ public class Menu
                     }else{//output ke file 
                         //Inverse ke file
                     }
->>>>>>> ff892c8b99d1c3c9ac5b8d1195a0b012d33244b8
                 }
                 navigationStack.pop();
                 navigationStack.pop();

@@ -42,9 +42,10 @@ public class Main
         // result = d.inverseGaussJordan();
         // result.printMatrix();
 
-        //Matrix MT = new Matrix();
-        //MT.textToMatrix();
-        AugmentedMatrix augMat = new AugmentedMatrix();
-        augMat.textToAug();
+        Matrix MT = new Matrix();
+        MT.textToMatrix();
+        MT.printMatrix();
+        // AugmentedMatrix augMat = new AugmentedMatrix();
+        // augMat.textToAug();
     }
 }
