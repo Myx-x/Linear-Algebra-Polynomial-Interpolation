@@ -1,6 +1,7 @@
 package florencia.matrix;
 
 import java.util.Scanner;
+import java.io.*;
 
 public class Matrix
 {
@@ -171,4 +172,41 @@ public class Matrix
 		}
 		return result;
 	}
+
+	/*-----------Text Input------------*/
+	public void textToMatrix(){
+        Matrix matrixFile = new Matrix(101, 101);
+		int x = 0, y = 0; 
+
+		Scanner inputFile = new Scanner(System.in);
+		System.out.print("Input file name for matrix : ");
+		String filename = inputFile.nextLine();
+		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filename);
+
+		try{
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = in.readLine()) != null){
+				y = 0;
+                String[] values = line.split(" ");
+                for (String str : values){
+                    double str_double = Double.parseDouble(str);
+                    matrixFile.arr[x][y] = str_double;
+                    //System.out.println(matrix[x][y] + " ");
+                    y++;
+				}
+                x++;
+                //System.out.println("");
+			}
+			matrixFile.rowCount = x;
+			matrixFile.colCount = y;
+            in.close();
+        }
+		catch(IOException ioException){};
+		inputFile.close();
+		//matrix.printMatrix();		
+		System.out.print("Matrix have been made!");
+
+		//taken from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
+    }
 }
