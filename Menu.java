@@ -10,9 +10,10 @@ public class Menu
         Stack<Integer> navigationStack = new Stack<Integer>();
         final Scanner s = new Scanner(System.in);
         boolean quit=false;
+        AugmentedMatrix Aug = new AugmentedMatrix();
         Matrix MT = new Matrix();
-        double hasil;
         int query;
+        double hasil= -999;
         
         printMainMenu();
         navigationStack.push(0);
@@ -40,252 +41,107 @@ public class Menu
                     subMenu3();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 4){ //Matrix Cofactor
-                   optionMenu();
-                   query = s.nextInt();
-                   navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 5){ //Matrix Adjoin
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 6){ //Interpolasi
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 7){ // Keluar
                     quit = true;
+                }else if ((navigationStack.peek() >= 4)&&(navigationStack.peek() <= 6)){ //Matrix Cofactor, Matrix Adjoin, Interpolasi
+                    optionMenu();
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10);
+                }else{//inputan untuk pilihan salah
+                    navigationStack.pop();
                 }
             }else if (stackSize == 3){
-                if (navigationStack.peek() == 11){//Gauss
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 12){//Gauss-Jordan
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 13){//Matrix balikan
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 14){//Cramer
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 15){ // Kembali
+                if ((navigationStack.peek() == 15)||(navigationStack.peek() == 24)||(navigationStack.peek() == 33)){//Kembali
                     navigationStack.pop();
                     navigationStack.pop();
-                }else if (navigationStack.peek() == 21){//Determinan OBE
+                }else if(navigationStack.peek() > 40){
+                    if(navigationStack.peek() < 60){//input matriks for MC and Adjoin
+                        if(navigationStack.peek() % 2 == 1){//input matriks dengan keyboard
+                            MT.inputMatrix();    
+                        }else{//input file ke matriks MT
+                            //input file ke matriks MT
+                        }   
+                    }else{//input Augmentedmatriks for Interpolasi
+                        if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
+                            Aug.inputLinearEquation();   
+                        }else{//input dari file
+                            //input file ke augmented matriks Aug
+                        }
+                    }
+                    if (navigationStack.peek() / 10 == 4){//MC 
+                        Determinant det = new Determinant(MT);
+                        MT = det.getMatrixCofactor();
+                    }else if (navigationStack.peek() /10 == 5){//Adjoin dengan keyboard
+                        Determinant det = new Determinant(MT);
+                        MT = det.getAdjoint();
+                    }else if (navigationStack.peek() / 10 == 6){//Interpolasi dengan keyboard
+                        //rumus interpolasi
+                        System.out.println("interpolasi rumus");
+                    }
+                    optionOutput();
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10); 
+                }else{//All submenu for SPL, Inverse, Determinant except kembali
                     optionMenu();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 22){//Determinan Sarrus
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 23){//Determinan Kofaktor
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 24){//Kembali
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if (navigationStack.peek() == 31){//Inverse Gauss
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 32){//Inverse Adjoin
-                    optionMenu();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 33){ // Kembali
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if (navigationStack.peek() == 41){//MC dengan keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    MT = det.getMatrixCofactor();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if(navigationStack.peek() == 42){//MC dengan file
-                    //input file ke matriks
-                    Determinant det = new Determinant(MT);
-                    MT = det.getMatrixCofactor();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 51){//Adjoin dengan keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    MT = det.getAdjoint();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if(navigationStack.peek() == 52){//Adjoin dengan file
-                    //input file ke matriks MT
-                    Determinant det = new Determinant(MT);
-                    MT = det.getAdjoint();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 61){//Interpolasi dengan keyboard
-                    //input matriks MT dari keyboard
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if(navigationStack.peek() == 62){//Interpolasi dengan file
-                    //input file ke matriks MT
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);    
                 }
+
             }else if (stackSize == 4){
-                if (navigationStack.peek() == 111){//Gauss dengan keyboard
-                    //input Augmented
+                if(navigationStack.peek() < 400){//Input for SPL, Inverse, Determinant
+                    if(navigationStack.peek() > 200){//input matriks for Determinant and Inverse
+                        if(navigationStack.peek() % 2 == 1){//input matriks dengan keyboard
+                            MT.inputMatrix();    
+                        }else{//input file ke matriks MT
+                            //input file ke matriks MT
+                        }   
+                    }else{//input Augmentedmatriks for SPL
+                        if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
+                            Aug.inputLinearEquation();   
+                        }else{//input dari file
+                            //input file ke augmented matriks Aug
+                        }
+                    }
+                    if(navigationStack.peek() / 10 == 11){//Gauss
+                        //rumus gauss
+                    }else if (navigationStack.peek() / 10 == 12){//Gauss-Jordan
+                        //rumus gauss-jordan
+                    }else if (navigationStack.peek() / 10 == 13){//Matrix Balikan
+                        //rumus Matriks balikan
+                    }else if (navigationStack.peek() / 10 == 14){//Cramer
+                       //rumus cramer
+                    }else if (navigationStack.peek() / 10 == 21){//Determinan OBE 
+                        Determinant det = new Determinant(MT);
+                        hasil = det.determinantRowReduction();
+                    }else if (navigationStack.peek() / 10 == 22){//Determinan Sarrus
+                        Determinant det = new Determinant(MT);
+                        hasil = det.determinantSarrus();
+                    }else if (navigationStack.peek() / 10 == 23){//Determinan Kofaktor 
+                        Determinant det = new Determinant(MT);
+                        hasil = det.determinantLaplaceExpansion();
+                    }else if (navigationStack.peek() / 10 == 31){//Inverse Gauss 
+                        Determinant det = new Determinant(MT);
+                        MT = det.inverseGaussJordan();
+                    }else if (navigationStack.peek() / 10 == 32){//Inverse Adjoin 
+                        Determinant det = new Determinant(MT);
+                        MT = det.inverseAdjoint();
+                    }
                     optionOutput();
                     query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 112){//Gauss dengan file
-                    //input file ke Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 121){//Gauss-Jordan dengan keyboard
-                    //input Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 122){//Gauss-Jordan dengan file
-                    //input file ke Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 131){//Matrix Balikan dengan keyboard
-                    //input Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 132){//Matrix Balikan dengan file
-                    //input file ke Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 141){//Cramer dengan keyboard
-                    //input Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 142){//Cramer dengan file
-                    //input file ke Augmented
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 211){//Determinan OBE dengan keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantRowReduction();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 212){//Determinan OBE dengan file
-                    //input file ke Matriks MT
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantRowReduction();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 221){//Determinan Sarrus dengan keyboard
-                    System.out.println("Masukkan hanya dapat Matriks 3 x 3");
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantSarrus();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 222){//Determinan Sarrus dengan file
-                    //input file ke Matriks MT
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantSarrus();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 231){//Determinan Kofaktor dengan keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantLaplaceExpansion();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 232){//Determinan Kofaktor dengan file
-                    //input file ke Matriks MT
-                    Determinant det = new Determinant(MT);
-                    hasil = det.determinantLaplaceExpansion();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 311){//Inverse Gauss dengan Keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    MT = det.inverseGaussJordan();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 312){//Inverse Gauss dengan file
-                    //input file ke Matriks MT
-                    Determinant det = new Determinant(MT);
-                    MT = det.inverseGaussJordan();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 321){//Inverse Adjoin dengan Keyboard
-                    MT.inputMatrix();
-                    Determinant det = new Determinant(MT);
-                    MT = det.inverseAdjoint();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if (navigationStack.peek() == 322){//Inverse Adjoin dengan file
-                    //input file ke Matriks MT
-                    Determinant det = new Determinant(MT);
-                    MT = det.inverseAdjoint();
-                    optionOutput();
-                    query = s.nextInt();
-                    navigationStack.push(query + navigationStack.peek() * 10);
-                }else if ((navigationStack.peek() == 411)||(navigationStack.peek() == 421)){//MC output di layar
-                    System.out.println("Matriks Kofaktornya :");
-                    MT.printMatrix();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() == 412)||(navigationStack.peek() == 422)){//MC output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() == 511)||(navigationStack.peek() == 521)){//Adjoin output di layar
-                    System.out.println("Adjoinnya :");
-                    MT.printMatrix();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() == 512)||(navigationStack.peek() == 522)){//Adjoin output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() == 611)||(navigationStack.peek() == 621)){//Interpolasi output di layar
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() == 612)||(navigationStack.peek() == 622)){//Interpolasi keyboard output di file
-                    //output ke file
+                    navigationStack.push(query + navigationStack.peek() * 10); 
+                }else{//output navigationStack.peek() > 400 
+                    if(navigationStack.peek() % 2 == 1){//ke layar
+                        MT.printMatrix();
+                    }else{//ke file
+                        //output ke file
+                    }
                     navigationStack.pop();
                     navigationStack.pop();
                     navigationStack.pop();
                 }
 
             }else if (stackSize == 5){
+<<<<<<< HEAD
                 if ((navigationStack.peek() < 2000)&&(navigationStack.peek() % 2 == 1)){//SPL output di layar
                     navigationStack.pop();
                     navigationStack.pop();
@@ -317,9 +173,32 @@ public class Menu
                     navigationStack.pop();
                     navigationStack.pop();
                     navigationStack.pop();
+=======
+                if (navigationStack.peek() < 2000){//SPL
+                    if(navigationStack.peek() % 2 == 1){//output ke layar
+                        Aug.printAugmentedMatrix();
+                    }else{//output ke file 
+                        //SPL ke file
+                    }
+                }else if((navigationStack.peek() < 3000)&&(navigationStack.peek() > 2000)){//Determinan
+                    if(navigationStack.peek() % 2 == 1){//output ke layar
+                        System.out.println(hasil);
+                    }else{//output ke file 
+                        //Determinan ke file
+                    }
+                }else{//Inverse
+                    if(navigationStack.peek() % 2 == 1){//output ke layar
+                        MT.printMatrix();
+                    }else{//output ke file 
+                        //Inverse ke file
+                    }
+>>>>>>> ff892c8b99d1c3c9ac5b8d1195a0b012d33244b8
                 }
+                navigationStack.pop();
+                navigationStack.pop();
+                navigationStack.pop();
             }   
-        }
+        }s.close();
     }
 
     private static void printMainMenu()

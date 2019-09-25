@@ -7,7 +7,7 @@ public class Main
 {
     public static void main(String args[])
     {
-
+        /*
         AugmentedMatrix aug = new AugmentedMatrix();
 
         
@@ -16,6 +16,7 @@ public class Main
         aug.gaussJordanElimination();
         aug.convertToSolutionInfinite();
         System.out.println();
+        */
 
         // aug.printAugmentedMatrix();
         // System.out.println();
@@ -40,5 +41,10 @@ public class Main
         
         // result = d.inverseGaussJordan();
         // result.printMatrix();
+
+        //Matrix MT = new Matrix();
+        //MT.textToMatrix();
+        AugmentedMatrix augMat = new AugmentedMatrix();
+        augMat.textToAug();
     }
 }
