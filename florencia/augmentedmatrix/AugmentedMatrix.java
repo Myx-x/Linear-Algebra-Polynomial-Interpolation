@@ -202,63 +202,67 @@ public class AugmentedMatrix
         
     }
 
-	public void gaussElimination()
+	public AugmentedMatrix gaussElimination()
 	{
-        this.forwardElimination();
+        AugmentedMatrix result = new AugmentedMatrix(this);
 
+        result.forwardElimination();
+
+        return result;
     }
     
-	public void gaussJordanElimination()
+	public AugmentedMatrix gaussJordanElimination()
 	{
-        this.forwardElimination();
-        if(!invalidEquation)
-        {
-            this.backwardElimination();
-        }
-        else System.out.println("Invalid/Inconsistent Equation");
+        AugmentedMatrix result = new AugmentedMatrix(this);
+
+        result.forwardElimination();
+        if(!invalidEquation) result.backwardElimination();
     
-        
+        return result;    
     }
 
-    public void interpolateGraph()
+    public AugmentedMatrix makeInterpolationMatrix()
     {
+
         int n = s.nextInt();
         
-        Matrix mx=new Matrix(n,n), my=new Matrix(n,1);
-        AugmentedMatrix augGraph = new AugmentedMatrix(mx, my);
+        AugmentedMatrix result = new AugmentedMatrix(new Matrix(n,n), new Matrix(n,1));
 
         for(int i=0;i<n;i++)
         {
             double x=s.nextDouble(),y=s.nextDouble();
-            for(int j=0;j<n;j++)
-            {
-                augGraph.leftMatrix.arr[i][j] = Math.pow(x,j);
-            }
-            augGraph.rightMatrix.arr[i][0] = y;
+            for(int j=0;j<n;j++) result.leftMatrix.arr[i][j] = Math.pow(x,j);
+            result.rightMatrix.arr[i][0] = y;
         }
 
+        result.printAugmentedMatrix();
+        result.gaussJordanElimination();
+        result.printAugmentedMatrix();
 
-        augGraph.gaussJordanElimination();
-        augGraph.printAugmentedMatrix();
+        return result;
+    }
+    
+    public void convertToInterpolation(AugmentedMatrix aug)
+    {
+        int n=aug.leftMatrix.rowCount;
 
-        for(int i=0;i<n;i++) augGraph.rightMatrix.arr[i][0]=(double) Math.round(augGraph.rightMatrix.arr[i][0]*10000.0)/10000.0;
-
+        for(int i=0;i<n;i++) aug.rightMatrix.arr[i][0]=(double) Math.round(aug.rightMatrix.arr[i][0]*10000.0)/10000.0;
+    
         System.out.print("f(x) approximately equal to ");
         for(int i=0;i<n;i++) 
         {
-            if(i==0) System.out.print(augGraph.rightMatrix.arr[i][0] + " +");
-            else if(i==n-1) System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i);
-            else System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i + " +");
+            if(i==0) System.out.print(aug.rightMatrix.arr[i][0] + " +");
+            else if(i==n-1) System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i);
+            else System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i + " +");
         }
         System.out.println();
-
+    
         System.out.print("Input x for approximation:");
         double x=s.nextDouble();
-
+    
         double result=0;
-        for(int i=0;i<n;i++) result+=augGraph.rightMatrix.arr[i][0]*Math.pow(x,i);
+        for(int i=0;i<n;i++) result+=aug.rightMatrix.arr[i][0]*Math.pow(x,i);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
-
     }
 
     public void Cramer(){
@@ -306,6 +310,7 @@ public class AugmentedMatrix
             System.out.print("This method is not valid for this type of matrix");
         }
     }
+
     public void convertToSolutionValid()
     {
         System.out.println("The solutions are: ");

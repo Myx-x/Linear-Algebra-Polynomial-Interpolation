@@ -7,6 +7,7 @@ public class Main
 {
     public static void main(String args[])
     {
+<<<<<<< HEAD
         /*
         AugmentedMatrix aug = new AugmentedMatrix();
 
@@ -56,5 +57,10 @@ public class Main
         System.out.println("Cramer Start");
         augMat.Cramer();
 >>>>>>> c6d8cc71d358dc092678dba4a496552af3e9f713
+=======
+       AugmentedMatrix aug = new AugmentedMatrix();
+       aug = aug.makeInterpolationMatrix();
+       aug.convertToInterpolation(aug);
+>>>>>>> origin/fix_io_branch
     }
 }
