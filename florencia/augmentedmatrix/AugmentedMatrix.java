@@ -4,12 +4,9 @@ import florencia.matrix.*;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.Arrays;
-<<<<<<< HEAD
 import java.util.Iterator;
 
 import florencia.matrix.*;
-=======
->>>>>>> textInput
 import java.lang.Math;
 import java.io.*;
 

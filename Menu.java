@@ -49,6 +49,7 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else{//inputan untuk pilihan salah
+                    System.out.println(navigationStack.peek() + " bukan merupakan pilihan");
                     navigationStack.pop();
                 }
             }else if (stackSize == 3){
@@ -62,12 +63,12 @@ public class Menu
                         }else{//input file ke matriks MT
                             //input file ke matriks MT
                         }   
-                    }else{//input Augmentedmatriks for Interpolasi
-                        if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
-                            Aug.inputLinearEquation();   
-                        }else{//input dari file
-                            //input file ke augmented matriks Aug
-                        }
+                    // }else{//input for Interpolasi
+                    //     if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
+                    //         //Aug.inputInterpolasi();   
+                    //     }else{//input dari file
+                    //         //input file ke augmented matriks Aug
+                    //     }
                     }
                     if (navigationStack.peek() / 10 == 4){//MC 
                         Determinant det = new Determinant(MT);
@@ -131,10 +132,18 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10); 
                 }else{//output navigationStack.peek() > 400 
-                    if(navigationStack.peek() % 2 == 1){//ke layar
-                        MT.printMatrix();
-                    }else{//ke file
-                        //output ke file
+                    if (navigationStack.peek() < 600){//MC dan Adjoin
+                        if(navigationStack.peek() % 2 == 1){//ke layar
+                            MT.printMatrix();
+                        }else{//ke file
+                            //output matriks ke file
+                        }
+                    }else{//interpolasi
+                        if(navigationStack.peek() % 2 == 1){//ke layar
+                            MT.printMatrix();
+                        }else{//ke file
+                            //output persamaan interpolasi ke file
+                        }
                     }
                     navigationStack.pop();
                     navigationStack.pop();
