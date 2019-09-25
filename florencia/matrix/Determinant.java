@@ -1,6 +1,5 @@
 package florencia.matrix;
 
-//import java.lang.FdLibm.Pow;
 import java.lang.Math;
 
 import florencia.augmentedmatrix.AugmentedMatrix;
@@ -9,15 +8,20 @@ public class Determinant
 {
     public Matrix mat;
 
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= CONSTRUCTOR -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+    // Create an empty Determinant Object
     public Determinant(){
         mat = new Matrix();
     }
-
+    
+    // Create a determinant object from Matrix m
     public Determinant(Matrix m)
     {
         this.mat = m;
     }
-
+    
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= DETERMINANT CALCULATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+    // Calculate determinant using row reduction method
     public double determinantRowReduction()
     {
         double det = 1;
@@ -34,11 +38,12 @@ public class Determinant
             }
             return det;
         } else {
-            System.out.print("Matrix is not valid, you need square matrix!");
+            System.out.print("Tolong masukkan matriks yang merupakan matriks persegi.");
             return -99999;
         }
     }
     
+    // Calculate the determinant of a 3x3 matrix
     public double determinantSarrus()
     {
         double det = 0, sumPlus = 0, sumMin = 0;
@@ -48,16 +53,17 @@ public class Determinant
             det = sumPlus - sumMin;
             return det;
         } else {
-            System.out.print("Matrix is not valid, use another method!");
+            System.out.print("Tolong masukkan matriks yang berukuran 3x3.");
             return -99999;
         }
     }
     
+    // Calculate the determinant of a matrix using Laplace Expansion Method
     public double determinantLaplaceExpansion()
     {
         double det = 0;
         Determinant matCo = new Determinant(this.mat);
-
+        
         if (this.mat.isSquare()){
             for (int j = 0; j < this.mat.colCount; j++){
                 det += (this.mat.arr[0][j] * matCo.getCofactor(0, j));
@@ -68,7 +74,9 @@ public class Determinant
             return -99999;
         }
     }
-
+    
+    /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= INVERSE RELATED FUNCTIONS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+    // Get the minor of entry of the matrix
     public Matrix getminorEntry(int i, int j)
     {
         int row, col;
@@ -90,6 +98,7 @@ public class Determinant
         return MT;
     } 
 
+    // Get the cofactor of the matrix
     public double getCofactor(int i, int j)
     {
         double result, det;
@@ -102,6 +111,7 @@ public class Determinant
         return result;
     }
 
+    // Get the cofactor Matrix
     public Matrix getMatrixCofactor()
     {
         Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
@@ -115,6 +125,7 @@ public class Determinant
         return MT;
     }
 
+    // Get the adjoint of a matrix
     public Matrix getAdjoint()
     {
         Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
@@ -123,6 +134,7 @@ public class Determinant
         return MT;
     }
 
+    // Get the inverse of a matrix using adjoint
     public Matrix inverseAdjoint()
     {
         Matrix MT = new Matrix(this.mat.colCount, this.mat.rowCount);
@@ -132,6 +144,7 @@ public class Determinant
         return MT;
     }
 
+    // Get the inverse of a matrix using Elementary Row Operations/Gauss Jordan Method
     public Matrix inverseGaussJordan()
     {
         AugmentedMatrix aug = new AugmentedMatrix();
