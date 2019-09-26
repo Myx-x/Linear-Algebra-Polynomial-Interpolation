@@ -422,7 +422,7 @@ public class AugmentedMatrix
             {
                 System.out.print("X" + val.next() + ", ");
             }
-            System.out.println("merupakan bilangan asli");
+            System.out.println("merupakan bilangan real");
         }
     }
 
@@ -663,7 +663,7 @@ public class AugmentedMatrix
                 System.out.print("X" + val.next() + ", ");
             }
             System.setOut(file);
-            System.out.println("merupakan bilangan asli");
+            System.out.println("merupakan bilangan real");
         }
         System.setOut(file);
         System.out.println("---------------------------------------------------------------------------------------------");
