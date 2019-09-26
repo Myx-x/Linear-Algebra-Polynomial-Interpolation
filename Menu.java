@@ -81,11 +81,12 @@ public class Menu
                 }else if (navigationStack.peek() >60){//interpolasi
                     if(navigationStack.peek() % 2 == 1){//ke layar
                         Aug.convertToInterpolation(Aug);
-                        navigationStack.pop();
-                        navigationStack.pop();
                     }else{//ke file
                         //output persamaan interpolasi ke file
+                        Aug.convertToInterpolationToText(Aug);
                     }
+                    navigationStack.pop();
+                    navigationStack.pop();
                 }else{//All submenu for SPL, Inverse, Determinant except kembali
                     optionInput();
                     query = s.nextInt();
@@ -109,8 +110,11 @@ public class Menu
                     }
                     if(navigationStack.peek() / 10 == 11){//Gauss
                         Aug.gaussElimination();
+                        Aug.printAugmentedMatrix();
+                        Aug.gaussJordanElimination();
                     }else if (navigationStack.peek() / 10 == 12){//Gauss-Jordan
                         Aug.gaussJordanElimination();
+                        Aug.printAugmentedMatrix();
                     }else if (navigationStack.peek() / 10 == 13){//Matrix Balikan
                         MT = Aug.makeInverseSPL();
                     }else if (navigationStack.peek() / 10 == 21){//Determinan OBE 
@@ -149,24 +153,21 @@ public class Menu
                 if (navigationStack.peek() < 2000){//SPL
                     if(navigationStack.peek() < 1300){//SPL gauss dan gauss jordan
                         if(navigationStack.peek() % 2 == 1){//output ke layar
-                            Aug.printAugmentedMatrix();
-                            Aug.gaussJordanElimination();
                             Aug.convertToSolutionInfinite();
                         }else{//output ke file 
-                            //SPL ke file
+                            Aug.convertToSolutionInfiniteToText();
                         }
                     }else if ((navigationStack.peek() < 1400)&&(navigationStack.peek() > 1300)){//SPL metode balikan
                         if(navigationStack.peek() % 2 == 1){//output ke layar
-                            MT.printMatrix();
                             MT.printInverseSPL();
-                        }else{//output ke file 
-                            //SPL ke file
+                        }else{//output ke file
+                            MT.printInverseSPLToText();
                         }
                     }else{//Cramer
                         if(navigationStack.peek() % 2 == 1){//output ke layar
                             Aug.Cramer();
                         }else{//output ke file 
-                            //SPL cramer ke file
+                            Aug.CramerToText();
                         }
                     }
                 }else if((navigationStack.peek() < 3000)&&(navigationStack.peek() > 2000)){//Determinan

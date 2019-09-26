@@ -81,6 +81,8 @@ public class Matrix
 	public void printInverseSPL()
 	{
 		System.out.println("\nSolusi dari SPL adalah : ");
+		this.printMatrix();
+		System.out.println(" ");
 		for(int i=0; i<this.rowCount;i++)
 		{	 
 			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
