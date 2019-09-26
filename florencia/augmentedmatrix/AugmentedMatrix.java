@@ -437,7 +437,7 @@ public class AugmentedMatrix
         System.out.println("File harus terletak di folder 'tests'!");
 		System.out.print("Masukkan nama file yang terdapat matriks augmented : ");
         filenameAug = reader.readLine();
-		File file = new File(new File("./tests/"+filenameAug).getCanonicalPath());
+		File file = new File(new File("./test/"+filenameAug).getCanonicalPath());
         BufferedReader br = null;
 
 		try{

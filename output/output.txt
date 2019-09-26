@@ -1,7 +1,4 @@
-convertToSolutionInfinite
-The solutions are: 
-X1 = 0.5  + 1.75X3
-X2 = 1.75  - 0.375X3
-X3 = X3
-X3, merupakan bilangan asli
----------------------------------------------------------------------------------------------
+ini file1
+ini file2
+ini file lanjutan 3
+ini file lanjutan 4
