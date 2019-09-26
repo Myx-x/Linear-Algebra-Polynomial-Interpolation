@@ -7,69 +7,15 @@ public class Main
 {
     public static void main(String args[]) throws Exception
     {
-        /*
-        AugmentedMatrix aug = new AugmentedMatrix();
+        Matrix m1 = new Matrix();
+        Matrix m2 = new Matrix();
 
-        
-        aug.inputLinearEquation();
-        
-        aug.gaussJordanElimination();
-        aug.convertToSolutionInfinite();
-        System.out.println();
-        */
+        m1.inputMatrix();
+        m2.inputMatrix();
 
-        // aug.printAugmentedMatrix();
-        // System.out.println();
-        
-        // double[][] res = aug.infiniteSolutionMatrix();
-        // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
-        // {
-        //     for(int j=0;j<aug.getLeftMatrix().colCount+1;j++) System.out.print(res[i][j] + " ");
-        //     System.out.println();
-        // }
-        // aug.backwardSubstitution();
-        // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
-        // {
-        //     for(int j=0;j<aug.getLeftMatrix().colCount+1;j++) System.out.print(res[i][j] + " ");
-        //     System.out.println();
-        // }
-        // aug.convertToSolutionInfinite();
-        // Determinant d = new Determinant();
-        // d.mat.inputMatrix();
-        
-        // Matrix result = new Matrix();
-        
-        // result = d.inverseGaussJordan();
-        // result.printMatrix();
-        AugmentedMatrix aug = new AugmentedMatrix();
-        aug.inputLinearEquation();
-        
-<<<<<<< HEAD
-        aug.gaussJordanElimination();
-        
-        aug.printAugmentedMatrix();
-        aug.convertToSolutionInfinite();
-=======
-        
-        // AugmentedMatrix aug = new AugmentedMatrix();
-        // aug.textToAug();
-        //aug.printAugmentedMatrix();
+        Matrix m3 = new Matrix();
+        m3 = m3.kaliMatrix(m1, m2);
 
-        // AugmentedMatrix aug = new AugmentedMatrix();
-        // Matrix A = new Matrix();
-        // Matrix B = new Matrix();
-        // aug.inputLinearEquation();
-        // aug.printAugmentedMatrix();
-        // Matrix A = new Matrix();
-        // Matrix B = new Matrix();
-        // A.inputMatrix();
-        // B.inputMatrix();
-        // Matrix C = new Matrix();
-        // C.kaliMatrix(A, B);
-        // C.printMatrix();
-        AugmentedMatrix aug = new AugmentedMatrix();
-        aug.textToAug();
-        aug.printAugmentedMatrix();
->>>>>>> 85a72bc56d8bb675401a112a9849de0cc4a49b0a
+        m3.printMatrix();
     }
 }
