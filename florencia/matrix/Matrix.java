@@ -236,7 +236,7 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("File harus terletak di folder 'tests'!");
+		System.out.println("File harus terletak di folder 'test'!");
 		System.out.print("Masukkan nama file yang terdapat matriks : ");
 		filenameMatrix = reader.readLine();
 		File file = new File(new File("./test/"+filenameMatrix).getCanonicalPath());
