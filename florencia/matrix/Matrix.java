@@ -155,7 +155,7 @@ public class Matrix
 			this.arr = new double[n][n];
 			for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j]=(i==j)?1:0;
 		}
-		else System.out.println("Matrix is not square!");
+		else System.out.println("Matriks tidak berbentuk persegi.");
 	}
 
 	// Multiply each element of matrix by x
