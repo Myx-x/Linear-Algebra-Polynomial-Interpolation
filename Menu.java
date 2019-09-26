@@ -137,7 +137,7 @@ public class Menu
                         if(navigationStack.peek() % 2 == 1){//ke layar
                             MT.printMatrix();
                         }else{//ke file
-                            //output matriks ke file
+                            MT.MatrixToText();
                         }
                     }
                     navigationStack.pop();
@@ -173,13 +173,14 @@ public class Menu
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         System.out.println(hasil);
                     }else{//output ke file 
-                        //Determinan ke file
+                        Determinant det = new Determinant();
+                        det.DetToText(hasil);
                     }
                 }else{//Inverse
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         MT.printMatrix();
                     }else{//output ke file 
-                        //Inverse ke file
+                        MT.MatrixToText();
                     }
                 }
                 navigationStack.pop();
