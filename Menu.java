@@ -147,12 +147,25 @@ public class Menu
 
             }else if (stackSize == 5){
                 if (navigationStack.peek() < 2000){//SPL
-                    if(navigationStack.peek() % 2 == 1){//output ke layar
-                        Aug.printAugmentedMatrix();
-                        Aug.gaussJordanElimination();
-                        Aug.convertToSolutionInfinite();
-                    }else{//output ke file 
-                        //SPL ke file
+                    if(navigationStack.peek() < 1300){//SPL gauss dan gauss jordan
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                            Aug.printAugmentedMatrix();
+                            Aug.gaussJordanElimination();
+                            Aug.convertToSolutionInfinite();
+                        }else{//output ke file 
+                            //SPL ke file
+                        }
+                    }else if ((navigationStack.peek() < 1400)&&(navigationStack.peek() > 1300)){//SPL metode balikan
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                        }else{//output ke file 
+                            //SPL ke file
+                        }
+                    }else{//Cramer
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                            Aug.Cramer();
+                        }else{//output ke file 
+                            //SPL cramer ke file
+                        }
                     }
                 }else if((navigationStack.peek() < 3000)&&(navigationStack.peek() > 2000)){//Determinan
                     if(navigationStack.peek() % 2 == 1){//output ke layar
