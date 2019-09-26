@@ -63,8 +63,6 @@ public class Matrix
 		System.out.print("Masukkan Kolom :");
 		this.colCount=s.nextInt();
 		this.arr = new double[this.rowCount][this.colCount];
-
-		// System.out.println("pisangggg");
 		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j] = s.nextDouble();	
 	}
 
@@ -80,13 +78,24 @@ public class Matrix
 	}
 
 	// Inverse SPL Output Procedure
-	public void printInverseSPL()
+	public void printInverseSPL() throws Exception
 	{
-		System.out.println("\nThe Solution is/are : ");
+		PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+		PrintStream console = System.out;
+		
+		System.setOut(console);
+		System.out.println("\nSolusi dari SPL adalah : ");
+		System.setOut(file);
+		System.out.println("\nSolusi dari SPL adalah : ");
 		for(int i=0; i<this.rowCount;i++)
 		{	 
+			System.setOut(console);
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
+			System.setOut(file);
 			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
 		}
+		System.setOut(file);
+		System.out.println("---------------------------------------------------------------------------------------------");
 	}
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= UTILITY FUNCTIONS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -236,8 +245,8 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("File must be located in folder 'tests'");
-		System.out.print("Input file name for matrix : ");
+		System.out.println("File harus terletak di folder 'tests'");
+		System.out.print("Masukkan nama file yang terdapat matriks : ");
 		filenameMatrix = reader.readLine();
 		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
 		BufferedReader br = null;
@@ -257,10 +266,10 @@ public class Matrix
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-			System.out.println("Matrix has been made!");
+			System.out.println("Matriks berhasil dibuat!");
         }
 		catch(Exception Exception){
-			System.out.println("File not found!");
+			System.out.println("File tidak ditemukan!");
 		}
 		
 		this.rowCount = matrixFile.rowCount;
@@ -278,7 +287,7 @@ public class Matrix
 	public void MatrixToText() throws Exception{
 		String matrixFilename = " ";
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Input file name for output : ");
+		System.out.print("Masukkan nama file yang akan dijadikan output : ");
 		matrixFilename = reader.readLine();
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < this.rowCount; i++){
@@ -295,6 +304,6 @@ public class Matrix
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+matrixFilename).getCanonicalPath()));
 		writer.write(builder.toString());
 		writer.close();
-		System.out.println(matrixFilename+" is located in folder 'output'");
+		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
 	}
 }
