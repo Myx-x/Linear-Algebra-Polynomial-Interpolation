@@ -197,21 +197,17 @@ public class Matrix
 			br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null){
-				//System.out.println(line);
 				y = 0;
                 String[] values = line.split(" ");
                 for (String str : values){
                     double str_double = Double.parseDouble(str);
                     matrixFile.arr[x][y] = str_double;
-                    //System.out.println(matrix[x][y] + " ");
                     y++;
 				}
                 x++;
-                //System.out.println("");
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-			//br.close();
 			System.out.println("Matrix has been made!");
         }
 		catch(Exception Exception){
@@ -226,8 +222,6 @@ public class Matrix
 				this.arr[i][j] = matrixFile.arr[i][j];
 			}
 		}
-		//matrixFile.printMatrix();		
-		//System.out.println("Matrix has been made!");
 		
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
