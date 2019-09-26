@@ -39,7 +39,7 @@ public class Determinant
             }
             return det;
         } else {
-            System.out.print("Tolong masukkan matriks yang merupakan matriks persegi.");
+            System.out.println("Tolong masukkan matriks yang merupakan matriks persegi.");
             return -99999;
         }
     }
@@ -72,7 +72,7 @@ public class Determinant
             }
             return det;
         } else {
-            System.out.print("Tolong masukkan matriks persegi.");
+            System.out.println("Tolong masukkan matriks persegi.");
             return -99999;
         }
     }
