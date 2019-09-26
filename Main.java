@@ -41,36 +41,15 @@ public class Main
         
         // result = d.inverseGaussJordan();
         // result.printMatrix();
-<<<<<<< HEAD
         
-        Matrix MT = new Matrix();
-        MT.textToMatrix();
-        //MT.printMatrix();
-        
-        System.out.println("---------------------------------------------");
-        
-        AugmentedMatrix aug = new AugmentedMatrix();
-        aug.textToAug();
-        //aug.printAugmentedMatrix();
-=======
-
         Matrix MT = new Matrix();
         MT.textToMatrix();
         MT.printMatrix();
-        // AugmentedMatrix augMat = new AugmentedMatrix();
-        // augMat.textToAug();
-
-        //MT.textToMatrix();
-
-        // AugmentedMatrix augMat = new AugmentedMatrix();
-        // augMat.textToAug();
-        // System.out.println("Cramer Start");
-        // augMat.Cramer();
-
-       AugmentedMatrix aug = new AugmentedMatrix();
-       aug = aug.makeInterpolationMatrix();
-       aug.convertToInterpolation(aug);
-
->>>>>>> a7d52dc950b7c3a0d6ede06e1088cc4805d709f6
+        
+        System.out.println("---------------------------------------------");
+        
+        // AugmentedMatrix aug = new AugmentedMatrix();
+        // aug.textToAug();
+        //aug.printAugmentedMatrix();
     }
 }

@@ -44,7 +44,7 @@ public class Menu
                 }else if (navigationStack.peek() == 7){ // Keluar
                     quit = true;
                 }else if ((navigationStack.peek() >= 4)&&(navigationStack.peek() <= 6)){ //Matrix Cofactor, Matrix Adjoin, Interpolasi
-                    optionMenu();
+                    optionInput();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else{//inputan untuk pilihan salah
@@ -76,7 +76,7 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10); 
                 }else{//All submenu for SPL, Inverse, Determinant except kembali
-                    optionMenu();
+                    optionInput();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }
@@ -216,7 +216,7 @@ public class Menu
         System.out.print("Masukkan Pilihan : ");
     }
 
-    private static void optionMenu()
+    private static void optionInput()
     {
         System.out.println("1. Inputan dengan keyboard");
         System.out.println("2. Inputan File");
