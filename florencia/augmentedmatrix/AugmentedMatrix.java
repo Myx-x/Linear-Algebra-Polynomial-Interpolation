@@ -203,6 +203,7 @@ public class AugmentedMatrix
         
     }
 
+    // Gauss elimination method
 	public AugmentedMatrix gaussElimination()
 	{
         AugmentedMatrix result = new AugmentedMatrix(this);
@@ -212,6 +213,7 @@ public class AugmentedMatrix
         return result;
     }
     
+    // Gauss-Jordan elmination method
 	public AugmentedMatrix gaussJordanElimination()
 	{
         AugmentedMatrix result = new AugmentedMatrix(this);
@@ -222,6 +224,7 @@ public class AugmentedMatrix
         return result;    
     }
 
+    // Make matrix from interpolation
     public AugmentedMatrix makeInterpolationMatrix()
     {
         System.out.print("Masukkan jumlah titik :");
@@ -242,6 +245,7 @@ public class AugmentedMatrix
         return result;
     }
     
+    // Print the solution for interpolation
     public void convertToInterpolation(AugmentedMatrix aug)
     {
         int n=aug.leftMatrix.rowCount;
@@ -265,6 +269,7 @@ public class AugmentedMatrix
         System.out.println("Value of f("+x+") is equal to " + result + ".");
     }
 
+    // Cramer method for matrix solution
     public void Cramer(){
         double solution = 0;
         Matrix mat = new Matrix();
@@ -286,6 +291,7 @@ public class AugmentedMatrix
         }
     }
 
+    // Print matrix solution for linear equation
     public void convertToSolutionValid()
     {
         System.out.println("The solutions are: ");
@@ -301,7 +307,7 @@ public class AugmentedMatrix
         double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
         for(double[] row:result) Arrays.fill(row,0);
 
-        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+        int cc=this.leftMatrix.colCount;
         
         // Moving coefficients then make it negative unless it's at the same diagonal
         for(int i=0;i<this.leftMatrix.rowCount;i++)
@@ -391,6 +397,7 @@ public class AugmentedMatrix
         }
     }
 
+    // Read .txt file into augmented matrix
     public void textToAug() throws Exception{
         Matrix matrixFile = new Matrix(101, 101);
         int x = 0, y = 0;
@@ -398,10 +405,10 @@ public class AugmentedMatrix
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for augmented matrix : ");
-		filenameAug = reader.readLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
+        filenameAug = reader.readLine();
+		File file = new File(new File("./tests/"+filenameAug).getCanonicalPath());
         BufferedReader br = null;
-        
+
 		try{
             br = new BufferedReader(new FileReader(file));
             String line;

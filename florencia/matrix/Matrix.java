@@ -202,6 +202,7 @@ public class Matrix
 	}
 
 	/*-----------Text Input------------*/
+	// Read .txt file into matrix
 	public void textToMatrix() throws Exception {
         Matrix matrixFile = new Matrix(101, 101);
 		int x = 0, y = 0;
@@ -210,9 +211,9 @@ public class Matrix
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for matrix : ");
 		filenameMatrix = reader.readLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameMatrix);
+		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
 		BufferedReader br = null;
-		
+
 		try{
 			br = new BufferedReader(new FileReader(file));
             String line;
@@ -242,10 +243,10 @@ public class Matrix
 				this.arr[i][j] = matrixFile.arr[i][j];
 			}
 		}
-		
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
 	
+	// Deepcopy procedure for matrix
 	public void deepCopy(Matrix matIn){
 		this.rowCount = matIn.rowCount;
 		this.colCount = matIn.colCount;
