@@ -489,5 +489,18 @@ public class AugmentedMatrix
 		writer.write(builder.toString());
 		writer.close();
 		System.out.println(matrixFilename+" is located in folder 'output'");
-	}
+    }
+    
+    public void SolutionToText(String solution) throws Exception{
+        String solFilename = " ";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Input file name for output : ");
+        solFilename = reader.readLine();
+        StringBuilder builder = new StringBuilder();
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+solFilename).getCanonicalPath()));
+        writer.write(builder.toString());
+		writer.close();
+		System.out.println(solFilename+" is located in folder 'output'");
+    }
 }
