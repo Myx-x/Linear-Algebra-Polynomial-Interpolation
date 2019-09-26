@@ -290,13 +290,6 @@ public class AugmentedMatrix
             System.out.print("This method is not valid for this type of matrix");
         }
     }
-
-    // Print matrix solution for linear equation
-    public void convertToSolutionValid()
-    {
-        System.out.println("The solutions are: ");
-        for(int i=0;i<this.leftMatrix.rowCount;i++) System.out.println("x" + (i+1) + " = " + this.rightMatrix.arr[i][0]);
-    }
     
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OUTPUT SOLUTION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
  
@@ -348,7 +341,7 @@ public class AugmentedMatrix
 
     }
 
-    // Convert Infinite Solution Matrix To Solution when equation yields Infinite.
+    // Convert Infinite Solution Matrix To Solution, when infinite/consistent only.
     public void convertToSolutionInfinite()
     {
         System.out.println("The solutions are: ");
@@ -381,8 +374,16 @@ public class AugmentedMatrix
             }
             if(!printed)
             {
-                infiniteList.add(i+1);
-                System.out.print("X" + (i+1));
+                if(res[i][i+1]==1)
+                { 
+                    System.out.println("0.0");
+                    printed=true;
+                }
+                else
+                {
+                    infiniteList.add(i+1);
+                    System.out.print("X" + (i+1));
+                }
             }
             System.out.println();
         }

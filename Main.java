@@ -7,46 +7,16 @@ public class Main
 {
     public static void main(String args[]) throws Exception
     {
-        /*
-        AugmentedMatrix aug = new AugmentedMatrix();
+        Matrix m1 = new Matrix();
+        Matrix m2 = new Matrix();
 
-        
-        aug.inputLinearEquation();
-        
-        aug.gaussJordanElimination();
-        aug.convertToSolutionInfinite();
-        System.out.println();
-        */
+        m1.inputMatrix();
+        m2.inputMatrix();
 
-        // aug.printAugmentedMatrix();
-        // System.out.println();
-        
-        // double[][] res = aug.infiniteSolutionMatrix();
-        // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
-        // {
-        //     for(int j=0;j<aug.getLeftMatrix().colCount+1;j++) System.out.print(res[i][j] + " ");
-        //     System.out.println();
-        // }
-        // aug.backwardSubstitution();
-        // for(int i=0;i<aug.getLeftMatrix().colCount;i++)
-        // {
-        //     for(int j=0;j<aug.getLeftMatrix().colCount+1;j++) System.out.print(res[i][j] + " ");
-        //     System.out.println();
-        // }
-        // aug.convertToSolutionInfinite();
-        // Determinant d = new Determinant();
-        // d.mat.inputMatrix();
-        
-        // Matrix result = new Matrix();
-        
-        // result = d.inverseGaussJordan();
-        // result.printMatrix();
-        
-        
-        // AugmentedMatrix aug = new AugmentedMatrix();
-        // aug.textToAug();
-        //aug.printAugmentedMatrix();
+        Matrix m3 = new Matrix();
+        m3 = m3.kaliMatrix(m1, m2);
 
+<<<<<<< HEAD
         // AugmentedMatrix aug = new AugmentedMatrix();
         // Matrix A = new Matrix();
         // Matrix B = new Matrix();
@@ -71,5 +41,8 @@ public class Main
         AugmentedMatrix aug = new AugmentedMatrix();
         aug.textToAug();
         aug.AugToText();
+=======
+        m3.printMatrix();
+>>>>>>> 838b3be3ed027c1ccc74f74eaf966c929de0c2ea
     }
 }

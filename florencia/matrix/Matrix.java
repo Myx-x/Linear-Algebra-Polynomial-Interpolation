@@ -174,16 +174,21 @@ public class Matrix
 		int i,j, k, count;
 		k = 1;
 		Matrix C = new Matrix(A.rowCount, B.colCount);
-		if(B.rowCount==A.colCount){
-			for(i=1; i<=A.rowCount; i++){
-				for(j=1; j<=A.colCount; j++){
+
+		if(B.rowCount==A.colCount)
+		{
+			for(i=0; i<C.rowCount; i++)
+			{
+				for(j=0; j<C.colCount; j++)
+				{
 					count = 0;
-					for(k=1; k<=B.rowCount; k++){
-						count += A.arr[i][k] * B.arr[k][j];
-					}C.arr[i][j] = count;
+					for(k=0; k<A.colCount; k++) count += A.arr[i][k] * B.arr[k][j];
+					C.arr[i][j] = count;
 				}
 			}
-		}return C;
+		}
+
+		return C;
 
 	}
 	

@@ -275,6 +275,18 @@ Matrix m = new Matrix();
 
 Matrix m2 = m.kaliKons(3); // m2 will be equal to Matrix m but the elements are multiplied 3
 ```
+## kaliMatriks(Matrix A, Matrix B)
+kaliMatriks is a function to multiply matrix A with matrix B.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+
+// After matrix is initialized...
+
+m = m.kaliMatriks(A,B);
+```
 
 ## isRowZero(int row)
 isRowZero is a function that checks whether a Matrix's row is all zero. The `row`-th row will be checked.
@@ -290,6 +302,29 @@ if(m.isRowZero(3)) // if the fourth row is all zero...
 {
     //Do something
 }
+```
+
+## textToMatrix()
+textToMatrix is a function to scan a file and input the object as a matrix.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+// After matrix is initialized...
+m.textToMatrix();
+```
+
+## deepCopy()
+deepCopy is a function to copy a Matrix.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+// After matrix is initialized...
+m.deepCopy(Min);
+// Min is a matrix that already have elemen in it
 ```
 
 
