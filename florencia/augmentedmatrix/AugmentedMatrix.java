@@ -314,6 +314,7 @@ public class AugmentedMatrix
         System.setOut(file);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
         System.out.println("-------------------------------------------------------------------------------");
+        System.setOut(console);
     }
 
     // Cramer method for matrix solution
@@ -342,6 +343,7 @@ public class AugmentedMatrix
             }
             System.setOut(file);
             System.out.println("------------------------------------------------------------------------------------");
+            System.setOut(console);
         } else {
             System.out.print("This method is not valid for this type of matrix");
         }
@@ -492,6 +494,7 @@ public class AugmentedMatrix
         }
         System.setOut(file);
         System.out.println("---------------------------------------------------------------------------------------------");
+        System.setOut(console);
     }
 
     /*-----------File I/O------------*/
