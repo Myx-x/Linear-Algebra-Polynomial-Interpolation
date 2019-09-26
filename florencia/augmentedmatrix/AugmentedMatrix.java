@@ -6,7 +6,6 @@ import java.util.Vector;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import florencia.matrix.*;
 import java.lang.Math;
 import java.io.*;
 
@@ -267,41 +266,16 @@ public class AugmentedMatrix
     public void Cramer(){
         double solution = 0;
         Matrix mat = new Matrix();
-        //this.leftMatrix.printMatrix();
         mat.deepCopy(this.leftMatrix);
         Determinant matDet = new Determinant(mat);
         Matrix modVal = new Matrix();
-        /*
-        System.out.println("determinan matDet : "+matDet.determinantLaplaceExpansion());
-        System.out.println("print leftmatrix");
-        this.leftMatrix.printMatrix();
-        System.out.println();
-        */
         if (mat.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
             for (int i = 0; i < mat.rowCount; i++){
-                /*
-                System.out.println("left awal "+i);
-                this.leftMatrix.printMatrix();
-                System.out.println();
-                */
                 modVal.deepCopy(mat);
-                /*
-                System.out.println("modval awal "+i);
-                modVal.printMatrix();
-                System.out.println();
-                */
                 for (int j = 0; j < mat.colCount; j++){
                     modVal.arr[j][i] = this.rightMatrix.arr[j][0];
                 }
-                /*
-                System.out.println("modval modif "+i);
-                modVal.printMatrix();
-                */
                 Determinant modValDet = new Determinant(modVal);
-                /*
-                System.out.println("det modValDet : "+modValDet.determinantLaplaceExpansion());
-                System.out.println("det matDet : "+matDet.determinantLaplaceExpansion());
-                */
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
                 System.out.print("x"+i+" = "+solution+"\n");
             }
@@ -325,7 +299,7 @@ public class AugmentedMatrix
         double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
         for(double[] row:result) Arrays.fill(row,0);
 
-        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+        int cc=this.leftMatrix.colCount;
         
         // Moving coefficients then make it negative unless it's at the same diagonal
         for(int i=0;i<this.leftMatrix.rowCount;i++)
@@ -422,9 +396,10 @@ public class AugmentedMatrix
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for augmented matrix : ");
-		filenameAug = reader.readLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
+        filenameAug = reader.readLine();
+		File file = new File(new File("./tests/"+filenameAug).getCanonicalPath());
         BufferedReader br = null;
+
 		try{
             br = new BufferedReader(new FileReader(file));
             String line;
@@ -434,21 +409,18 @@ public class AugmentedMatrix
                 for (String str : values){
                     double str_double = Double.parseDouble(str);
                     matrixFile.arr[x][y] = str_double;
-                    //System.out.println(matrix[x][y] + " ");
                     y++;
 				}
                 x++;
-                //System.out.println("");
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-            //br.close();
             System.out.println("Augmented matrix has been made!");
         }
 		catch(Exception Exception){
             System.out.println("File not found!");
         }
-        //matrix.printMatrix();
+
         this.leftMatrix = new Matrix(matrixFile.rowCount, matrixFile.colCount-1);
         this.rightMatrix = new Matrix(matrixFile.rowCount, 1);
         for (int i = 0; i < matrixFile.rowCount; i++){
@@ -460,16 +432,6 @@ public class AugmentedMatrix
                 }
             }
         }
-        /*
-        System.out.println("left matrix");
-        this.leftMatrix.printMatrix();
-        System.out.println("right matrix");
-        this.rightMatrix.printMatrix();
-        System.out.println("augmented matrix");
-        this.printAugmentedMatrix();
-        */
-        //System.out.println("Augmented matrix has been made!");
-        
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }
 }
