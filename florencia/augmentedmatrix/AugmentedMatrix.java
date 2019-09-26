@@ -396,10 +396,10 @@ public class AugmentedMatrix
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for augmented matrix : ");
-		filenameAug = reader.readLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
+        filenameAug = reader.readLine();
+		File file = new File(new File("./tests/"+filenameAug).getCanonicalPath());
         BufferedReader br = null;
-        
+
 		try{
             br = new BufferedReader(new FileReader(file));
             String line;

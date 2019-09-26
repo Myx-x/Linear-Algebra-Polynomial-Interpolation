@@ -191,9 +191,9 @@ public class Matrix
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for matrix : ");
 		filenameMatrix = reader.readLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameMatrix);
+		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
 		BufferedReader br = null;
-		
+
 		try{
 			br = new BufferedReader(new FileReader(file));
             String line;
