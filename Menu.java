@@ -81,6 +81,8 @@ public class Menu
                 }else if (navigationStack.peek() >60){//interpolasi
                     if(navigationStack.peek() % 2 == 1){//ke layar
                         Aug.convertToInterpolation(Aug);
+                        navigationStack.pop();
+                        navigationStack.pop();
                     }else{//ke file
                         //output persamaan interpolasi ke file
                     }
@@ -111,8 +113,6 @@ public class Menu
                         Aug.gaussJordanElimination();
                     }else if (navigationStack.peek() / 10 == 13){//Matrix Balikan
                         //rumus Matriks balikan
-                    }else if (navigationStack.peek() / 10 == 14){//Cramer
-                       //rumus cramer
                     }else if (navigationStack.peek() / 10 == 21){//Determinan OBE 
                         Determinant det = new Determinant(MT);
                         hasil = det.determinantRowReduction();
