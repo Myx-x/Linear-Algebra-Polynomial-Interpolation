@@ -1,6 +1,7 @@
 package florencia.matrix;
 
 import java.lang.Math;
+import java.io.*;
 
 import florencia.augmentedmatrix.AugmentedMatrix;
 
@@ -152,5 +153,19 @@ public class Determinant
         aug.rightMatrix.setIdentityMatrix(mat.rowCount);
         aug.gaussJordanElimination();
         return aug.rightMatrix;
+    }
+
+    // Write augmented matrix to .txt file
+    public void DetToText(double value) throws Exception{
+        String detFilename = " ";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Input file name for output : ");
+        detFilename = reader.readLine();
+        StringBuilder builder = new StringBuilder();
+        builder.append(value);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+detFilename).getCanonicalPath()));
+        writer.write(builder.toString());
+		writer.close();
+		System.out.println(detFilename+" is located in folder 'output'");
     }
 }
