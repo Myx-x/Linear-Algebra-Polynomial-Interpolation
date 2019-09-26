@@ -295,7 +295,7 @@ public class Matrix
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+matrixFilename).getCanonicalPath()));
 		writer.write(builder.toString());
 		writer.close();
-		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
+		System.out.println("File "+matrixFilename+" terletak di folder 'output'.");
 	}
 
 	// Inverse SPL Output Procedure in file

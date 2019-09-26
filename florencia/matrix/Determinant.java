@@ -167,6 +167,6 @@ public class Determinant
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+detFilename).getCanonicalPath()));
         writer.write(builder.toString());
 		writer.close();
-		System.out.println("File "+detFilename+" terletak di folder 'output'");
+		System.out.println("File "+detFilename+" terletak di folder 'output'.");
     }
 }
