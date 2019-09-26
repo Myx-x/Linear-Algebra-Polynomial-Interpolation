@@ -539,8 +539,13 @@ public class AugmentedMatrix
         System.setOut(file);
         System.out.println();
     
+        System.setOut(console);
         System.out.print("Input x for approximation:");
+        
         double x=s.nextDouble();
+
+        System.setOut(file);
+        System.out.println("Input x for approximation: "+x);
     
         double result=0;
         for(int i=0;i<n;i++) result+=aug.rightMatrix.arr[i][0]*Math.pow(x,i);
