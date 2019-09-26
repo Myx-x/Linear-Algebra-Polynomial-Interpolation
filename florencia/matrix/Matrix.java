@@ -216,7 +216,19 @@ public class Matrix
 		return result;
 	}
 
-	/*-----------Text Input------------*/
+	// Deepcopy procedure for matrix
+	public void deepCopy(Matrix matIn){
+		this.rowCount = matIn.rowCount;
+		this.colCount = matIn.colCount;
+		this.arr = new double[this.rowCount][this.colCount];
+		for (int i = 0; i < matIn.rowCount; i++){
+			for (int j = 0; j < matIn.colCount; j++){
+				this.arr[i][j] = matIn.arr[i][j];
+			}
+		}
+	}
+
+	/*-----------File I/O------------*/
 	// Read .txt file into matrix
 	public void textToMatrix() throws Exception {
         Matrix matrixFile = new Matrix(101, 101);
@@ -224,6 +236,7 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("File must be located in folder 'tests'");
 		System.out.print("Input file name for matrix : ");
 		filenameMatrix = reader.readLine();
 		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
@@ -260,16 +273,28 @@ public class Matrix
 		}
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
-	
-	// Deepcopy procedure for matrix
-	public void deepCopy(Matrix matIn){
-		this.rowCount = matIn.rowCount;
-		this.colCount = matIn.colCount;
-		this.arr = new double[this.rowCount][this.colCount];
-		for (int i = 0; i < matIn.rowCount; i++){
-			for (int j = 0; j < matIn.colCount; j++){
-				this.arr[i][j] = matIn.arr[i][j];
+
+	// Write matrix to .txt file
+	public void MatrixToText() throws Exception{
+		String matrixFilename = " ";
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Input file name for output : ");
+		matrixFilename = reader.readLine();
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < this.rowCount; i++){
+			for (int j = 0; j < this.colCount; j++){
+				builder.append(this.arr[i][j]);
+				if (j < this.colCount-1){
+					builder.append(" ");
+				}
+			}
+			if (i != this.rowCount-1){
+				builder.append("\n");
 			}
 		}
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+matrixFilename).getCanonicalPath()));
+		writer.write(builder.toString());
+		writer.close();
+		System.out.println(matrixFilename+" is located in folder 'output'");
 	}
 }
