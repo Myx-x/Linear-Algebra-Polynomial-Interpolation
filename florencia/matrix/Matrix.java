@@ -161,11 +161,30 @@ public class Matrix
 	// Multiply each element of matrix by x
 	public Matrix kaliKons(double X)
 	{
-		Matrix MT = new Matrix(this.colCount, this.rowCount);
+		Matrix MT = new Matrix(this.rowCount, this.colCount);
 
 		for(int i=0;i<this.colCount;i++) for(int j=0;j<this.rowCount;j++) MT.arr[i][j] = this.arr[i][j] * X;
 
 		return MT;
+	}
+
+	// Multiply Matrix A with Matrix B
+	public Matrix kaliMatrix(Matrix A, Matrix B)
+	{
+		int i,j, k, count;
+		k = 1;
+		Matrix C = new Matrix(A.rowCount, B.colCount);
+		if(B.rowCount==A.colCount){
+			for(i=1; i<=A.rowCount; i++){
+				for(j=1; j<=A.colCount; j++){
+					count = 0;
+					for(k=1; k<=B.rowCount; k++){
+						count += A.arr[i][k] * B.arr[k][j];
+					}C.arr[i][j] = count;
+				}
+			}
+		}return C;
+
 	}
 	
 	// Test wheter a row consists of all zero or not

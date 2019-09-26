@@ -97,9 +97,9 @@ public class Menu
                         }
                     }
                     if(navigationStack.peek() / 10 == 11){//Gauss
-                        //rumus gauss
+                        Aug.gaussElimination();
                     }else if (navigationStack.peek() / 10 == 12){//Gauss-Jordan
-                        //rumus gauss-jordan
+                        Aug.gaussJordanElimination();
                     }else if (navigationStack.peek() / 10 == 13){//Matrix Balikan
                         //rumus Matriks balikan
                     }else if (navigationStack.peek() / 10 == 14){//Cramer
@@ -146,6 +146,8 @@ public class Menu
                 if (navigationStack.peek() < 2000){//SPL
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         Aug.printAugmentedMatrix();
+                        Aug.gaussJordanElimination();
+                        Aug.convertToSolutionInfinite();
                     }else{//output ke file 
                         //SPL ke file
                     }

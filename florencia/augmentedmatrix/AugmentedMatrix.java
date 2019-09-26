@@ -56,7 +56,9 @@ public class AugmentedMatrix
     // Input into augmented matrix with its augmented form
     public void inputLinearEquation()
     {
+        System.out.print("Masukkan Baris :");
         int rc = s.nextInt();
+        System.out.print("Masukkan Kolom :");
         int cc = s.nextInt();
         this.leftMatrix = new Matrix(rc,cc-1);
         this.rightMatrix = new Matrix(rc,1);

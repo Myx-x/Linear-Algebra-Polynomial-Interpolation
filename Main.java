@@ -42,14 +42,22 @@ public class Main
         // result = d.inverseGaussJordan();
         // result.printMatrix();
         
-        Matrix MT = new Matrix();
-        MT.textToMatrix();
-        MT.printMatrix();
-        
-        System.out.println("---------------------------------------------");
         
         // AugmentedMatrix aug = new AugmentedMatrix();
         // aug.textToAug();
         //aug.printAugmentedMatrix();
+
+        // AugmentedMatrix aug = new AugmentedMatrix();
+        // Matrix A = new Matrix();
+        // Matrix B = new Matrix();
+        // aug.inputLinearEquation();
+        // aug.printAugmentedMatrix();
+        Matrix A = new Matrix();
+        Matrix B = new Matrix();
+        A.inputMatrix();
+        B.inputMatrix();
+        Matrix C = new Matrix();
+        C.kaliMatrix(A, B);
+        C.printMatrix();
     }
 }
