@@ -1,7 +1,7 @@
 @echo off
 
 echo Compiling Main.java...
-javac Menu.java
+javac Main.java
 
 echo --- Main.java start ---
-java Menu
+java Main
