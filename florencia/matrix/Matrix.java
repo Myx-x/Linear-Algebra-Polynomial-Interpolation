@@ -183,19 +183,21 @@ public class Matrix
 	}
 
 	/*-----------Text Input------------*/
-	public void textToMatrix(){
+	public void textToMatrix() throws Exception {
         Matrix matrixFile = new Matrix(101, 101);
-		int x = 0, y = 0; 
+		int x = 0, y = 0;
+		String filenameMatrix = " ";
 
-		Scanner inputFile = new Scanner(System.in);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for matrix : ");
-		String filename = inputFile.nextLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filename);
-
+		filenameMatrix = reader.readLine();
+		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameMatrix);
+		BufferedReader br = null;
 		try{
-            BufferedReader in = new BufferedReader(new FileReader(file));
+			br = new BufferedReader(new FileReader(file));
             String line;
-            while ((line = in.readLine()) != null){
+            while ((line = br.readLine()) != null){
+				//System.out.println(line);
 				y = 0;
                 String[] values = line.split(" ");
                 for (String str : values){
@@ -209,13 +211,24 @@ public class Matrix
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-            in.close();
+			//br.close();
+			System.out.println("Matrix has been made!");
         }
-		catch(IOException ioException){};
-		inputFile.close();
-		//matrix.printMatrix();		
-		System.out.println("Matrix have been made!");
-
+		catch(Exception Exception){
+			System.out.println("File not found!");
+		}
+		
+		this.rowCount = matrixFile.rowCount;
+		this.colCount = matrixFile.colCount;
+		this.arr = new double[this.rowCount][this.colCount];
+		for (int i = 0; i < matrixFile.rowCount; i++){
+			for (int j = 0; j < matrixFile.colCount; j++){
+				this.arr[i][j] = matrixFile.arr[i][j];
+			}
+		}
+		//matrixFile.printMatrix();		
+		//System.out.println("Matrix has been made!");
+		
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
 	

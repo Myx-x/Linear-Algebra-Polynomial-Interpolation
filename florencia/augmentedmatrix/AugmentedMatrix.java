@@ -411,19 +411,20 @@ public class AugmentedMatrix
         }
     }
 
-    public void textToAug(){
+    public void textToAug() throws Exception{
         Matrix matrixFile = new Matrix(101, 101);
-		int x = 0, y = 0; 
+        int x = 0, y = 0;
+        String filenameAug = " ";
 
-		Scanner inputFile = new Scanner(System.in);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for augmented matrix : ");
-		String filename = inputFile.nextLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filename);
-
+		filenameAug = reader.readLine();
+		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
+        BufferedReader br = null;
 		try{
-            BufferedReader in = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(file));
             String line;
-            while ((line = in.readLine()) != null){
+            while ((line = br.readLine()) != null){
 				y = 0;
                 String[] values = line.split(" ");
                 for (String str : values){
@@ -437,10 +438,12 @@ public class AugmentedMatrix
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-            in.close();
+            //br.close();
+            System.out.println("Augmented matrix has been made!");
         }
-		catch(IOException ioException){};
-		inputFile.close();
+		catch(Exception Exception){
+            System.out.println("File not found!");
+        }
         //matrix.printMatrix();
         this.leftMatrix = new Matrix(matrixFile.rowCount, matrixFile.colCount-1);
         this.rightMatrix = new Matrix(matrixFile.rowCount, 1);
@@ -461,7 +464,7 @@ public class AugmentedMatrix
         System.out.println("augmented matrix");
         this.printAugmentedMatrix();
         */
-        System.out.println("Augmented matrix have been made!");
+        //System.out.println("Augmented matrix has been made!");
         
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }

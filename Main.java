@@ -5,7 +5,7 @@ import florencia.matrix.*;
 
 public class Main
 {
-    public static void main(String args[])
+    public static void main(String args[]) throws Exception
     {
         /*
         AugmentedMatrix aug = new AugmentedMatrix();
@@ -41,12 +41,15 @@ public class Main
         
         // result = d.inverseGaussJordan();
         // result.printMatrix();
-
         
-        //MT.textToMatrix();
-        AugmentedMatrix augMat = new AugmentedMatrix();
-        augMat.textToAug();
-        System.out.println("Cramer Start");
-        augMat.Cramer();
+        Matrix MT = new Matrix();
+        MT.textToMatrix();
+        //MT.printMatrix();
+        
+        System.out.println("---------------------------------------------");
+        
+        AugmentedMatrix aug = new AugmentedMatrix();
+        aug.textToAug();
+        //aug.printAugmentedMatrix();
     }
 }
