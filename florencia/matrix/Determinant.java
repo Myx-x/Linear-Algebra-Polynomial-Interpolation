@@ -66,6 +66,7 @@ public class Determinant
         
         if (this.mat.isSquare()){
             for (int j = 0; j < this.mat.colCount; j++){
+                //System.out.println(this.mat.arr[0][j] * matCo.getCofactor(0, j));
                 det += (this.mat.arr[0][j] * matCo.getCofactor(0, j));
             }
             return det;
