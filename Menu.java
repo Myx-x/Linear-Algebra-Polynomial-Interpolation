@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class Menu
 {  
-    public static void main(String args[])
+    public static void main(String args[]) throws Exception
     {
         Stack<Integer> navigationStack = new Stack<Integer>();
         final Scanner s = new Scanner(System.in);
@@ -43,10 +43,16 @@ public class Menu
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 7){ // Keluar
                     quit = true;
-                }else if ((navigationStack.peek() >= 4)&&(navigationStack.peek() <= 6)){ //Matrix Cofactor, Matrix Adjoin, Interpolasi
+                }else if ((navigationStack.peek() == 4)&&(navigationStack.peek() == 5)){ //Matrix Cofactor, Matrix Adjoin
                     optionInput();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
+                }else if (navigationStack.peek() == 6){//Interpolasi
+                    Aug = Aug.makeInterpolationMatrix();
+                    optionOutput();
+                    query = s.nextInt();
+                    navigationStack.push(query + navigationStack.peek() * 10);
+                
                 }else{//inputan untuk pilihan salah
                     System.out.println(navigationStack.peek() + " bukan merupakan pilihan");
                     navigationStack.pop();
@@ -55,26 +61,29 @@ public class Menu
                 if ((navigationStack.peek() == 15)||(navigationStack.peek() == 24)||(navigationStack.peek() == 33)){//Kembali
                     navigationStack.pop();
                     navigationStack.pop();
-                }else if(navigationStack.peek() > 40){
-                    if(navigationStack.peek() < 60){//input matriks for MC and Adjoin
-                        if(navigationStack.peek() % 2 == 1){//input matriks dengan keyboard
-                            MT.inputMatrix();    
-                        }else{//input file ke matriks MT
-                            //input file ke matriks MT
-                        }   
-                    }
+                }else if((navigationStack.peek() > 40)&&(navigationStack.peek() < 60)){
+                    //input matriks for MC and Adjoin
+                    if(navigationStack.peek() % 2 == 1){//input matriks dengan keyboard
+                        MT.inputMatrix();    
+                    }else{//input file ke matriks MT
+                        MT.textToMatrix();
+                    }   
                     if (navigationStack.peek() / 10 == 4){//MC 
                         Determinant det = new Determinant(MT);
                         MT = det.getMatrixCofactor();
                     }else if (navigationStack.peek() /10 == 5){//Adjoin dengan keyboard
                         Determinant det = new Determinant(MT);
                         MT = det.getAdjoint();
-                    }else if (navigationStack.peek() / 10 == 6){//Interpolasi dengan keyboard
-                        Aug = Aug.makeInterpolationMatrix();
                     }
                     optionOutput();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10); 
+                }else if (navigationStack.peek() >60){//interpolasi
+                    if(navigationStack.peek() % 2 == 1){//ke layar
+                        Aug.convertToInterpolation(Aug);
+                    }else{//ke file
+                        //output persamaan interpolasi ke file
+                    }
                 }else{//All submenu for SPL, Inverse, Determinant except kembali
                     optionInput();
                     query = s.nextInt();
@@ -87,13 +96,13 @@ public class Menu
                         if(navigationStack.peek() % 2 == 1){//input matriks dengan keyboard
                             MT.inputMatrix();    
                         }else{//input file ke matriks MT
-                            //input file ke matriks MT
+                            MT.textToMatrix();
                         }   
                     }else{//input Augmentedmatriks for SPL
                         if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
                             Aug.inputLinearEquation();   
                         }else{//input dari file
-                            //input file ke augmented matriks Aug
+                            Aug.textToAug();
                         }
                     }
                     if(navigationStack.peek() / 10 == 11){//Gauss
@@ -130,12 +139,6 @@ public class Menu
                         }else{//ke file
                             //output matriks ke file
                         }
-                    }else{//interpolasi
-                        if(navigationStack.peek() % 2 == 1){//ke layar
-                            Aug.convertToInterpolation(Aug);
-                        }else{//ke file
-                            //output persamaan interpolasi ke file
-                        }
                     }
                     navigationStack.pop();
                     navigationStack.pop();
@@ -144,12 +147,25 @@ public class Menu
 
             }else if (stackSize == 5){
                 if (navigationStack.peek() < 2000){//SPL
-                    if(navigationStack.peek() % 2 == 1){//output ke layar
-                        Aug.printAugmentedMatrix();
-                        Aug.gaussJordanElimination();
-                        Aug.convertToSolutionInfinite();
-                    }else{//output ke file 
-                        //SPL ke file
+                    if(navigationStack.peek() < 1300){//SPL gauss dan gauss jordan
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                            Aug.printAugmentedMatrix();
+                            Aug.gaussJordanElimination();
+                            Aug.convertToSolutionInfinite();
+                        }else{//output ke file 
+                            //SPL ke file
+                        }
+                    }else if ((navigationStack.peek() < 1400)&&(navigationStack.peek() > 1300)){//SPL metode balikan
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                        }else{//output ke file 
+                            //SPL ke file
+                        }
+                    }else{//Cramer
+                        if(navigationStack.peek() % 2 == 1){//output ke layar
+                            Aug.Cramer();
+                        }else{//output ke file 
+                            //SPL cramer ke file
+                        }
                     }
                 }else if((navigationStack.peek() < 3000)&&(navigationStack.peek() > 2000)){//Determinan
                     if(navigationStack.peek() % 2 == 1){//output ke layar
