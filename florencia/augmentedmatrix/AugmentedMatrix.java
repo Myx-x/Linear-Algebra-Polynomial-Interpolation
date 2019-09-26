@@ -399,6 +399,7 @@ public class AugmentedMatrix
 		filenameAug = reader.readLine();
 		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
         BufferedReader br = null;
+        
 		try{
             br = new BufferedReader(new FileReader(file));
             String line;
@@ -419,6 +420,7 @@ public class AugmentedMatrix
 		catch(Exception Exception){
             System.out.println("File not found!");
         }
+
         this.leftMatrix = new Matrix(matrixFile.rowCount, matrixFile.colCount-1);
         this.rightMatrix = new Matrix(matrixFile.rowCount, 1);
         for (int i = 0; i < matrixFile.rowCount; i++){

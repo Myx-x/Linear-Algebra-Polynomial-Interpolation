@@ -193,6 +193,7 @@ public class Matrix
 		filenameMatrix = reader.readLine();
 		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameMatrix);
 		BufferedReader br = null;
+		
 		try{
 			br = new BufferedReader(new FileReader(file));
             String line;
