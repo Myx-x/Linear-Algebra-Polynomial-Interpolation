@@ -43,7 +43,6 @@ public class Main
         // result.printMatrix();
         
         
-<<<<<<< HEAD
         // AugmentedMatrix aug = new AugmentedMatrix();
         // aug.textToAug();
         //aug.printAugmentedMatrix();
@@ -60,9 +59,7 @@ public class Main
         Matrix C = new Matrix();
         C.kaliMatrix(A, B);
         C.printMatrix();
-=======
         AugmentedMatrix aug = new AugmentedMatrix();
         aug.textToAug();
->>>>>>> 60fe707bd97df4e1d118faccdd695af01aa1ff1b
     }
 }
