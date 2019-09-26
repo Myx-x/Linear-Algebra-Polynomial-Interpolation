@@ -224,6 +224,22 @@ public class AugmentedMatrix
         return result;    
     }
 
+    // Make Matrix with inverse
+    public Matrix makeInverseSPL()
+    {
+        Determinant det = new Determinant(this.leftMatrix);
+        Matrix result = new Matrix();
+        Matrix inv = new Matrix();
+
+        inv = det.inverseAdjoint();
+        result = result.kaliMatrix(inv, this.rightMatrix);
+        
+        return result;
+
+    }
+
+
+
     // Make matrix from interpolation
     public AugmentedMatrix makeInterpolationMatrix()
     {
@@ -284,7 +300,7 @@ public class AugmentedMatrix
                 }
                 Determinant modValDet = new Determinant(modVal);
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
-                System.out.print("x"+i+" = "+solution+"\n");
+                System.out.print("X"+(i+1)+" = "+solution+"\n");
             }
         } else {
             System.out.print("This method is not valid for this type of matrix");

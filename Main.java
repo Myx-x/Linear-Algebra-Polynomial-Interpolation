@@ -29,8 +29,7 @@ public class Main
         System.out.println("ini console lanjutan 4");
 
         // AugmentedMatrix aug = new AugmentedMatrix();
-        // Matrix A = new Matrix();
-        // Matrix B = new Matrix();
+        // Matrix m3 = new Matrix();
         // aug.inputLinearEquation();
         // aug.printAugmentedMatrix();
         // Matrix A = new Matrix();
@@ -65,5 +64,8 @@ public class Main
         det.DetToText(det.determinantSarrus());
         det.DetToText(det.determinantLaplaceExpansion());
         */
+        // m3 = aug.makeInverseSPL();
+        // // Determinant det = new Determinant(aug.leftMatrix);
+        // // m3 = det.inverseAdjoint();
     }
 }

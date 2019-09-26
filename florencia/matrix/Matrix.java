@@ -79,6 +79,16 @@ public class Matrix
 		}
 	}
 
+	// Inverse SPL Output Procedure
+	public void printInverseSPL()
+	{
+		System.out.println("\nThe Solution is/are : ");
+		for(int i=0; i<this.rowCount;i++)
+		{	 
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
+		}
+	}
+
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= UTILITY FUNCTIONS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 	// Test wheter matrix is square or not
 	public boolean isSquare(){
@@ -171,8 +181,8 @@ public class Matrix
 	// Multiply Matrix A with Matrix B
 	public Matrix kaliMatrix(Matrix A, Matrix B)
 	{
-		int i,j, k, count;
-		k = 1;
+		int i,j, k=1;
+		double count;
 		Matrix C = new Matrix(A.rowCount, B.colCount);
 
 		if(B.rowCount==A.colCount)
