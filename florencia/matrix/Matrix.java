@@ -63,8 +63,6 @@ public class Matrix
 		System.out.print("Masukkan Kolom :");
 		this.colCount=s.nextInt();
 		this.arr = new double[this.rowCount][this.colCount];
-
-		// System.out.println("pisangggg");
 		for(int i=0;i<this.rowCount;i++) for(int j=0;j<this.colCount;j++) this.arr[i][j] = s.nextDouble();	
 	}
 
@@ -76,6 +74,16 @@ public class Matrix
 		{
 			for(int j=0;j<this.colCount;j++) System.out.print(this.arr[i][j] + "\t");
 			System.out.println();
+		}
+	}
+
+	// Inverse SPL Output Procedure
+	public void printInverseSPL()
+	{
+		System.out.println("\nSolusi dari SPL adalah : ");
+		for(int i=0; i<this.rowCount;i++)
+		{	 
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
 		}
 	}
 
@@ -171,8 +179,8 @@ public class Matrix
 	// Multiply Matrix A with Matrix B
 	public Matrix kaliMatrix(Matrix A, Matrix B)
 	{
-		int i,j, k, count;
-		k = 1;
+		int i,j, k=1;
+		double count;
 		Matrix C = new Matrix(A.rowCount, B.colCount);
 
 		if(B.rowCount==A.colCount)
@@ -206,7 +214,19 @@ public class Matrix
 		return result;
 	}
 
-	/*-----------Text Input------------*/
+	// Deepcopy procedure for matrix
+	public void deepCopy(Matrix matIn){
+		this.rowCount = matIn.rowCount;
+		this.colCount = matIn.colCount;
+		this.arr = new double[this.rowCount][this.colCount];
+		for (int i = 0; i < matIn.rowCount; i++){
+			for (int j = 0; j < matIn.colCount; j++){
+				this.arr[i][j] = matIn.arr[i][j];
+			}
+		}
+	}
+
+	/*-----------File I/O------------*/
 	// Read .txt file into matrix
 	public void textToMatrix() throws Exception {
         Matrix matrixFile = new Matrix(101, 101);
@@ -214,7 +234,8 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Input file name for matrix : ");
+		System.out.println("File harus terletak di folder 'tests'!");
+		System.out.print("Masukkan nama file yang terdapat matriks : ");
 		filenameMatrix = reader.readLine();
 		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
 		BufferedReader br = null;
@@ -234,10 +255,10 @@ public class Matrix
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-			System.out.println("Matrix has been made!");
+			System.out.println("Matriks berhasil dibuat!");
         }
 		catch(Exception Exception){
-			System.out.println("File not found!");
+			System.out.println("File tidak ditemukan!");
 		}
 		
 		this.rowCount = matrixFile.rowCount;
@@ -250,16 +271,49 @@ public class Matrix
 		}
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
-	
-	// Deepcopy procedure for matrix
-	public void deepCopy(Matrix matIn){
-		this.rowCount = matIn.rowCount;
-		this.colCount = matIn.colCount;
-		this.arr = new double[this.rowCount][this.colCount];
-		for (int i = 0; i < matIn.rowCount; i++){
-			for (int j = 0; j < matIn.colCount; j++){
-				this.arr[i][j] = matIn.arr[i][j];
+
+	// Write matrix to .txt file
+	public void MatrixToText() throws Exception{
+		String matrixFilename = " ";
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Masukkan nama file yang akan dijadikan output : ");
+		matrixFilename = reader.readLine();
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < this.rowCount; i++){
+			for (int j = 0; j < this.colCount; j++){
+				builder.append(this.arr[i][j]);
+				if (j < this.colCount-1){
+					builder.append(" ");
+				}
+			}
+			if (i != this.rowCount-1){
+				builder.append("\n");
 			}
 		}
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+matrixFilename).getCanonicalPath()));
+		writer.write(builder.toString());
+		writer.close();
+		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
+	}
+
+	// Inverse SPL Output Procedure in file
+	public void printInverseSPLToText() throws Exception
+	{
+		PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+		PrintStream console = System.out;
+		
+		System.setOut(file);
+		System.out.print("printInverseSPLText()");
+		System.out.println("\nSolusi dari SPL adalah : ");
+		this.printMatrix();
+		System.out.println();
+		for(int i=0; i<this.rowCount;i++)
+		{	 
+			System.setOut(file);
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
+		}
+		System.setOut(file);
+		System.out.println("---------------------------------------------------------------------------------------------");
+		System.setOut(console);
 	}
 }

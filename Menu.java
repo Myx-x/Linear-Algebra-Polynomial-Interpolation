@@ -43,7 +43,7 @@ public class Menu
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else if (navigationStack.peek() == 7){ // Keluar
                     quit = true;
-                }else if ((navigationStack.peek() == 4)&&(navigationStack.peek() == 5)){ //Matrix Cofactor, Matrix Adjoin
+                }else if ((navigationStack.peek() == 4)||(navigationStack.peek() == 5)){ //Matrix Cofactor, Matrix Adjoin
                     optionInput();
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
@@ -112,7 +112,7 @@ public class Menu
                     }else if (navigationStack.peek() / 10 == 12){//Gauss-Jordan
                         Aug.gaussJordanElimination();
                     }else if (navigationStack.peek() / 10 == 13){//Matrix Balikan
-                        //rumus Matriks balikan
+                        MT = Aug.makeInverseSPL();
                     }else if (navigationStack.peek() / 10 == 21){//Determinan OBE 
                         Determinant det = new Determinant(MT);
                         hasil = det.determinantRowReduction();
@@ -137,7 +137,7 @@ public class Menu
                         if(navigationStack.peek() % 2 == 1){//ke layar
                             MT.printMatrix();
                         }else{//ke file
-                            //output matriks ke file
+                            MT.MatrixToText();
                         }
                     }
                     navigationStack.pop();
@@ -157,6 +157,8 @@ public class Menu
                         }
                     }else if ((navigationStack.peek() < 1400)&&(navigationStack.peek() > 1300)){//SPL metode balikan
                         if(navigationStack.peek() % 2 == 1){//output ke layar
+                            MT.printMatrix();
+                            MT.printInverseSPL();
                         }else{//output ke file 
                             //SPL ke file
                         }
@@ -171,13 +173,14 @@ public class Menu
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         System.out.println(hasil);
                     }else{//output ke file 
-                        //Determinan ke file
+                        Determinant det = new Determinant();
+                        det.DetToText(hasil);
                     }
                 }else{//Inverse
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         MT.printMatrix();
                     }else{//output ke file 
-                        //Inverse ke file
+                        MT.MatrixToText();
                     }
                 }
                 navigationStack.pop();
