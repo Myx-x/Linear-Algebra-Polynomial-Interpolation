@@ -41,14 +41,12 @@ public class Main
         
         // result = d.inverseGaussJordan();
         // result.printMatrix();
-        
-        Matrix MT = new Matrix();
-        MT.textToMatrix();
-        MT.printMatrix();
-        
-        System.out.println("---------------------------------------------");
-        
         AugmentedMatrix aug = new AugmentedMatrix();
-        aug.textToAug();
+        aug.inputLinearEquation();
+        
+        aug.gaussJordanElimination();
+        
+        aug.printAugmentedMatrix();
+        aug.convertToSolutionInfinite();
     }
 }

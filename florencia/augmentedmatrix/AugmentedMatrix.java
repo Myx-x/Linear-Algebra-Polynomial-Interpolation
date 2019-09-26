@@ -373,8 +373,16 @@ public class AugmentedMatrix
             }
             if(!printed)
             {
-                infiniteList.add(i+1);
-                System.out.print("X" + (i+1));
+                if(res[i][i+1]==1)
+                { 
+                    System.out.println("0.0");
+                    printed=true;
+                }
+                else
+                {
+                    infiniteList.add(i+1);
+                    System.out.print("X" + (i+1));
+                }
             }
             System.out.println();
         }
