@@ -183,6 +183,7 @@ public class Matrix
 	}
 
 	/*-----------Text Input------------*/
+	// Read .txt file into matrix
 	public void textToMatrix() throws Exception {
         Matrix matrixFile = new Matrix(101, 101);
 		int x = 0, y = 0;
@@ -226,6 +227,7 @@ public class Matrix
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
 	
+	// Deepcopy procedure for matrix
 	public void deepCopy(Matrix matIn){
 		this.rowCount = matIn.rowCount;
 		this.colCount = matIn.colCount;
