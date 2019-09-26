@@ -305,10 +305,10 @@ public class Matrix
 		System.setOut(file);
 		System.out.print("printInverseSPLText()");
 		System.out.println("\nSolusi dari SPL adalah : ");
+		this.printMatrix();
+		System.out.println();
 		for(int i=0; i<this.rowCount;i++)
 		{	 
-			System.setOut(console);
-			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
 			System.setOut(file);
 			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
 		}
