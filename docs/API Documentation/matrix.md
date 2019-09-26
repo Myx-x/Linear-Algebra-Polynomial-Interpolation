@@ -77,6 +77,19 @@ Matrix m = new Matrix();
 m.printMatrix() // Will output the contents of the Matrix object.
 ```
 
+## printInverseSPL()
+printInverseSPL is a procedure that will output a Matrix object which is the right matrix of an Augmented Matrix.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+
+// After Matrix is initialized...
+
+m.printInverseSPL() // Will output the contents of the Matrix object.
+```
+
 ## isSquare()
 isSquare is a function that returns boolean. It will yield a value of `true` when the matrix is square; and `false` otherwise.
 
