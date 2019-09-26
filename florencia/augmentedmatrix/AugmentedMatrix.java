@@ -4,12 +4,9 @@ import florencia.matrix.*;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.Arrays;
-<<<<<<< HEAD
 import java.util.Iterator;
 
 import florencia.matrix.*;
-=======
->>>>>>> textInput
 import java.lang.Math;
 import java.io.*;
 
@@ -205,76 +202,106 @@ public class AugmentedMatrix
         
     }
 
-	public void gaussElimination()
+	public AugmentedMatrix gaussElimination()
 	{
-        this.forwardElimination();
+        AugmentedMatrix result = new AugmentedMatrix(this);
 
+        result.forwardElimination();
+
+        return result;
     }
     
-	public void gaussJordanElimination()
+	public AugmentedMatrix gaussJordanElimination()
 	{
-        this.forwardElimination();
-        if(!invalidEquation)
-        {
-            this.backwardElimination();
-        }
-        else System.out.println("Invalid/Inconsistent Equation");
+        AugmentedMatrix result = new AugmentedMatrix(this);
+
+        result.forwardElimination();
+        if(!invalidEquation) result.backwardElimination();
     
-        
+        return result;    
     }
 
-    public void interpolateGraph()
+    public AugmentedMatrix makeInterpolationMatrix()
     {
-        int n = s.nextInt();
+        System.out.print("Masukkan jumlah titik :");
         
-        Matrix mx=new Matrix(n,n), my=new Matrix(n,1);
-        AugmentedMatrix augGraph = new AugmentedMatrix(mx, my);
+        int n = s.nextInt();
+        AugmentedMatrix result = new AugmentedMatrix(new Matrix(n,n), new Matrix(n,1));
 
         for(int i=0;i<n;i++)
         {
+            System.out.print("Masukkan titik-titik dalam format x y :");
             double x=s.nextDouble(),y=s.nextDouble();
-            for(int j=0;j<n;j++)
-            {
-                augGraph.leftMatrix.arr[i][j] = Math.pow(x,j);
-            }
-            augGraph.rightMatrix.arr[i][0] = y;
+            for(int j=0;j<n;j++) result.leftMatrix.arr[i][j] = Math.pow(x,j);
+            result.rightMatrix.arr[i][0] = y;
         }
 
+        result.gaussJordanElimination();
 
-        augGraph.gaussJordanElimination();
-        augGraph.printAugmentedMatrix();
+        return result;
+    }
+    
+    public void convertToInterpolation(AugmentedMatrix aug)
+    {
+        int n=aug.leftMatrix.rowCount;
 
-        for(int i=0;i<n;i++) augGraph.rightMatrix.arr[i][0]=(double) Math.round(augGraph.rightMatrix.arr[i][0]*10000.0)/10000.0;
-
+        for(int i=0;i<n;i++) aug.rightMatrix.arr[i][0]=(double) Math.round(aug.rightMatrix.arr[i][0]*10000.0)/10000.0;
+    
         System.out.print("f(x) approximately equal to ");
         for(int i=0;i<n;i++) 
         {
-            if(i==0) System.out.print(augGraph.rightMatrix.arr[i][0] + " +");
-            else if(i==n-1) System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i);
-            else System.out.print(augGraph.rightMatrix.arr[i][0] + "X^" + i + " +");
+            if(i==0) System.out.print(aug.rightMatrix.arr[i][0] + " +");
+            else if(i==n-1) System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i);
+            else System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i + " +");
         }
         System.out.println();
-
+    
         System.out.print("Input x for approximation:");
         double x=s.nextDouble();
-
+    
         double result=0;
-        for(int i=0;i<n;i++) result+=augGraph.rightMatrix.arr[i][0]*Math.pow(x,i);
+        for(int i=0;i<n;i++) result+=aug.rightMatrix.arr[i][0]*Math.pow(x,i);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
-
     }
 
     public void Cramer(){
         double solution = 0;
-        Determinant matDet = new Determinant(this.leftMatrix);
-
-        if (this.leftMatrix.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
-            for (int i = 0; i < this.leftMatrix.rowCount; i++){
-                Matrix modVal = new Matrix(this.leftMatrix);
-                for (int j = 0; j < this.leftMatrix.colCount; j++){
-                    modVal.arr[i][j] = this.rightMatrix.arr[i][j];
+        Matrix mat = new Matrix();
+        //this.leftMatrix.printMatrix();
+        mat.deepCopy(this.leftMatrix);
+        Determinant matDet = new Determinant(mat);
+        Matrix modVal = new Matrix();
+        /*
+        System.out.println("determinan matDet : "+matDet.determinantLaplaceExpansion());
+        System.out.println("print leftmatrix");
+        this.leftMatrix.printMatrix();
+        System.out.println();
+        */
+        if (mat.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
+            for (int i = 0; i < mat.rowCount; i++){
+                /*
+                System.out.println("left awal "+i);
+                this.leftMatrix.printMatrix();
+                System.out.println();
+                */
+                modVal.deepCopy(mat);
+                /*
+                System.out.println("modval awal "+i);
+                modVal.printMatrix();
+                System.out.println();
+                */
+                for (int j = 0; j < mat.colCount; j++){
+                    modVal.arr[j][i] = this.rightMatrix.arr[j][0];
                 }
+                /*
+                System.out.println("modval modif "+i);
+                modVal.printMatrix();
+                */
                 Determinant modValDet = new Determinant(modVal);
+                /*
+                System.out.println("det modValDet : "+modValDet.determinantLaplaceExpansion());
+                System.out.println("det matDet : "+matDet.determinantLaplaceExpansion());
+                */
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
                 System.out.print("x"+i+" = "+solution+"\n");
             }
@@ -282,6 +309,7 @@ public class AugmentedMatrix
             System.out.print("This method is not valid for this type of matrix");
         }
     }
+
     public void convertToSolutionValid()
     {
         System.out.println("The solutions are: ");
@@ -387,19 +415,20 @@ public class AugmentedMatrix
         }
     }
 
-    public void textToAug(){
+    public void textToAug() throws Exception{
         Matrix matrixFile = new Matrix(101, 101);
-		int x = 0, y = 0; 
+        int x = 0, y = 0;
+        String filenameAug = " ";
 
-		Scanner inputFile = new Scanner(System.in);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Input file name for augmented matrix : ");
-		String filename = inputFile.nextLine();
-		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filename);
-
+		filenameAug = reader.readLine();
+		File file = new File("D:/#code/java/Linear-Algebra-Polynomial-Interpolation/input/"+filenameAug);
+        BufferedReader br = null;
 		try{
-            BufferedReader in = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(file));
             String line;
-            while ((line = in.readLine()) != null){
+            while ((line = br.readLine()) != null){
 				y = 0;
                 String[] values = line.split(" ");
                 for (String str : values){
@@ -413,10 +442,12 @@ public class AugmentedMatrix
 			}
 			matrixFile.rowCount = x;
 			matrixFile.colCount = y;
-            in.close();
+            //br.close();
+            System.out.println("Augmented matrix has been made!");
         }
-		catch(IOException ioException){};
-		inputFile.close();
+		catch(Exception Exception){
+            System.out.println("File not found!");
+        }
         //matrix.printMatrix();
         this.leftMatrix = new Matrix(matrixFile.rowCount, matrixFile.colCount-1);
         this.rightMatrix = new Matrix(matrixFile.rowCount, 1);
@@ -437,9 +468,8 @@ public class AugmentedMatrix
         System.out.println("augmented matrix");
         this.printAugmentedMatrix();
         */
-        System.out.print("Augmented matrix have been made!");
+        //System.out.println("Augmented matrix has been made!");
         
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
     }
-    
 }

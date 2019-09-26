@@ -48,6 +48,7 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10);
                 }else{//inputan untuk pilihan salah
+                    System.out.println(navigationStack.peek() + " bukan merupakan pilihan");
                     navigationStack.pop();
                 }
             }else if (stackSize == 3){
@@ -61,12 +62,6 @@ public class Menu
                         }else{//input file ke matriks MT
                             //input file ke matriks MT
                         }   
-                    }else{//input Augmentedmatriks for Interpolasi
-                        if(navigationStack.peek() % 2 == 1){//input augmented matriks dengan keyboard
-                            Aug.inputLinearEquation();   
-                        }else{//input dari file
-                            //input file ke augmented matriks Aug
-                        }
                     }
                     if (navigationStack.peek() / 10 == 4){//MC 
                         Determinant det = new Determinant(MT);
@@ -75,8 +70,7 @@ public class Menu
                         Determinant det = new Determinant(MT);
                         MT = det.getAdjoint();
                     }else if (navigationStack.peek() / 10 == 6){//Interpolasi dengan keyboard
-                        //rumus interpolasi
-                        System.out.println("interpolasi rumus");
+                        Aug = Aug.makeInterpolationMatrix();
                     }
                     optionOutput();
                     query = s.nextInt();
@@ -130,10 +124,18 @@ public class Menu
                     query = s.nextInt();
                     navigationStack.push(query + navigationStack.peek() * 10); 
                 }else{//output navigationStack.peek() > 400 
-                    if(navigationStack.peek() % 2 == 1){//ke layar
-                        MT.printMatrix();
-                    }else{//ke file
-                        //output ke file
+                    if (navigationStack.peek() < 600){//MC dan Adjoin
+                        if(navigationStack.peek() % 2 == 1){//ke layar
+                            MT.printMatrix();
+                        }else{//ke file
+                            //output matriks ke file
+                        }
+                    }else{//interpolasi
+                        if(navigationStack.peek() % 2 == 1){//ke layar
+                            Aug.convertToInterpolation(Aug);
+                        }else{//ke file
+                            //output persamaan interpolasi ke file
+                        }
                     }
                     navigationStack.pop();
                     navigationStack.pop();
@@ -141,39 +143,6 @@ public class Menu
                 }
 
             }else if (stackSize == 5){
-<<<<<<< HEAD
-                if ((navigationStack.peek() < 2000)&&(navigationStack.peek() % 2 == 1)){//SPL output di layar
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() < 2000)&&(navigationStack.peek() % 2 == 0)){//SPL output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 2000)&&(navigationStack.peek() < 3000)&&(navigationStack.peek() % 2 == 1)){//Determinant output di layar
-                    System.out.println("Determinannya :");
-                    System.out.println();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 2000)&&(navigationStack.peek() < 3000)&&(navigationStack.peek() % 2 == 0)){//Determinant outpur di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 3000)&&(navigationStack.peek() % 2 == 1)){//Inverse output di layar
-                    System.out.println("Matriks Balikannya :");
-                    MT.printMatrix();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-                }else if ((navigationStack.peek() > 3000)&&(navigationStack.peek() % 2 == 0)){//Inverse output di file
-                    //output ke file
-                    navigationStack.pop();
-                    navigationStack.pop();
-                    navigationStack.pop();
-=======
                 if (navigationStack.peek() < 2000){//SPL
                     if(navigationStack.peek() % 2 == 1){//output ke layar
                         Aug.printAugmentedMatrix();
@@ -192,7 +161,6 @@ public class Menu
                     }else{//output ke file 
                         //Inverse ke file
                     }
->>>>>>> ff892c8b99d1c3c9ac5b8d1195a0b012d33244b8
                 }
                 navigationStack.pop();
                 navigationStack.pop();

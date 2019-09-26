@@ -53,7 +53,7 @@ public class Determinant
             det = sumPlus - sumMin;
             return det;
         } else {
-            System.out.print("Tolong masukkan matriks yang berukuran 3x3.");
+            System.out.println("Tolong masukkan matriks yang berukuran 3x3.");
             return -99999;
         }
     }
