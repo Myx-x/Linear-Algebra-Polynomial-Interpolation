@@ -260,47 +260,29 @@ public class AugmentedMatrix
     }
     
     // Print the solution for interpolation
-    public void convertToInterpolation(AugmentedMatrix aug) throws Exception
+    public void convertToInterpolation(AugmentedMatrix aug) 
     {
-        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
-        PrintStream console = System.out;
-
         int n=aug.leftMatrix.rowCount;
 
         for(int i=0;i<n;i++) aug.rightMatrix.arr[i][0]=(double) Math.round(aug.rightMatrix.arr[i][0]*10000.0)/10000.0;
         
-        System.setOut(console);
-        System.out.print("f(x) approximately equal to ");
-        System.setOut(file);
         System.out.print("f(x) approximately equal to ");
 
         for(int i=0;i<n;i++) 
         {
             if(i==0) 
             {
-                System.setOut(console);
-                System.out.print(aug.rightMatrix.arr[i][0] + " +");
-                System.setOut(file);
                 System.out.print(aug.rightMatrix.arr[i][0] + " +");
             }
             else if(i==n-1) 
             {
-                System.setOut(console);
-                System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i);
-                System.setOut(file);
                 System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i);
             }
             else 
             {
-                System.setOut(console);
-                System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i + " +");
-                System.setOut(file);
                 System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i + " +");
             }
         }
-        System.setOut(console);
-        System.out.println();
-        System.setOut(file);
         System.out.println();
     
         System.out.print("Input x for approximation:");
@@ -308,20 +290,11 @@ public class AugmentedMatrix
     
         double result=0;
         for(int i=0;i<n;i++) result+=aug.rightMatrix.arr[i][0]*Math.pow(x,i);
-
-        System.setOut(console);
         System.out.println("Value of f("+x+") is equal to " + result + ".");
-        System.setOut(file);
-        System.out.println("Value of f("+x+") is equal to " + result + ".");
-        System.out.println("-------------------------------------------------------------------------------");
-        System.setOut(console);
     }
 
     // Cramer method for matrix solution
-    public void Cramer()throws Exception{
-        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
-        PrintStream console = System.out;
-
+    public void Cramer(){
         double solution = 0;
         Matrix mat = new Matrix();
         mat.deepCopy(this.leftMatrix);
@@ -335,15 +308,8 @@ public class AugmentedMatrix
                 }
                 Determinant modValDet = new Determinant(modVal);
                 solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
-
-                System.setOut(console);
-                System.out.print("X"+(i+1)+" = "+solution+"\n");
-                System.setOut(file);
                 System.out.print("X"+(i+1)+" = "+solution+"\n");
             }
-            System.setOut(file);
-            System.out.println("------------------------------------------------------------------------------------");
-            System.setOut(console);
         } else {
             System.out.print("This method is not valid for this type of matrix");
         }
@@ -400,12 +366,6 @@ public class AugmentedMatrix
     // Convert Infinite Solution Matrix To Solution, when infinite/consistent only.
     public void convertToSolutionInfinite() throws Exception
     {
-        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
-        PrintStream console = System.out;
-
-        System.setOut(console);
-        System.out.println("The solutions are: ");
-        System.setOut(file);
         System.out.println("The solutions are: ");
 
         double[][] res = this.infiniteSolutionMatrix();
@@ -416,10 +376,6 @@ public class AugmentedMatrix
         for(int i=0;i<solutionRow;i++)
         {
             boolean printed=false;
-
-            System.setOut(console);
-            System.out.print("X" + (i+1) + " = ");
-            System.setOut(console);
             System.out.print("X" + (i+1) + " = ");
             
             for(int j=0;j<solutionCol;j++)
@@ -431,24 +387,15 @@ public class AugmentedMatrix
                         printed=true;
                         if(j==0) 
                         {
-                            System.setOut(console);
-                            System.out.print(res[i][j] + " ");
-                            System.setOut(file);
                             System.out.print(res[i][j] + " ");
                         }
                         else 
                         {
-                            System.setOut(console);
-                            System.out.print(res[i][j]>0?(res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
-                            System.setOut(file);
                             System.out.print(res[i][j]>0?(res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
                         }
                     }
                     else
                     {
-                        System.setOut(console);
-                        System.out.print(res[i][j]>0?(" + " + res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
-                        System.setOut(file);
                         System.out.print(res[i][j]>0?(" + " + res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
                     }
                 }
@@ -457,24 +404,15 @@ public class AugmentedMatrix
             {
                 if(res[i][i+1]==1)
                 { 
-                    System.setOut(console);
-                    System.out.println("0.0");
-                    System.setOut(file);
                     System.out.println("0.0");
                     printed=true;
                 }
                 else
                 {
                     infiniteList.add(i+1);
-                    System.setOut(console);
-                    System.out.print("X" + (i+1));
-                    System.setOut(file);
                     System.out.print("X" + (i+1));
                 }
             }
-            System.setOut(console);
-            System.out.println();
-            System.setOut(file);
             System.out.println();
         }
 
@@ -482,19 +420,10 @@ public class AugmentedMatrix
             Iterator<Integer> val = infiniteList.iterator();
             while(val.hasNext())
             {
-                System.setOut(console);
-                System.out.print("X" + val.next() + ", ");
-                System.setOut(file);
                 System.out.print("X" + val.next() + ", ");
             }
-            System.setOut(console);
-            System.out.println("merupakan bilangan asli");
-            System.setOut(file);
             System.out.println("merupakan bilangan asli");
         }
-        System.setOut(file);
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.setOut(console);
     }
 
     /*-----------File I/O------------*/
@@ -505,7 +434,7 @@ public class AugmentedMatrix
         String filenameAug = " ";
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("File harus terletak di folder 'tests'");
+        System.out.println("File harus terletak di folder 'tests'!");
 		System.out.print("Masukkan nama file yang terdapat matriks augmented : ");
         filenameAug = reader.readLine();
 		File file = new File(new File("./tests/"+filenameAug).getCanonicalPath());
@@ -573,5 +502,166 @@ public class AugmentedMatrix
 		writer.write(builder.toString());
 		writer.close();
 		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
+    }
+
+    // Print the solution for interpolation in file
+    public void convertToInterpolationToText(AugmentedMatrix aug) throws Exception
+    {
+        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+        PrintStream console = System.out;
+
+        int n=aug.leftMatrix.rowCount;
+
+        for(int i=0;i<n;i++) aug.rightMatrix.arr[i][0]=(double) Math.round(aug.rightMatrix.arr[i][0]*10000.0)/10000.0;
+
+        System.setOut(file);
+        System.out.println("convertToInterpolation");
+        System.out.print("f(x) approximately equal to ");
+
+        for(int i=0;i<n;i++) 
+        {
+            if(i==0) 
+            {
+                System.setOut(file);
+                System.out.print(aug.rightMatrix.arr[i][0] + " +");
+            }
+            else if(i==n-1) 
+            {
+                System.setOut(file);
+                System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i);
+            }
+            else 
+            {
+                System.setOut(file);
+                System.out.print(aug.rightMatrix.arr[i][0] + "X^" + i + " +");
+            }
+        }
+        System.setOut(file);
+        System.out.println();
+    
+        System.out.print("Input x for approximation:");
+        double x=s.nextDouble();
+    
+        double result=0;
+        for(int i=0;i<n;i++) result+=aug.rightMatrix.arr[i][0]*Math.pow(x,i);
+
+        System.setOut(file);
+        System.out.println("Value of f("+x+") is equal to " + result + ".");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.setOut(console);
+    }
+
+    // Cramer method for matrix solution in file
+    public void CramerToText() throws Exception {
+        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+        PrintStream console = System.out;
+
+        System.setOut(file);
+        System.out.println("Cramer");
+
+        double solution = 0;
+        Matrix mat = new Matrix();
+        mat.deepCopy(this.leftMatrix);
+        Determinant matDet = new Determinant(mat);
+        Matrix modVal = new Matrix();
+        if (mat.isSquare() && (matDet.determinantLaplaceExpansion() != 0)){
+            for (int i = 0; i < mat.rowCount; i++){
+                modVal.deepCopy(mat);
+                for (int j = 0; j < mat.colCount; j++){
+                    modVal.arr[j][i] = this.rightMatrix.arr[j][0];
+                }
+                Determinant modValDet = new Determinant(modVal);
+                solution = modValDet.determinantLaplaceExpansion() / matDet.determinantLaplaceExpansion();
+
+                System.setOut(file);
+                System.out.print("X"+(i+1)+" = "+solution+"\n");
+            }
+            System.setOut(file);
+            System.out.println("---------------------------------------------------------------------------------------------");
+            System.setOut(console);
+        } else {
+            System.out.print("This method is not valid for this type of matrix");
+        }
+    }
+
+    // Convert Infinite Solution Matrix To Solution, when infinite/consistent only. in file
+    public void convertToSolutionInfiniteToText() throws Exception
+    {
+        PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+        PrintStream console = System.out;
+
+        System.setOut(file);
+        System.out.println("convertToSolutionInfinite");
+        System.out.println("The solutions are: ");
+
+        double[][] res = this.infiniteSolutionMatrix();
+        int solutionRow = this.leftMatrix.colCount;
+        int solutionCol = this.leftMatrix.colCount+1;
+        Vector<Integer> infiniteList = new Vector<Integer>();
+
+        for(int i=0;i<solutionRow;i++)
+        {
+            boolean printed=false;
+
+            System.setOut(file);
+            System.out.print("X" + (i+1) + " = ");
+            
+            for(int j=0;j<solutionCol;j++)
+            {
+                if(res[i][j]!=0 && i+1!=j)
+                {
+                    if(!printed)
+                    {
+                        printed=true;
+                        if(j==0) 
+                        {
+                            System.setOut(file);
+                            System.out.print(res[i][j] + " ");
+                        }
+                        else 
+                        {
+                            System.setOut(file);
+                            System.out.print(res[i][j]>0?(res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
+                        }
+                    }
+                    else
+                    {
+                        System.setOut(file);
+                        System.out.print(res[i][j]>0?(" + " + res[i][j] + "X" + j):(" - " + Math.abs(res[i][j])+"X"+j));
+                    }
+                }
+            }
+            if(!printed)
+            {
+                if(res[i][i+1]==1)
+                { 
+                    System.setOut(file);
+                    System.out.println("0.0");
+                    printed=true;
+                }
+                else
+                {
+                    infiniteList.add(i+1);
+                    System.setOut(file);
+                    System.out.print("X" + (i+1));
+                }
+            }
+            System.setOut(file);
+            System.out.println();
+        }
+
+        if(!infiniteList.isEmpty()){
+            Iterator<Integer> val = infiniteList.iterator();
+            while(val.hasNext())
+            {
+                System.setOut(file);
+                System.out.print("X" + val.next() + ", ");
+            }
+            System.setOut(file);
+            System.out.println("merupakan bilangan asli");
+        }
+        System.setOut(file);
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.setOut(console);
     }
 }

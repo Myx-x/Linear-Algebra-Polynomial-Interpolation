@@ -78,25 +78,13 @@ public class Matrix
 	}
 
 	// Inverse SPL Output Procedure
-	public void printInverseSPL() throws Exception
+	public void printInverseSPL()
 	{
-		PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
-		PrintStream console = System.out;
-		
-		System.setOut(console);
-		System.out.println("\nSolusi dari SPL adalah : ");
-		System.setOut(file);
 		System.out.println("\nSolusi dari SPL adalah : ");
 		for(int i=0; i<this.rowCount;i++)
 		{	 
-			System.setOut(console);
-			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
-			System.setOut(file);
 			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
 		}
-		System.setOut(file);
-		System.out.println("---------------------------------------------------------------------------------------------");
-		System.setOut(console);
 	}
 
     /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= UTILITY FUNCTIONS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -246,7 +234,7 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("File harus terletak di folder 'tests'");
+		System.out.println("File harus terletak di folder 'tests'!");
 		System.out.print("Masukkan nama file yang terdapat matriks : ");
 		filenameMatrix = reader.readLine();
 		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
@@ -306,5 +294,26 @@ public class Matrix
 		writer.write(builder.toString());
 		writer.close();
 		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
+	}
+
+	// Inverse SPL Output Procedure in file
+	public void printInverseSPLToText() throws Exception
+	{
+		PrintStream file = new PrintStream(new File("./output/output.txt").getCanonicalPath());
+		PrintStream console = System.out;
+		
+		System.setOut(file);
+		System.out.print("printInverseSPLText()");
+		System.out.println("\nSolusi dari SPL adalah : ");
+		for(int i=0; i<this.rowCount;i++)
+		{	 
+			System.setOut(console);
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
+			System.setOut(file);
+			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
+		}
+		System.setOut(file);
+		System.out.println("---------------------------------------------------------------------------------------------");
+		System.setOut(console);
 	}
 }
