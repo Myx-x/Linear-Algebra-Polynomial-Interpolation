@@ -223,7 +223,6 @@ public class Matrix
 				this.arr[i][j] = matrixFile.arr[i][j];
 			}
 		}
-		
 		//taken and modified from https://www.daniweb.com/programming/software-development/threads/324267/reading-file-and-store-it-into-2d-array-and-parse-it
 	}
 	

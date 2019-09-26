@@ -44,13 +44,11 @@ public class Main
         
         Matrix MT = new Matrix();
         MT.textToMatrix();
-        //MT.printMatrix();
+        MT.printMatrix();
         
         System.out.println("---------------------------------------------");
+        
         AugmentedMatrix aug = new AugmentedMatrix();
         aug.textToAug();
-        //aug.printAugmentedMatrix();
-        /*
-        */
     }
 }

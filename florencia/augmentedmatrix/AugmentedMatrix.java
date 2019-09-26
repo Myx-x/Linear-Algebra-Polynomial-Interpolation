@@ -299,7 +299,7 @@ public class AugmentedMatrix
         double[][] result = new double[this.leftMatrix.colCount+1][this.leftMatrix.colCount+1];
         for(double[] row:result) Arrays.fill(row,0);
 
-        int rc=this.leftMatrix.rowCount,cc=this.leftMatrix.colCount;
+        int cc=this.leftMatrix.colCount;
         
         // Moving coefficients then make it negative unless it's at the same diagonal
         for(int i=0;i<this.leftMatrix.rowCount;i++)
