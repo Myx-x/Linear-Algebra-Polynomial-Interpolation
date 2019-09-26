@@ -44,9 +44,32 @@ public class Main
         AugmentedMatrix aug = new AugmentedMatrix();
         aug.inputLinearEquation();
         
+<<<<<<< HEAD
         aug.gaussJordanElimination();
         
         aug.printAugmentedMatrix();
         aug.convertToSolutionInfinite();
+=======
+        
+        // AugmentedMatrix aug = new AugmentedMatrix();
+        // aug.textToAug();
+        //aug.printAugmentedMatrix();
+
+        // AugmentedMatrix aug = new AugmentedMatrix();
+        // Matrix A = new Matrix();
+        // Matrix B = new Matrix();
+        // aug.inputLinearEquation();
+        // aug.printAugmentedMatrix();
+        // Matrix A = new Matrix();
+        // Matrix B = new Matrix();
+        // A.inputMatrix();
+        // B.inputMatrix();
+        // Matrix C = new Matrix();
+        // C.kaliMatrix(A, B);
+        // C.printMatrix();
+        AugmentedMatrix aug = new AugmentedMatrix();
+        aug.textToAug();
+        aug.printAugmentedMatrix();
+>>>>>>> 85a72bc56d8bb675401a112a9849de0cc4a49b0a
     }
 }

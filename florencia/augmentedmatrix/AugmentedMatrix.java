@@ -56,7 +56,9 @@ public class AugmentedMatrix
     // Input into augmented matrix with its augmented form
     public void inputLinearEquation()
     {
+        System.out.print("Masukkan Baris :");
         int rc = s.nextInt();
+        System.out.print("Masukkan Kolom :");
         int cc = s.nextInt();
         this.leftMatrix = new Matrix(rc,cc-1);
         this.rightMatrix = new Matrix(rc,1);
@@ -201,6 +203,7 @@ public class AugmentedMatrix
         
     }
 
+    // Gauss elimination method
 	public AugmentedMatrix gaussElimination()
 	{
         AugmentedMatrix result = new AugmentedMatrix(this);
@@ -210,6 +213,7 @@ public class AugmentedMatrix
         return result;
     }
     
+    // Gauss-Jordan elmination method
 	public AugmentedMatrix gaussJordanElimination()
 	{
         AugmentedMatrix result = new AugmentedMatrix(this);
@@ -220,6 +224,7 @@ public class AugmentedMatrix
         return result;    
     }
 
+    // Make matrix from interpolation
     public AugmentedMatrix makeInterpolationMatrix()
     {
         System.out.print("Masukkan jumlah titik :");
@@ -240,6 +245,7 @@ public class AugmentedMatrix
         return result;
     }
     
+    // Print the solution for interpolation
     public void convertToInterpolation(AugmentedMatrix aug)
     {
         int n=aug.leftMatrix.rowCount;
@@ -263,6 +269,7 @@ public class AugmentedMatrix
         System.out.println("Value of f("+x+") is equal to " + result + ".");
     }
 
+    // Cramer method for matrix solution
     public void Cramer(){
         double solution = 0;
         Matrix mat = new Matrix();
@@ -284,6 +291,7 @@ public class AugmentedMatrix
         }
     }
 
+    // Print matrix solution for linear equation
     public void convertToSolutionValid()
     {
         System.out.println("The solutions are: ");
@@ -397,6 +405,7 @@ public class AugmentedMatrix
         }
     }
 
+    // Read .txt file into augmented matrix
     public void textToAug() throws Exception{
         Matrix matrixFile = new Matrix(101, 101);
         int x = 0, y = 0;
