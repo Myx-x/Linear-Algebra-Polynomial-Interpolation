@@ -52,17 +52,6 @@ public class Main
         // Matrix B = new Matrix();
         // aug.inputLinearEquation();
         // aug.printAugmentedMatrix();
-<<<<<<< HEAD
-        Matrix A = new Matrix();
-        Matrix B = new Matrix();
-        A.inputMatrix();
-        B.inputMatrix();
-        Matrix C = new Matrix();
-        C.kaliMatrix(A, B);
-        C.printMatrix();
-        AugmentedMatrix aug = new AugmentedMatrix();
-        aug.textToAug();
-=======
         // Matrix A = new Matrix();
         // Matrix B = new Matrix();
         // A.inputMatrix();
@@ -70,9 +59,17 @@ public class Main
         // Matrix C = new Matrix();
         // C.kaliMatrix(A, B);
         // C.printMatrix();
+        /*
         AugmentedMatrix aug = new AugmentedMatrix();
         aug.textToAug();
         aug.printAugmentedMatrix();
->>>>>>> 8eef33baf006b3e817cf489446282c811e319eab
+        */
+        Matrix mat = new Matrix();
+        mat.textToMatrix();
+        mat.MatrixToText();
+        System.out.println("<------------------------>");
+        AugmentedMatrix aug = new AugmentedMatrix();
+        aug.textToAug();
+        aug.AugToText();
     }
 }
