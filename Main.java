@@ -7,15 +7,23 @@ public class Main
 {
     public static void main(String args[]) throws Exception
     {
-        Matrix m1 = new Matrix();
-        Matrix m2 = new Matrix();
-
-        m1.inputMatrix();
-        m2.inputMatrix();
-
+        AugmentedMatrix aug = new AugmentedMatrix();
         Matrix m3 = new Matrix();
-        m3 = m3.kaliMatrix(m1, m2);
+        aug.inputLinearEquation();
+        m3 = aug.makeInverseSPL();
+        // Determinant det = new Determinant(aug.leftMatrix);
+        // m3 = det.inverseAdjoint();
 
+        // // m3 = m3.kaliMatrix(m3, aug.rightMatrix);
         m3.printMatrix();
+        // Matrix a = new Matrix();
+        // Matrix b = new Matrix();
+        // Determinant c = new Determinant(a);
+        // a.inputMatrix();
+        // b.inputMatrix();
+        // a.printMatrix();
+        // a = a.kaliMatrix(a, b);
+        // a.printMatrix();
+
     }
 }
