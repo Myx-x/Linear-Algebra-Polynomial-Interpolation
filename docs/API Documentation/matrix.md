@@ -340,4 +340,17 @@ m.deepCopy(Min);
 // Min is a matrix that already have elemen in it
 ```
 
+## printInverseSPLToText()
+printInverseSPLToText is a procedure that will output a Matrix object which is the right matrix of an Augmented Matrix to a file.
+
+### Usage example:
+```java
+// Inside main
+Matrix m = new Matrix();
+
+// After Matrix is initialized...
+
+m.printInverseSPLToText() // Will output the contents of the Matrix object.
+```
+
 

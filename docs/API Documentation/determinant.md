@@ -111,3 +111,16 @@ inverseGaussJordan() is a function that returns inverse matrix form of Matrix m 
 Determinant det = new Determinant(M); //Initializes Determinant det with Matrix M 
 Matrix invGauss = det.getAdjoint(); // returns matrix inverse of matrix M
 ```
+
+## DetToText(double value)
+DetToText is a procedure that will output a double from the parameter to an output file
+
+### Usage example:
+```java
+// Inside main
+Matrix det = new Determinant(m);
+
+// After Determinant is initialized...
+
+det.DetToText(value) // Will output the value to an output file.
+```

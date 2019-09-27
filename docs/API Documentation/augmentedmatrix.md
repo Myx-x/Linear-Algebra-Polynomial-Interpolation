@@ -60,49 +60,219 @@ AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new A
 aug.inputLinearEquation();
 ```
 
-## inputMatrix()
-inputMatrix is a default procedure provided to input something into a Matrix object. This procecure will prompt the user to input row and column amount. This procedure makes use of the `makeMatrix()` procedure. In other words, there's **no need** in using `makeMatrix()` procedure before using this procedure.
+## printAugmentedMatrix()
+printAugmentedMatrix is an output procedure with an augmented matrix form.
 
 ### Usage example:
 ```java
 // Inside main
-Matrix m = new Matrix();
-
-// Instead of
-m.makeMatrix(3,5);
-
-// ..when you're having user input, use:
-m.inputMatrix() // Input 3 & 5 when prompted.
-
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.printAugmentedMatrix();
 ```
 
-## printMatrix()
-printMatrix is a procedure that will output a Matrix object. The object will be printed in a grid style way, with tabs separating each number. The dimension will always be `rowCount` x `colCount` when printing.
+## augRowSwap(int i, int j)
+augRowSwap is a procedure to swap row in the Augmented form.
 
 ### Usage example:
 ```java
 // Inside main
-Matrix m = new Matrix();
-
-// After Matrix is initialized...
-
-m.printMatrix() // Will output the contents of the Matrix object.
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.augRowSwap(i,j); // swap row i and row j
 ```
 
-## isSquare()
-isSquare is a function that returns boolean. It will yield a value of `true` when the matrix is square; and `false` otherwise.
+## augRowArithmetic(int reducedRow, int reducingRow, double multiplier)
+augRowArithmetic is a procedure to do arithmetic operation on two rows in an augmented matrix
 
 ### Usage example:
 ```java
 // Inside main
-Matrix m = new Matrix();
-
-// After Matrix is initialized...
-
-if(m.isSquare())  // if matrix is square..
-{
-    // do something
-}
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.augRowArithmetic(i,j, X); // reduce row i, reduce row j, and multiply with an X
 ```
 
+## augRowMultiplier(int multipliedRow, double multiplier)
+augRowMultiplier is a procedure to multiples one rows with a constant
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.augRowArithmetic(i, X); // reduce row i and multiply with an X
+```
+
+## validateAugMat()
+validateAugMat is a procedure to validate an augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.validateAugMat(); 
+```
+
+## forwardElimination()
+forwardElimination is a procedure to reduce front of the augmented matrix into an echelon form.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.forwardElimination(); 
+```
+
+
+## backwardElimination()
+backwardElimination is a procedure to reduce back of the augmented matrix into an echelon form.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.backwardElimination(); 
+```
+
+## GaussElimination()
+gaussElimination is a procedure to use a gauss elimination for the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug = aug.gaussElimination(); 
+```
+
+
+## gaussJordanElimination()
+gaussJordanElimination is a procedure to use a gauss-jordan elimination for the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug = aug.gaussJordanElimination(); 
+```
+
+## makeInverseSPL()
+makeInverseSPL is a procedure to use a inverse method to make a solution from the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+Matrix M = aug.makeInverseSPL(); // The solution for the aug is initialized in matrix M 
+```
+
+
+## makeInterpolationMatrix()
+makeInterpolationMatrix is an input procedure to use interpolation for the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug = aug.makeInterpolationMatrix(); 
+```
+
+
+## convertToInterpolation(AugmentedMatrix aug)
+convertToInterpolation is an output procedure to output the solution for interpolation.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug = aug.makeInterpolationMatrix();
+aug.convertToInterpolation(aug); // Will make an output to the screen 
+```
+
+## Cramer()
+Cramer is an output procedure to make the solution from the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.Cramer(); 
+```
+
+## infiniteSolutionMatrix()
+infiniteSolutionMatrix is a procedure to make the solution matrix from the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+double cc[][] = aug.infiniteSolutionMatrix(); 
+```
+
+## backwardSubstitution()
+backwardSubstitution is a procedure to substitute the bacward from the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.backwardSubstitution(); 
+```
+
+## convertToSolutionInfinite()
+convertToSolutionInfinite is an output procedure to make the solution matrix from the augmented matrix.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.convertToSolutionInfinite(); 
+```
+
+## textToAug()
+textToAug is an input procedure to make the augmented matrix from a file.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.textToAug(); 
+```
+
+## AugToText()
+AugToText() is an output procedure to make the augmented matrix into a file.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.AugToText(); 
+```
+
+## convertToInterpolationToText(AugmentedMatrix aug)
+convertToInterpolation is an output procedure to output the solution for interpolation into a file.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.convertToInterpolationToText(aug); 
+```
+
+## CramerToText()
+CramerToText is an output procedure to make the solution from the augmented matrix into a file.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.CramerToText(); 
+```
+
+
+## convertToSolutionInfiniteToText()
+convertToSolutionInfiniteToText is an output procedure to make the solution matrix from the augmented matrix into a file.
+
+### Usage example:
+```java
+// Inside main
+AugmentedMatrix aug = new AugmentedMatrix(leftMat, rightMat); // Creates a new AugmentedMatrix()
+aug.convertToSolutionInfiniteToText(); 
+```
 
