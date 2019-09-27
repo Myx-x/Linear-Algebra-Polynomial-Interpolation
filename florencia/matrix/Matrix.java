@@ -81,6 +81,8 @@ public class Matrix
 	public void printInverseSPL()
 	{
 		System.out.println("\nSolusi dari SPL adalah : ");
+		this.printMatrix();
+		System.out.println(" ");
 		for(int i=0; i<this.rowCount;i++)
 		{	 
 			System.out.println("X"+(i+1)+" = "+ this.arr[i][0]);
@@ -234,10 +236,10 @@ public class Matrix
 		String filenameMatrix = " ";
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("File harus terletak di folder 'tests'!");
+		System.out.println("File harus terletak di folder 'test'!");
 		System.out.print("Masukkan nama file yang terdapat matriks : ");
 		filenameMatrix = reader.readLine();
-		File file = new File(new File("./tests/"+filenameMatrix).getCanonicalPath());
+		File file = new File(new File("./test/"+filenameMatrix).getCanonicalPath());
 		BufferedReader br = null;
 
 		try{
@@ -293,7 +295,7 @@ public class Matrix
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./output/"+matrixFilename).getCanonicalPath()));
 		writer.write(builder.toString());
 		writer.close();
-		System.out.println("File "+matrixFilename+" terletak di folder 'output'");
+		System.out.println("File "+matrixFilename+" terletak di folder 'output'.");
 	}
 
 	// Inverse SPL Output Procedure in file
